@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { AiFillLinkedin, AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai"
 import "./navbar.scss"
-import { ThemeToggle } from ".."
+import { AuthLinks, ThemeToggle } from ".."
 
 export const Navbar = () => {
     return (
@@ -23,6 +23,7 @@ export const Navbar = () => {
                 <Link to="/" className="link">Homepage</Link>
                 <Link to="/" className="link">Blogs</Link>
                 <Link to="/" className="link">projects</Link>
+                <AuthLinks />
             </div>
         </nav>
     )

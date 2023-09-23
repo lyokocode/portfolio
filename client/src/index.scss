@@ -90,6 +90,8 @@ body {
 
 button {
     cursor: pointer;
+    background-color: transparent;
+    color: var(--textColor);
 }
 
 a {
