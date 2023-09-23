@@ -1,8 +1,26 @@
+import { Link } from "react-router-dom"
+import { AiFillLinkedin, AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai"
 import "./navbar.scss"
 export const Navbar = () => {
     return (
-        <div className="navbar">
-            Navbar
-        </div>
+        <nav className="navbar">
+            <div className="social">
+                <a href="#">
+                    <AiFillLinkedin size={24} />
+                </a>
+                <a href="#">
+                    <AiOutlineGithub size={24} />
+                </a>
+                <a href="#">
+                    <AiOutlineTwitter size={24} />
+                </a>
+            </div>
+            <h1 className="logo">{"<Aelita />"}</h1>
+            <div className="links">
+                <Link to="/" className="link">Homepage</Link>
+                <Link to="/" className="link">Blogs</Link>
+                <Link to="/" className="link">projects</Link>
+            </div>
+        </nav>
     )
 }
