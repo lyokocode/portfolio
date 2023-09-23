@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    list-style: none;
+    text-decoration: none;
+}
+
+html,
+body {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .container {
+        flex: 1;
+        display: flex;
+        width: 100%;
+    }
+}
+
+button {
+    cursor: pointer;
+}
