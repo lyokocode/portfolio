@@ -1,3 +1,10 @@
+:root {
+    --bg: white;
+    --textColor: black;
+    --softBg: #f0f0f0;
+    --softTextColor: #626262;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,20 +19,55 @@ html,
 body {
     width: 100vw;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.app {
+.appContainer {
+    background-color: var(--bg);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 
-    .container {
+    @media screen and (max-width:1536px) {
+        max-width: 1366px;
+    }
+
+    @media screen and (max-width:1336px) {
+        max-width: 1280px;
+    }
+
+    @media screen and (max-width:1280px) {
+        max-width: 1024px;
+    }
+
+    @media screen and (max-width:1024px) {
+        max-width: 768px;
+        padding: 0 40px;
+
+    }
+
+    @media screen and (max-width:768px) {
+        max-width: 640px;
+    }
+
+    @media screen and (max-width:640px) {
+        max-width: 475px;
+    }
+
+    .wrapper {
         flex: 1;
         display: flex;
         width: 100%;
+        height: 100%;
     }
 }
 
 button {
     cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }

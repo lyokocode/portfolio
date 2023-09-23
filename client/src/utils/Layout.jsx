@@ -3,9 +3,9 @@ import { Footer, Menu, Navbar } from "../components"
 import "../index.scss"
 const Layout = () => {
     return (
-        <div className="app">
+        <div className="appContainer">
             <Navbar />
-            <div className="container">
+            <div className="wrapper">
                 <Outlet />
                 <Menu />
             </div>
