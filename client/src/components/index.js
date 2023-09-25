@@ -4,10 +4,14 @@ export { ThemeToggle } from "./navbar/ThemeToggle"
 export { AuthLinks } from "./navbar/AuthLinks"
 
 // home
-export { Featured } from "./featured/"
-export { Categories } from "./categories/"
+export { Featured } from "./featured"
+export { Categories } from "./categories"
+
+// blog
+
+export { CardList } from "./cardList"
+export { Card } from "./card"
 
 // menu
 export { Menu } from "./menu"
-
 export { Footer } from "./footer"
