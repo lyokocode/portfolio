@@ -14,4 +14,9 @@ export { Card } from "./card"
 
 // menu
 export { Menu } from "./menu"
+export { MenuPost } from "./menu/MenuPost"
+export { MenuCategories } from "./menu/MenuCategories"
+
+
+// footer
 export { Footer } from "./footer"
