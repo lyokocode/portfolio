@@ -10,10 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^2.3.0",
+    "@mdx-js/rollup": "^2.3.0",
+    "markdown-to-jsx": "^7.3.2",
+    "path": "^0.12.7",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.7",
     "react-router-dom": "^6.16.0",
-    "sass": "^1.68.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "sass": "^1.68.0",
+    "vite-plugin-fs": "^1.0.0-beta.6",
+    "vite-plugin-ssr": "^0.4.142"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -23,6 +32,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-md": "^0.22.5",
+    "vite-plugin-react-markdown": "^0.2.10"
   }
 }

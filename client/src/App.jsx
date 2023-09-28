@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home } from './pages'
+import { Blogs, Home, SingleBlog } from './pages'
 import Layout from './utils/Layout'
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<SingleBlog />} />
         </Route>
       </Routes>
     </Router>

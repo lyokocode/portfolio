@@ -12,6 +12,10 @@ export { Categories } from "./categories"
 export { CardList } from "./cardList"
 export { Card } from "./card"
 
+// singleBlog
+export { MarkdownBlog } from "./markdownBlog"
+export { Code } from "./code"
+
 // menu
 export { Menu } from "./menu"
 export { MenuPost } from "./menu/MenuPost"

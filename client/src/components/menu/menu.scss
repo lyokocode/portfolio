@@ -58,25 +58,6 @@
                     color: #3f3f46;
                     width: max-content;
 
-                    &.trekking {
-                        background-color: #dcfce7;
-                    }
-
-                    &.scss {
-                        background-color: #fbcfe8;
-                    }
-
-                    &.javascript {
-                        background-color: #fef3c7;
-                    }
-
-                    &.next {
-                        background-color: #d4d4d8;
-                    }
-
-                    &.react {
-                        background-color: #dbeafe;
-                    }
                 }
 
                 .postTitle {
@@ -110,6 +91,7 @@
             font-size: 14px;
             color: #1f2937;
             border-radius: 10px;
+            text-transform: capitalize;
         }
     }
 }

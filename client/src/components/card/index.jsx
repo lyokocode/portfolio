@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom"
 import "./card.scss"
-export const Card = () => {
+
+export const Card = ({ blog }) => {
+
+    console.log(blog)
     return (
         <article className="post">
             <div className="imageContainer">
-                <img src="/privateRoute.png" alt="" />
+                <img src={blog.image} alt="" className="image" />
             </div>
             <div className="textContainer">
                 <div className="detail">
-                    <span className="date">11.09.2023</span>
+                    <span className="date">{blog.date}</span>
                     -
-                    <span className="category">react</span>
+                    <span className="category">{blog.category}</span>
                 </div>
-                <Link>
-                    <h1 className="postTitle">Private Route nedir? nasıl oluşturulur</h1>
+                <Link to={`/blogs/${blog.slug}`} >
+                    <h1 className="postTitle">{blog.title}</h1>
                 </Link>
-                <p className="postDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus magnam adipisci vel eius architecto assumenda quo a fugit voluptate rem.</p>
-                <Link to="/blogs">read more</Link>
+                <p className="postDesc">{blog.description}</p>
+                <Link to={`/blogs/${blog.slug}`} >read more</Link>
             </div>
         </article>
     )

@@ -1,7 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// vite.config.js
 
-// https://vitejs.dev/config/
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import Markdown from 'vite-plugin-md'; // Markdown eklentisi
+
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [
+    react(),
+    Markdown({
+      exclude: [/\.md$/], // .md dosyalarını işlememe
+    }),
+
+  ], // Markdown eklentisini ekleyin
+});

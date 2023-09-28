@@ -1,0 +1,13 @@
+  .code {
+      position: relative;
+      font-size: 16px;
+  }
+
+  .copyIcon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 500;
+      background-color: transparent;
+      color: gray;
+  }

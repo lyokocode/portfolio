@@ -1,0 +1,27 @@
+.article {
+    margin: 4rem 0;
+    width: 100%;
+
+    .container {
+        max-width: 50rem;
+        margin: 0 auto;
+        padding: 0 0.5rem 0 0.5rem;
+        height: 100%;
+
+        @media screen and (max-width:768px) {
+            max-width: 35rem;
+        }
+
+        @media screen and (max-width:640px) {
+            max-width: 27rem;
+        }
+
+        @media screen and (max-width:480px) {
+            max-width: 24rem;
+        }
+
+        .postWrapper {
+            width: 100%;
+        }
+    }
+}

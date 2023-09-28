@@ -1,0 +1,111 @@
+.singleBlog {
+    flex: 6;
+
+    .infoContainer {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+        @media screen and (max-width: 1024px) {
+            display: block;
+        }
+
+        .textContainer {
+            flex: 1;
+
+            .title {
+                font-size: 64px;
+                margin-bottom: 50px;
+
+                @media screen and (max-width: 1280px) {
+                    font-size: 54px;
+                }
+
+                @media screen and (max-width: 1024px) {
+                    font-size: 48px;
+                }
+
+                @media screen and (max-width: 768px) {
+                    font-size: 36px;
+                }
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                .userImageContainer {
+                    width: 50px;
+                    height: 50px;
+                    position: relative;
+
+                    .avatar {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+
+                .userTextContainer {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    color: var(--softTextColor);
+
+                    .username {
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+
+                }
+            }
+        }
+
+        .imageContainer {
+            flex: 1;
+            height: 350px;
+
+            @media screen and (max-width: 1024px) {
+                margin: 20px 0;
+                height: 400px;
+            }
+
+            @media screen and (max-width: 768px) {
+                height: 350px;
+            }
+
+            .image {
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        gap: 50px;
+
+        .post {
+            flex: 5;
+            margin-top: 60px;
+
+            .desc {
+                font-size: 24px;
+                font-weight: 300;
+                margin-bottom: 20px;
+                width: 100%;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 20px;
+                }
+
+                @media screen and (max-width: 640px) {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
