@@ -22,7 +22,7 @@ export const Navbar = () => {
                 <ThemeToggle />
                 <Link to="/" className="link">Homepage</Link>
                 <Link to="/blogs" className="link">Blogs</Link>
-                <Link to="/" className="link">projects</Link>
+                <Link to="/projects" className="link">projects</Link>
                 <AuthLinks />
             </div>
         </nav>

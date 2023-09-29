@@ -21,6 +21,9 @@ export { Menu } from "./menu"
 export { MenuPost } from "./menu/MenuPost"
 export { MenuCategories } from "./menu/MenuCategories"
 
+//projects
+export { ProjectList } from "./projectList"
+export { Project } from "./project"
 
 // footer
 export { Footer } from "./footer"

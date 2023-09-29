@@ -3,7 +3,6 @@ import "./card.scss"
 
 export const Card = ({ blog }) => {
 
-    console.log(blog)
     return (
         <article className="post">
             <div className="imageContainer">

@@ -7,7 +7,7 @@ export const CardList = () => {
             <h1 className="cardTitle">Recent Post</h1>
             {blogs ? blogs.map(blog => (
                 <Card key={blog.slug} blog={blog} />
-            )) : ("blog bulunamadı")}
+            )) : ("loading...")}
         </div>
     )
 }

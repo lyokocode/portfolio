@@ -31,7 +31,7 @@ export const AuthLinks = () => {
                 <div className="responsiveMenu">
                     <Link to="/">Homepage</Link>
                     <Link to="/blogs">Blogs</Link>
-                    <Link to="/">Projects</Link>
+                    <Link to="/projects">Projects</Link>
                     {status === "notauthenticated" ? (
                         <Link to="/">Login</Link>
                     ) : (

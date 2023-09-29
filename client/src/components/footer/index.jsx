@@ -32,7 +32,7 @@ export const Footer = () => {
                     <span className="listTitle">Links</span>
                     <Link to="/">Homepage</Link>
                     <Link to="/blogs">Blogs</Link>
-                    <Link to="/">projects</Link>
+                    <Link to="/projects">projects</Link>
                     <Link to="/">Contact</Link>
                 </div>
                 <div className="list">

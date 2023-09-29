@@ -66,3 +66,26 @@ export const blogs = [
     },
 
 ]
+
+export const projects = [
+    {
+        id: 1,
+        image: "javascript.png",
+        title: "Kuzey Tekel",
+        description: "dolor sit amet consectetur adipisicing elit. Architecto nostrum sunt fugiat nisi numquam aspernatur?",
+        date: "11.12.2023",
+        category: ["React"],
+        githubLink: "/",
+        projectLink: "/"
+    },
+    {
+        id: 2,
+        image: "logo.png",
+        title: "Brand Color Clone",
+        description: "dolor sit amet consectetur adipisicing elit. Architecto nostrum sunt fugiat nisi numquam aspernatur?",
+        date: "11.12.2022",
+        category: ["React", "Redux", "Scss"],
+        githubLink: "/",
+        projectLink: "/"
+    },
+]

@@ -6,7 +6,8 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { materialDark, materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useSelector } from 'react-redux';
 import "./code.scss"
-export const Code = ({ children }) => {
+
+export const Code = ({ children, language }) => {
 
     const darkMode = useSelector((state) => state.theme.dark);
 
@@ -30,7 +31,7 @@ export const Code = ({ children }) => {
                 </button>
             </CopyToClipboard>
             <SyntaxHighlighter
-                language="javascript"
+                language={language ? language : "javascript"}
                 style={darkMode ? materialDark : materialLight}
             >
                 {children}
