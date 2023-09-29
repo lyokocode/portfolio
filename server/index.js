@@ -10,7 +10,7 @@ dotenv.config()
 
 async function main() {
     try {
-        await sequelize.sync();
+        await sequelize.sync({ force: true });
         console.log("db connection is successfull")
         app.listen(process.env.PORT, () => console.log(`api is running on port: ${process.env.PORT}`))
 
