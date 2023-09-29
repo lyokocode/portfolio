@@ -1,12 +1,16 @@
 import express from "express"
 import dotenv from "dotenv"
 import { sequelize } from "./database/db.js"
-
+import blogRoute from "./routes/blog.js"
 
 const app = express()
 
 // middlewares
 dotenv.config()
+
+
+// Routes
+app.use("/api/blogs", blogRoute)
 
 async function main() {
     try {
