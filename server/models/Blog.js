@@ -5,6 +5,7 @@ export const Blog = sequelize.define('Blog', {
     slug: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     author: {
         type: DataTypes.STRING,
@@ -17,6 +18,7 @@ export const Blog = sequelize.define('Blog', {
     image: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     category: {
         type: DataTypes.STRING,
@@ -37,5 +39,6 @@ export const Blog = sequelize.define('Blog', {
     blog: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
 });

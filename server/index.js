@@ -7,6 +7,7 @@ const app = express()
 
 // middlewares
 dotenv.config()
+app.use(express.json());
 
 
 // Routes
