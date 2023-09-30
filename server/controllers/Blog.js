@@ -62,3 +62,27 @@ export const deleteBlog = async (req, res, next) => {
     }
 }
 
+// UPDATE Blog
+export const updateBlog = async (req, res, next) => {
+    const { id } = req.query;
+    const updatedFields = req.body;
+
+    try {
+        const blog = await Blog.findByPk(id);
+        if (!blog) {
+            return next(createError(404, " Blog is not defined"))
+        }
+
+        Object.keys(updatedFields).forEach((field) => {
+            if (field !== 'id') {
+                blog[field] = updatedFields[field];
+            }
+        });
+
+        await blog.save();
+
+        return res.json({ blog });
+    } catch (err) {
+        next(err)
+    }
+}
