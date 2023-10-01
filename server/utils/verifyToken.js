@@ -11,3 +11,15 @@ export const verifyToken = (req, res, next) => {
         next()
     });
 };
+
+export const verifyAdmin = (req, res, next) => {
+    verifyToken(req, res, () => {
+        console.log(req.user)
+        if (req.user.isAdmin) {
+            next()
+        } else {
+            return next(createError(403, "you are not autharized!"))
+
+        }
+    })
+};

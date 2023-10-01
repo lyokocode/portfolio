@@ -15,7 +15,8 @@ export const register = async (req, res, next) => {
             userName: req.body.userName,
             email: req.body.email,
             avatar: req.body.avatar,
-            password: hash
+            password: hash,
+            isAdmin: req.body.isAdmin
         });
         return res.status(201).json(newUser);
 
