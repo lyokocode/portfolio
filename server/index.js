@@ -3,12 +3,14 @@ import dotenv from "dotenv"
 import { sequelize } from "./database/db.js"
 import blogRoute from "./routes/blog.js"
 import authRoute from "./routes/auth.js"
+import cookieParser from "cookie-parser"
 
 const app = express()
 
 // middlewares
 dotenv.config()
 app.use(express.json());
+app.use(cookieParser())
 
 
 // Routes
@@ -17,12 +19,11 @@ app.use("/api/auth", authRoute)
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
-    const errorMessage = err.message || "Something went wrong"
-
+    const errorMessage = err.message || "Something went wrong!"
     return res.status(errorStatus).json({
         success: false,
         status: errorStatus,
-        message: errorStatus,
+        message: errorMessage,
         stack: err.stack
     })
 })

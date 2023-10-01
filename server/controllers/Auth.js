@@ -1,5 +1,6 @@
 import { User } from "../models/User.js";
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 import { createError } from "../utils/error.js";
 
 // REGISTER
@@ -25,6 +26,7 @@ export const register = async (req, res, next) => {
 
 // LOGIN
 
+// LOGIN
 export const login = async (req, res, next) => {
     try {
         const user = await User.findOne({
@@ -38,8 +40,21 @@ export const login = async (req, res, next) => {
         const isPsswordCorrect = await bcrypt.compare(req.body.password, user.password)
         if (!isPsswordCorrect) return next(createError(400, "wrong password or username"))
 
+        const token = jwt.sign({
+            id: user.id,
+            isAdmin: user.isAdmin
+        }, process.env.JWT_SECRET_KEY, { expiresIn: '6h' })
+
         const { password, isAdmin, ...info } = user.dataValues
-        res.status(200).json({ ...info })
+
+
+        return res
+            .cookie("access_token", token, {
+                httpOnly: true
+            })
+            .status(200)
+            .json({ ...info });
+
     } catch (err) {
         next(err)
     }
