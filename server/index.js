@@ -4,6 +4,7 @@ import { sequelize } from "./database/db.js"
 import blogRoute from "./routes/blog.js"
 import authRoute from "./routes/auth.js"
 import cookieParser from "cookie-parser"
+import cors from "cors"
 
 const app = express()
 
@@ -11,6 +12,8 @@ const app = express()
 dotenv.config()
 app.use(express.json());
 app.use(cookieParser())
+app.use(cors())
+
 
 
 // Routes
