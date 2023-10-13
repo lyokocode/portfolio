@@ -17,7 +17,6 @@ export const Blog = sequelize.define('Blog', {
     },
     image: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
     },
     category: {
