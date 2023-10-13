@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react"
 import Markdown from "markdown-to-jsx"
 import { Code } from ".."
+import axios from "axios";
 
 export const MarkdownBlog = ({ blog }) => {
-    const [postContent, setPostContent] = useState("");
+
+    const [postContent, setPostContent] = useState('');
+
     useEffect(() => {
-        const fetchMarkdown = async () => {
+        const fetchMarkdownFile = async () => {
             try {
-                const response = await fetch(`${blog}`); // Dosya yolunu projenize göre ayarlayın
-                if (response.ok) {
-                    const markdownText = await response.text();
-                    setPostContent(markdownText);
-                } else {
-                    console.error('Failed to fetch Markdown content');
-                }
+                const response = await axios.get(`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/mdfiles/${blog}`);
+                setPostContent(response.data); // Dosya içeriğini alın ve duruma kaydedin
             } catch (error) {
-                console.error('Error fetching Markdown content:', error);
+                console.error('Dosya alınırken bir hata oluştu:', error);
             }
         };
 
-        fetchMarkdown();
+        fetchMarkdownFile();
     }, []);
-
     const overrides = {
         code: {
             component: Code,

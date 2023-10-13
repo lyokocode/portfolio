@@ -38,7 +38,6 @@ export const createBlog = async (req, res, next) => {
         const { ...blogInfo } = req.body;
 
 
-
         if (!imagePath) {
             return res.status(400).json({ message: 'Resim eksik veya hatalı.' });
         }

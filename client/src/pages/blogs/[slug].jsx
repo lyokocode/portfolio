@@ -1,12 +1,17 @@
 import { useParams } from "react-router-dom"
 import { MarkdownBlog } from "../../components"
 import "./singleBlog.scss"
-import { blogs } from "../../data"
+import useFetch from "../../hooks/useFetch"
+import { AiOutlineUser } from "react-icons/ai"
 export const SingleBlog = () => {
 
-    const { slug } = useParams()
-
-    const blog = blogs.find((blogItem) => blogItem.slug === slug);
+    const { id } = useParams()
+    console.log(id)
+    const { data: blog, loading, error, reFetch } = useFetch(
+        `http://localhost:5000/api/blogs/blog?id=${id}`
+    );
+    if (loading) return "loading"
+    if (error) return "there is a problem"
 
     return (
         <section className="singleBlog">
@@ -16,7 +21,11 @@ export const SingleBlog = () => {
                     <h1 className="title">{blog.title}</h1>
                     <div className="user">
                         <div className="userImageContainer">
-                            <img src={blog.authorImage} alt="" className="avatar" />
+                            {
+                                blog.authorImage ? (
+                                    <img src={blog.authorImage} alt="" className="avatar" />
+                                ) : (<AiOutlineUser />)
+                            }
                         </div>
                         <div className="userTextContainer">
                             <span className="username">{blog.author}</span>
@@ -27,7 +36,7 @@ export const SingleBlog = () => {
 
                 <div className="imageContainer">
                     <img
-                        src={blog.image}
+                        src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${blog.image}?t=2023-10-13T10%3A09%3A55.558Z`}
                         alt=""
                         className="image"
                     />
