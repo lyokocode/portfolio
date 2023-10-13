@@ -4,20 +4,12 @@ import { Link } from "react-router-dom"
 
 export const AuthLinks = () => {
     //temporay
-    const status = "notauthenticated"
 
     const [open, setOpen] = useState(false)
 
     return (
-        <div className="authLinks">
-            {/* user status */}
-            {status === "notauthenticated" ? (
-                <Link to="/" className="link">Login</Link>
-            ) : (
-                <button>logout</button>
-            )
+        <div className="authLinks" >
 
-            }
             {/* menu & close button */}
             <button className="modalbtn" onClick={() => setOpen(!open)}>
                 {open ? (
@@ -28,7 +20,7 @@ export const AuthLinks = () => {
             </button>
             {/* responsive modal */}
             {open && (
-                <div className="responsiveMenu">
+                <div className="responsiveMenu" onClick={() => setOpen(false)}>
                     <Link to="/">Homepage</Link>
                     <Link to="/blogs">Blogs</Link>
                     <Link to="/projects">Projects</Link>

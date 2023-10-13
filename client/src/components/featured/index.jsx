@@ -20,9 +20,12 @@ export const Featured = () => {
                 data ? (
                     <div className="post">
                         <div className="imgContainer">
-                            <img className="image"
-                                src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${data[0]?.image}`}
-                                alt='popular blog image' />
+                            {
+                                data[0]?.image && <img className="image"
+                                    src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${data[0]?.image}`}
+                                    alt='popular blog image'
+                                />
+                            }
                         </div>
                         <div className="textContainer">
                             <h2 className="postTitle">{data[0]?.title}</h2>

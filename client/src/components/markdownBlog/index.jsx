@@ -36,7 +36,7 @@ export const MarkdownBlog = ({ blog }) => {
             <div className="container">
                 <div className="post-wrapper">
                     <Markdown options={{ overrides }}>
-                        {postContent}
+                        {blog ? (postContent) : ("")}
                     </Markdown>
                 </div>
             </div>

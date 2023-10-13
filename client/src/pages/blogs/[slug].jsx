@@ -13,46 +13,49 @@ export const SingleBlog = () => {
     if (error) return "there is a problem"
 
     return (
-        <section className="singleBlog">
+        <>
+            {blog ? (
+                <section className="singleBlog">
+                    <div className="infoContainer">
+                        <div className="textContainer">
+                            <h1 className="title">{blog?.title}</h1>
+                            <div className="user">
+                                <div className="userImageContainer">
+                                    {
+                                        blog?.User ? (
+                                            <img src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/user/${blog?.User?.avatar}`} alt="" className="avatar" />
+                                        ) : (
+                                            <AiOutlineUser />
+                                        )
+                                    }
+                                </div>
+                                <div className="userTextContainer">
+                                    <span className="username">{blog?.author}</span>
+                                    <span className="date">{blog?.date}</span>
+                                </div>
+                            </div>
+                        </div>
 
-            <div className="infoContainer">
-                <div className="textContainer">
-                    <h1 className="title">{blog.title}</h1>
-                    <div className="user">
-                        <div className="userImageContainer">
+                        <div className="imageContainer">
                             {
-                                blog.User ? (
-                                    <img src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/user/${blog.User.avatar}`} alt="" className="avatar" />
-                                ) : (
-                                    <AiOutlineUser />
-                                )
+                                blog?.images && <img
+                                    src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${blog?.image}?t=2023-10-13T10%3A09%3A55.558Z`}
+                                    alt=""
+                                    className="image"
+                                />
                             }
                         </div>
-                        <div className="userTextContainer">
-                            <span className="username">{blog.author}</span>
-                            <span className="date">{blog.date}</span>
+                    </div>
+
+                    <div className="content">
+                        <div className="post">
+                            <div className="desc">
+                                <MarkdownBlog blog={blog.blog} />
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="imageContainer">
-                    <img
-                        src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${blog.image}?t=2023-10-13T10%3A09%3A55.558Z`}
-                        alt=""
-                        className="image"
-                    />
-                </div>
-            </div>
-
-            <div className="content">
-                <div className="post">
-                    <div className="desc">
-                        <MarkdownBlog blog={blog.blog} />
-                    </div>
-                </div>
-            </div>
-
-
-        </section>
+                </section>
+            ) : ("blog is not defined")}
+        </>
     )
 }
