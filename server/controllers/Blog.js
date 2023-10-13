@@ -32,36 +32,52 @@ export const getBlog = async (req, res, next) => {
 // CREATE NEW BLOG
 export const createBlog = async (req, res, next) => {
     try {
-        // Get the file to be uploaded
+        // Yüklenecek dosyayı alın
         const imagePath = req.files && req.files.image;
-        const { ...blogData } = req.body;
+        const blogPath = req.files && req.files.blog;
+        const { ...blogInfo } = req.body;
+
+
 
         if (!imagePath) {
-            return res.status(400).json({ message: 'File is missing or invalid.' });
+            return res.status(400).json({ message: 'Resim eksik veya hatalı.' });
         }
 
-        // If resizing or processing of the file is required, it can be done here
+        if (!blogPath) {
+            return res.status(400).json({ message: 'Blog eksik veya hatalı.' });
+        }
 
-        // Upload the file to Supabase Storage
-        const { data, error } = await storageClient
-            .from('blog/image')
-            .upload(`${Date.now()}.md`, imagePath.data, {
+        const { data: imageData, error: imageError } = await storageClient
+            .from('blog/images')
+            .upload(`${Date.now()}.png`, imagePath.data, {
                 contentType: imagePath.mimetype,
                 cacheControl: '3600',
             });
+        const { data: blogData, error: blogError } = await storageClient
+            .from('blog/mdfiles')
+            .upload(`${Date.now()}.md`, blogPath.data, {
+                contentType: blogPath.mimetype,
+                cacheControl: '3600',
+            });
 
-        if (error) {
-            console.error('File upload error:', error);
-            return res.status(500).json({ message: 'An error occurred while uploading the file.' });
+        if (imageError) {
+            console.error('Dosya yükleme hatası:', imageError);
+            return res.status(500).json({ message: 'Dosya yüklenirken bir hata oluştu.' });
+        }
+        if (blogError) {
+            console.error('md Dosya yükleme hatası:', imageError);
+            return res.status(500).json({ message: 'md Dosya yüklenirken bir hata oluştu.' });
         }
 
-        // If the upload is successful, get the URL of the file
-        const imageUrl = data.path;
+        // Yükleme işlemi başarılıysa, dosyanın URL'sini alın
+        const imageUrl = imageData.path;
+        const blogUrl = blogData.path;
 
-        // Create a new blog using the blog data and the file URL
+        // Blog verilerini ve dosyanın URL'sini kullanarak yeni blog oluşturun
         const newBlog = await Blog.create({
-            ...blogData,
-            image: imageUrl
+            ...blogInfo,
+            image: imageUrl,
+            blog: blogUrl
         });
 
         return res.status(201).json(newBlog);
