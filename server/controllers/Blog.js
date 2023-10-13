@@ -1,23 +1,37 @@
 import { Blog } from "../models/Blog.js";
 import { createError } from "../utils/error.js";
-import { storageClient, supabase } from "../database/supabase.js"
+import { storageClient } from "../database/supabase.js"
+import { User } from "../models/User.js";
+
 // GET ALL BLOGS
 export const getAllBlogs = async (req, res, next) => {
 
     try {
-        const blogs = await Blog.findAll()
-        return res.status(200).json(blogs)
+        const blogs = await Blog.findAll({
+            include: {
+                model: User,
+                attributes: ['userName', 'avatar'],
+            },
+        });
+        res.status(200).json(blogs);
+
     } catch (err) {
         next(err)
     }
 }
+
 // GET Blog
 export const getBlog = async (req, res, next) => {
     try {
         const { id } = req.query;
-        console.log(id)
 
-        const blog = await Blog.findByPk(id);
+        const blog = await Blog.findOne({
+            where: { id },
+            include: {
+                model: User,
+                attributes: ['userName', 'avatar'],
+            },
+        });
 
         if (!blog) {
             return next(createError(404, " Blog is not defined"))
@@ -31,13 +45,12 @@ export const getBlog = async (req, res, next) => {
 
 // CREATE NEW BLOG
 export const createBlog = async (req, res, next) => {
+    // Yüklenecek dosyayı alın
+    const imagePath = req.files && req.files.image;
+    const blogPath = req.files && req.files.blog;
+    const { ...blogInfo } = req.body;
+
     try {
-        // Yüklenecek dosyayı alın
-        const imagePath = req.files && req.files.image;
-        const blogPath = req.files && req.files.blog;
-        const { ...blogInfo } = req.body;
-
-
         if (!imagePath) {
             return res.status(400).json({ message: 'Resim eksik veya hatalı.' });
         }
@@ -84,7 +97,6 @@ export const createBlog = async (req, res, next) => {
         next(err);
     }
 };
-
 
 // DELETE BLOG
 export const deleteBlog = async (req, res, next) => {

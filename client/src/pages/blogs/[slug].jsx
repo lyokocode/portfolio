@@ -7,11 +7,12 @@ export const SingleBlog = () => {
 
     const { id } = useParams()
     console.log(id)
-    const { data: blog, loading, error, reFetch } = useFetch(
+    const { data: blog, loading, error } = useFetch(
         `http://localhost:5000/api/blogs/blog?id=${id}`
     );
     if (loading) return "loading"
     if (error) return "there is a problem"
+    console.log(blog)
 
     return (
         <section className="singleBlog">
@@ -22,9 +23,11 @@ export const SingleBlog = () => {
                     <div className="user">
                         <div className="userImageContainer">
                             {
-                                blog.authorImage ? (
-                                    <img src={blog.authorImage} alt="" className="avatar" />
-                                ) : (<AiOutlineUser />)
+                                blog.User ? (
+                                    <img src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/user/${blog.User.avatar}`} alt="" className="avatar" />
+                                ) : (
+                                    <AiOutlineUser />
+                                )
                             }
                         </div>
                         <div className="userTextContainer">

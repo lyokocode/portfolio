@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
+import { User } from "./User.js";
 
 export const Blog = sequelize.define('Blog', {
     slug: {
@@ -7,14 +8,7 @@ export const Blog = sequelize.define('Blog', {
         allowNull: false,
         unique: true,
     },
-    author: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    authorImage: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+
     image: {
         type: DataTypes.STRING,
         unique: true,
@@ -40,4 +34,10 @@ export const Blog = sequelize.define('Blog', {
         allowNull: false,
         unique: true,
     },
+    UserId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 });
+Blog.belongsTo(User, { foreignKey: 'UserId' });
+User.hasMany(Blog)

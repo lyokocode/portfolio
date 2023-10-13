@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
+import { Blog } from "./Blog.js";
 
 export const User = sequelize.define('User', {
     fullName: {
@@ -29,3 +30,4 @@ export const User = sequelize.define('User', {
         default: false
     },
 });
+

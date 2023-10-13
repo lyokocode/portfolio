@@ -2,19 +2,40 @@ import { User } from "../models/User.js";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { createError } from "../utils/error.js";
+import { storageClient } from "../database/supabase.js";
 
 // REGISTER
 export const register = async (req, res, next) => {
 
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(req.body.password, salt)
+    const imagePath = req.files && req.files.avatar;
 
     try {
+
+        if (!imagePath) {
+            return res.status(400).json({ message: 'Resim eksik veya hatalı.' });
+        }
+
+        const { data: imageData, error: imageError } = await storageClient
+            .from('blog/user')
+            .upload(`${Date.now()}.png`, imagePath.data, {
+                contentType: imagePath.mimetype,
+                cacheControl: '3600',
+            });
+
+        if (imageError) {
+            console.error('Dosya yükleme hatası:', imageError);
+            return res.status(500).json({ message: 'Dosya yüklenirken bir hata oluştu.' });
+        }
+
+        const imageUrl = imageData.path;
+
         const newUser = await User.create({
             fullName: req.body.fullName,
             userName: req.body.userName,
             email: req.body.email,
-            avatar: req.body.avatar,
+            avatar: imageUrl,
             password: hash,
             isAdmin: req.body.isAdmin
         });

@@ -6,19 +6,25 @@ import axios from "axios";
 export const MarkdownBlog = ({ blog }) => {
 
     const [postContent, setPostContent] = useState('');
-
+    console.log(blog)
     useEffect(() => {
         const fetchMarkdownFile = async () => {
             try {
-                const response = await axios.get(`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/mdfiles/${blog}`);
-                setPostContent(response.data); // Dosya içeriğini alın ve duruma kaydedin
+                if (blog) {
+                    const response = await axios.get(`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/mdfiles/${blog}`);
+                    setPostContent(response.data);
+                } else {
+                    console.log("blog is not found")
+                }
+
             } catch (error) {
                 console.error('Dosya alınırken bir hata oluştu:', error);
             }
         };
 
         fetchMarkdownFile();
-    }, []);
+    }, [blog]);
+
     const overrides = {
         code: {
             component: Code,

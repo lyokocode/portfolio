@@ -4,7 +4,7 @@ import useFetch from "../../hooks/useFetch"
 import "./cardList.scss"
 export const CardList = () => {
 
-    const { data, loading, error, reFetch } = useFetch(
+    const { data, loading, error } = useFetch(
         `http://localhost:5000/api/blogs`
     );
     if (loading) return "loading"

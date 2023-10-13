@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import { sequelize } from "./database/db.js"
 import blogRoute from "./routes/blog.js"
 import authRoute from "./routes/auth.js"
+import userRoute from "./routes/user.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import fileUpload from 'express-fileupload';
@@ -18,6 +19,7 @@ app.use(cors())
 // Routes
 app.use("/api/blogs", blogRoute)
 app.use("/api/auth", authRoute)
+app.use("/api/users", userRoute)
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
@@ -33,7 +35,7 @@ app.use((err, req, res, next) => {
 async function main() {
     try {
         await sequelize.sync(
-            { force: true }
+            // { force: true }
         );
         console.log("db connection is successfull")
         app.listen(process.env.PORT, () => console.log(`api is running on port: ${process.env.PORT}`))
