@@ -34,6 +34,14 @@ export const Blog = sequelize.define('Blog', {
         allowNull: false,
         unique: true,
     },
+    popular: {
+        type: DataTypes.BOOLEAN,
+        default: false
+    },
+    editorsPick: {
+        type: DataTypes.BOOLEAN,
+        default: false
+    },
     UserId: {
         type: DataTypes.INTEGER,
         allowNull: false,

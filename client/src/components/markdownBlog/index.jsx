@@ -6,7 +6,6 @@ import axios from "axios";
 export const MarkdownBlog = ({ blog }) => {
 
     const [postContent, setPostContent] = useState('');
-    console.log(blog)
     useEffect(() => {
         const fetchMarkdownFile = async () => {
             try {

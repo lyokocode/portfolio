@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const Layout = () => {
 
     const darkMode = useSelector((state) => state.theme.dark);
-    console.log(darkMode)
     return (
         <div className={darkMode ? "appContainer dark" : "appContainer light"}>
             <div className="responsive">

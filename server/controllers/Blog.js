@@ -43,6 +43,21 @@ export const getBlog = async (req, res, next) => {
     }
 }
 
+// GET POPULAR BLOGS
+export const getPopularBlogs = async (req, res, next) => {
+    try {
+        // Popüler blogları al
+        const popularBlogs = await Blog.findAll({
+            where: { popular: true }, // Sadece popüler blogları al
+            include: [{ model: User, attributes: ['userName'] }], // Kullanıcı bilgilerini de al
+        });
+
+        res.status(200).json(popularBlogs);
+    } catch (error) {
+        next(error);
+    }
+};
+
 // CREATE NEW BLOG
 export const createBlog = async (req, res, next) => {
     // Yüklenecek dosyayı alın

@@ -6,13 +6,11 @@ import { AiOutlineUser } from "react-icons/ai"
 export const SingleBlog = () => {
 
     const { id } = useParams()
-    console.log(id)
     const { data: blog, loading, error } = useFetch(
         `http://localhost:5000/api/blogs/blog?id=${id}`
     );
     if (loading) return "loading"
     if (error) return "there is a problem"
-    console.log(blog)
 
     return (
         <section className="singleBlog">
