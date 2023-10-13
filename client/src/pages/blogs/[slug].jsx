@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { MarkdownBlog } from "../../components"
 import "./singleBlog.scss"
 import useFetch from "../../hooks/useFetch"
-import { AiOutlineUser } from "react-icons/ai"
+import { AiOutlineFileImage, AiOutlineUser } from "react-icons/ai"
 export const SingleBlog = () => {
 
     const { id } = useParams()
@@ -11,7 +11,6 @@ export const SingleBlog = () => {
     );
     if (loading) return "loading"
     if (error) return "there is a problem"
-
     return (
         <>
             {blog ? (
@@ -38,11 +37,11 @@ export const SingleBlog = () => {
 
                         <div className="imageContainer">
                             {
-                                blog?.images && <img
-                                    src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${blog?.image}?t=2023-10-13T10%3A09%3A55.558Z`}
+                                blog?.image ? (<img
+                                    src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${blog?.image}`}
                                     alt=""
                                     className="image"
-                                />
+                                />) : (<AiOutlineFileImage />)
                             }
                         </div>
                     </div>

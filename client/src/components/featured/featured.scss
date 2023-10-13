@@ -79,6 +79,7 @@
                 width: max-content;
                 background-color: #374151;
                 transition: all s ease-in;
+                background-color: var(--softBg);
 
                 &:hover {
                     background-color: #1e293b;
