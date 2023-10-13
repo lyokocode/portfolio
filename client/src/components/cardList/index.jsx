@@ -1,5 +1,4 @@
 import { Card } from ".."
-import { blogs } from "../../data"
 import useFetch from "../../hooks/useFetch"
 import "./cardList.scss"
 export const CardList = () => {
