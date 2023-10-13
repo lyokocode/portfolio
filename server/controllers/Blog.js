@@ -48,11 +48,25 @@ export const getPopularBlogs = async (req, res, next) => {
     try {
         // Popüler blogları al
         const popularBlogs = await Blog.findAll({
-            where: { popular: true }, // Sadece popüler blogları al
-            include: [{ model: User, attributes: ['userName'] }], // Kullanıcı bilgilerini de al
+            where: { popular: true },
+            include: [{ model: User, attributes: ['userName'] }],
         });
 
         res.status(200).json(popularBlogs);
+    } catch (error) {
+        next(error);
+    }
+};
+// GET EDITOR PICKS BLOGS
+export const getEditorsPickBlogs = async (req, res, next) => {
+    try {
+        // Popüler blogları al
+        const editorsPickBlogs = await Blog.findAll({
+            where: { editorsPick: true },
+            include: [{ model: User, attributes: ['userName'] }],
+        });
+
+        res.status(200).json(editorsPickBlogs);
     } catch (error) {
         next(error);
     }

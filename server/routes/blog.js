@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createBlog, deleteBlog, getAllBlogs, getBlog, getPopularBlogs, updateBlog } from "../controllers/Blog.js"
+import { createBlog, deleteBlog, getAllBlogs, getBlog, getEditorsPickBlogs, getPopularBlogs, updateBlog } from "../controllers/Blog.js"
 
 const router = express.Router()
 
@@ -11,8 +11,10 @@ router.get("/", getAllBlogs)
 router.get("/blog", getBlog)
 
 // GET POPULAR BLOGS
-
 router.get('/popular', getPopularBlogs);
+
+// GET EDITOR PICKS BLOGS
+router.get('/editorpick', getEditorsPickBlogs);
 
 // CREATE NEW BLOG
 router.post("/", createBlog)
