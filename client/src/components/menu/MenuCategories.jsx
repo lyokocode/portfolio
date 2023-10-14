@@ -1,20 +1,31 @@
 import { Link } from "react-router-dom"
-import { categories } from "../../data"
+import useFetch from "../../hooks/useFetch";
 
 export const MenuCategories = () => {
-    const popularCategories = categories.filter(category => category.popular === true);
-    return (
-        <div className="categoryList">
-            {popularCategories && popularCategories.map(category => (
-                <Link
-                    key={category.id}
-                    to={category.link}
-                    className="category"
-                    style={{ background: category.color }}
-                >
-                    {category.title}
-                </Link>
-            ))}
-        </div>
-    )
+
+    const { data: categories, loading } = useFetch(
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories/popular`
+
+    );
+
+    if (loading) {
+        return "loading"
+    } else if (categories) {
+        return (
+            <div className="categoryList">
+                {categories && categories.map(category => (
+                    <Link
+                        key={category.id}
+                        to={category?.link}
+                        className="category"
+                        style={{ background: category?.color }}
+                    >
+                        {category?.name}
+                    </Link>
+                ))}
+            </div>
+        )
+    } else {
+        return "there is a problem"
+    }
 }
