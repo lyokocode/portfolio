@@ -32,7 +32,7 @@ export const Featured = () => {
                             </div>
                             <div className="textContainer">
                                 <h2 className="postTitle">{data[0]?.title}</h2>
-                                <p className="postDesc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, repellat eos. Aspernatur culpa aut dolorum accusantium ex dignissimos voluptatum provident.</p>
+                                <p className="postDesc">{data[0]?.description}</p>
                                 <Link to={`/blogs/${data[0]?.id}`} className="postBtn">Read More </Link>
                             </div>
                         </div>

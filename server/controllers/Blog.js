@@ -46,7 +46,6 @@ export const getBlog = async (req, res, next) => {
 // GET POPULAR BLOGS
 export const getPopularBlogs = async (req, res, next) => {
     try {
-        // Popüler blogları al
         const popularBlogs = await Blog.findAll({
             where: { popular: true },
             include: [{ model: User, attributes: ['userName'] }],
@@ -60,7 +59,6 @@ export const getPopularBlogs = async (req, res, next) => {
 // GET EDITOR PICKS BLOGS
 export const getEditorsPickBlogs = async (req, res, next) => {
     try {
-        // Popüler blogları al
         const editorsPickBlogs = await Blog.findAll({
             where: { editorsPick: true },
             include: [{ model: User, attributes: ['userName'] }],
@@ -150,7 +148,7 @@ export const deleteBlog = async (req, res, next) => {
     }
 }
 
-// UPDATE Blog
+// UPDATE BLOG
 export const updateBlog = async (req, res, next) => {
     const { id } = req.query;
     const updatedFields = req.body;
