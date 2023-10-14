@@ -10,7 +10,7 @@ export const MarkdownBlog = ({ blog }) => {
         const fetchMarkdownFile = async () => {
             try {
                 if (blog) {
-                    const response = await axios.get(`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/mdfiles/${blog}`);
+                    const response = await axios.get(`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/mdfiles/${blog}`);
                     setPostContent(response.data);
                 } else {
                     console.log("blog is not found")

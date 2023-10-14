@@ -10,7 +10,7 @@ export const MenuPost = ({ withImage, blogs }) => {
                             <div className="imageContainer">
                                 <img
                                     className="image"
-                                    src={`https://bizdptqtvsjekgsblenm.supabase.co/storage/v1/object/public/blog/images/${blog.image}`}
+                                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog.image}`}
                                     alt="Blog Image"
                                 />
                             </div>

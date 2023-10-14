@@ -41,31 +41,6 @@ export const categories = [
     },
 ]
 
-export const blogs = [
-    {
-        slug: "private-route",
-        author: "aelita",
-        authorImage: "/logo.png",
-        image: "/privateRoute.png",
-        category: "react",
-        title: "Private Route nedir? nasıl oluşturulur",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus magnam adipisci vel eius architecto assumenda quo a fugit voluptate rem.",
-        date: "11.09.2023",
-        blog: "/src/markdown/private-route.md"
-    },
-    {
-        slug: "test-blog",
-        author: "aelita",
-        authorImage: "/logo.png",
-        image: "/javascript.png",
-        category: "nextjs",
-        title: "test blog title",
-        description: "test blog title Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus magnam adipisci vel eius architecto assumenda quo a fugit voluptate rem.",
-        date: "11.09.2024",
-        blog: "/src/markdown/test-blog.md"
-    },
-
-]
 
 export const projects = [
     {
@@ -80,7 +55,7 @@ export const projects = [
     },
     {
         id: 2,
-        image: "logo.png",
+        image: "javascript.png",
         title: "Brand Color Clone",
         description: "dolor sit amet consectetur adipisicing elit. Architecto nostrum sunt fugiat nisi numquam aspernatur?",
         date: "11.12.2022",

@@ -4,7 +4,7 @@ import "./cardList.scss"
 export const CardList = () => {
 
     const { data, loading, error } = useFetch(
-        `http://localhost:5000/api/blogs`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`
     );
     if (loading) return "loading"
     if (error) return "there is a problem"
