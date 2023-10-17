@@ -17,7 +17,7 @@ export const Login = () => {
     const navigate = useNavigate()
 
     const { user, error } = useSelector(state => state.auth)
-    const [showError, setShowError] = useState(true);
+    const [showError, setShowError] = useState(false);
 
     // error message duration time
     const errorDisplayDuration = 3000;
@@ -25,7 +25,7 @@ export const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/auth/login`, {
                 userName,
                 password,
             });
