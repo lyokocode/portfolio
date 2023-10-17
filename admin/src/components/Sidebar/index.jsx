@@ -1,12 +1,10 @@
 import "./sidebar.scss"
+import { Link } from 'react-router-dom'
 
-import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications, MdLogout } from "react-icons/md"
-import { AiOutlineUser, AiFillCreditCard, AiOutlineProject } from "react-icons/ai"
-import { SiExpensify, SiHomeassistantcommunitystore } from "react-icons/si"
-import { FaTruck } from "react-icons/fa"
+import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications } from "react-icons/md"
+import { AiOutlineUser, AiOutlineProject } from "react-icons/ai"
 import { BiCategory, BiLogoBlogger, BiUserCircle } from "react-icons/bi"
 
-import { Link } from 'react-router-dom'
 
 export const Sidebar = () => {
     return (
