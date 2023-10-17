@@ -24,6 +24,11 @@ body {
     overflow: hidden;
     flex: 6;
     min-height: calc(100vh - 50.5px);
+
+    .appWrapper {
+      height: 100%;
+      padding: 30px;
+    }
   }
 }
 

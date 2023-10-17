@@ -6,13 +6,15 @@ import "../index.scss"
 
 const Layout = () => {
     return (
-        <div className="app">
+        <main className="app">
             <Sidebar />
             <section className="appContainer">
                 <Navbar />
-                <Outlet />
+                <div className="appWrapper">
+                    <Outlet />
+                </div>
             </section>
-        </div>
+        </main>
     )
 }
 

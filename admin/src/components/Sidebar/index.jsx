@@ -32,7 +32,7 @@ export const Sidebar = () => {
                             <span>Users</span>
                         </li>
                     </Link>
-                    <Link to="/">
+                    <Link to="/blogs">
                         <li>
                             <BiLogoBlogger className="icon" />
                             <span>Blogs</span>
