@@ -95,6 +95,15 @@
             }
         }
     }
+
+    .errorMessage {
+        background-color: #fb7185;
+        color: #e11d48;
+        width: max-content;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
 }
 
 
