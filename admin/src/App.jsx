@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home, Login, Projects } from './pages'
+import { Blogs, Home, Login, NewBlog, Projects } from './pages'
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
 
@@ -12,7 +12,12 @@ function App() {
 
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/blogs" element={<Blogs />} />
+
+            <Route path="/blogs"  >
+              <Route index element={<Blogs />} />
+              <Route path='create' element={<NewBlog />} />
+            </Route>
+
             <Route path="/projects" element={<Projects />} />
           </Route>
         </Route>

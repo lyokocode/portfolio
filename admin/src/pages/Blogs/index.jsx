@@ -1,5 +1,6 @@
 import "./blog.scss"
 import useFetch from "../../hooks/useFetch"
+import { Link } from "react-router-dom"
 import { AiOutlineReload } from "react-icons/ai"
 import { BlogList } from "../../components";
 export const Blogs = () => {
@@ -19,9 +20,9 @@ export const Blogs = () => {
                     type="text"
                     placeholder="search to blog"
                 />
-                <button className="createBtn">
+                <Link to="/blogs/create" className="createBtn">
                     Create a new Blog
-                </button>
+                </Link>
                 <button
                     className="reloadBtn"
                     onClick={reFetch}>
