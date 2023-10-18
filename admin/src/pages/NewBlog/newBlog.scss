@@ -1,40 +1,109 @@
+// Temel stil ayarları
+$new-blog-bg: #f5f5f5;
+$primary-color: #007BFF;
+$secondary-color: #6C757D;
+$border-color: #ced4da;
+
 .newBlogPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: $new-blog-bg;
+    min-height: 100vh;
+
     .newBlogHeader {
-        font-size: 32px;
-        text-decoration: underline;
+        font-size: 24px;
+        color: $primary-color;
+        margin-bottom: 20px;
     }
 
     .newBlogForm {
-        margin-top: 30px;
-        height: 100%;
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+        max-width: 500px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
         .formController {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 4px 6px;
-            height: 30px;
+            margin-bottom: 20px;
 
             label {
-                height: 100%;
-                text-align: center;
-                width: 140px;
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
             }
 
-            .newBlog {
-                height: 100%;
-                border: 1px solid #e5e7eb;
-                margin: 0 auto;
+            input[type="text"],
+            input[type="file"],
+            input[type="date"],
+            textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid $border-color;
                 border-radius: 5px;
+                background-color: #fff;
+                transition: border-color 0.2s;
             }
+
+            select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid $border-color;
+                border-radius: 5px;
+                background-color: #fff;
+                transition: border-color 0.2s;
+            }
+
+            input[type="file"] {
+                border: none;
+            }
+
+            input[type="file"]:focus {
+                outline: none;
+            }
+
+            input[type="file"]::placeholder,
+            textarea::placeholder {
+                color: $secondary-color;
+            }
+
+
         }
 
-        input.newBlog {
-            width: 70%;
+        .post-btn {
+            background-color: $primary-color;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: darken($primary-color, 10%);
+            }
         }
     }
+}
+
+
+
+
+
+.formController select:focus {
+    outline: none;
+}
+
+.formController select option {
+    background-color: #fff;
+}
+
+.formController input[type="text"]:focus,
+.formController input[type="file"]:focus,
+.formController input[type="date"]:focus,
+.formController textarea:focus,
+.formController select:focus {
+    border-color: $primary-color;
 }
