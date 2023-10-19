@@ -65,6 +65,7 @@ export const NewBlog = () => {
             </header>
 
             <form className="newBlogForm">
+                {/* blog name */}
                 <div className="formController">
                     <label> blog name:</label>
                     <input
@@ -74,6 +75,8 @@ export const NewBlog = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
+
+                {/* blog description */}
                 <div className="formController">
                     <label> blog description:</label>
                     <textarea
@@ -83,6 +86,8 @@ export const NewBlog = () => {
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </div>
+
+                {/* blog file */}
                 <div className="formController">
                     <label> blog file:</label>
                     <input
@@ -95,6 +100,8 @@ export const NewBlog = () => {
                         onChange={(e) => setBlog(e.target.files[0])}
                     />
                 </div>
+
+                {/* blog date */}
                 <div className="formController">
                     <label >Date:</label>
                     <input
@@ -105,6 +112,8 @@ export const NewBlog = () => {
                     />
 
                 </div>
+
+                {/* blog Image */}
                 <div className="formController">
                     <label> blog image:</label>
                     <input
@@ -118,6 +127,8 @@ export const NewBlog = () => {
 
                     />
                 </div>
+
+                {/* popular */}
                 <div className="formController">
                     <label>Popular:</label>
                     <select
@@ -128,6 +139,8 @@ export const NewBlog = () => {
                         <option value="true">true</option>
                     </select>
                 </div>
+
+                {/* editors pick */}
                 <div className="formController">
                     <label>Editors pick:</label>
                     <select
@@ -138,6 +151,8 @@ export const NewBlog = () => {
                         <option value="true">true</option>
                     </select>
                 </div>
+
+                {/* categories */}
                 <div className="formController">
                     <label>Categories:</label>
                     <select

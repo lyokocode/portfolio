@@ -4,12 +4,10 @@ import { Link } from "react-router-dom"
 import { AiOutlineReload } from "react-icons/ai"
 import { BlogList } from "../../components";
 export const Blogs = () => {
-
     const { data: blogs, loading, error, reFetch } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`
     );
-    if (loading) return "loading"
-    if (error) return "there is a problem"
+
 
 
     return (
@@ -29,13 +27,20 @@ export const Blogs = () => {
                     <AiOutlineReload className="reloadIcon" />
                 </button>
             </header>
+            <>
+                {
+                    loading ? ("loading") : (error ? "error" : (
+                        <div className="blogWrapper">
+                            {blogs && blogs.map(blog => (
+                                <BlogList key={blog?.id} blog={blog} reFetch={reFetch} />
+                            ))}
+                        </div>
+                    ))
+                }
+            </>
+            <div>
 
-            <div className="blogWrapper">
-                {blogs && blogs.map(blog => (
-                    <BlogList key={blog?.id} blog={blog} reFetch={reFetch} />
-                ))}
             </div>
-
         </section>
     )
 }

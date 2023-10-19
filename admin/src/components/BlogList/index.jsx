@@ -1,5 +1,7 @@
+import { useState } from "react";
 import "./blogList.scss"
 import axios from "axios"
+import { UpdateBlog } from "..";
 
 export const BlogList = ({ blog, reFetch }) => {
 
@@ -13,6 +15,18 @@ export const BlogList = ({ blog, reFetch }) => {
         }
     };
 
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
+
     return (
         <div className="blogList">
             <img
@@ -24,9 +38,15 @@ export const BlogList = ({ blog, reFetch }) => {
                 <p>{blog?.title}</p>
             </div>
             <div className="buttonContainer">
-                <button className="updateBtn">update</button>
+                <button className="updateBtn" onClick={openModal}>update</button>
                 <button onClick={() => deleteBlog()} className="deleteBtn">delete</button>
             </div>
+            {modalVisible && (
+                <UpdateBlog
+                    blogData={blog}
+                    onClose={closeModal}
+                />
+            )}
         </div>
     )
 }
