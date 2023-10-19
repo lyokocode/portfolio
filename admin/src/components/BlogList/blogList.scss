@@ -19,4 +19,26 @@
         align-items: center;
         justify-content: space-between;
     }
+
+    .buttonContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        button {
+            padding: 4px 8px;
+            border-radius: 4px;
+
+            &.deleteBtn {
+                background-color: #ef4444;
+                color: #b91c1c;
+            }
+
+            &.updateBtn {
+                background-color: #0ea5e9;
+                color: #0369a1;
+            }
+        }
+    }
 }

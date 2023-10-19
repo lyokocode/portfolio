@@ -2,16 +2,17 @@ import { useState } from "react"
 import "./newBlog.scss"
 import axios from "axios"
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import useFetch from "../../../../client/src/hooks/useFetch"
 
 export const NewBlog = () => {
     const { user } = useSelector(state => state.auth)
+    const navigate = useNavigate()
 
-    const { data: cat, loading, error } = useFetch(
+    const { data } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
     );
 
-    console.log(cat)
 
     const [title, setTitle] = useState("")
     const [blog, setBlog] = useState("")
@@ -52,6 +53,7 @@ export const NewBlog = () => {
             const response = await axios.post("http://localhost:5000/api/blogs", formData);
 
             console.log("Blog gönderildi:", response.data);
+            navigate("/blogs")
         } catch (error) {
             console.error("Blog gönderirken hata oluştu:", error);
         }
@@ -145,9 +147,9 @@ export const NewBlog = () => {
                             setCategories(Array.from(e.target.selectedOptions, (option) => option.value))
                         }
                     >
-                        {cat?.map((c) => (
-                            <option key={c.id} value={c.name}>
-                                {c.name}
+                        {data && data?.map((cat) => (
+                            <option key={cat.id} value={cat.name}>
+                                {cat.name}
                             </option>
                         ))}
                     </select>

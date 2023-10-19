@@ -1,8 +1,18 @@
 import "./blogList.scss"
-import { BsArrowRightShort } from "react-icons/bs"
+import axios from "axios"
 
-export const BlogList = ({ blog }) => {
-    console.log(blog)
+export const BlogList = ({ blog, reFetch }) => {
+
+    const deleteBlog = async () => {
+        try {
+            await axios.delete(`http://localhost:5000/api/blogs/blog?id=${blog.id}`);
+            reFetch()
+        } catch (error) {
+            // Hata durumunu işle
+            console.error("Blog silinirken hata oluştu:", error);
+        }
+    };
+
     return (
         <div className="blogList">
             <img
@@ -12,9 +22,10 @@ export const BlogList = ({ blog }) => {
             />
             <div className="blogInfo">
                 <p>{blog?.title}</p>
-                <button>
-                    <BsArrowRightShort size={20} />
-                </button>
+            </div>
+            <div className="buttonContainer">
+                <button className="updateBtn">update</button>
+                <button onClick={() => deleteBlog()} className="deleteBtn">delete</button>
             </div>
         </div>
     )

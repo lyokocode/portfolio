@@ -32,7 +32,7 @@ export const Blogs = () => {
 
             <div className="blogWrapper">
                 {blogs && blogs.map(blog => (
-                    <BlogList key={blog?.id} blog={blog} />
+                    <BlogList key={blog?.id} blog={blog} reFetch={reFetch} />
                 ))}
             </div>
 
