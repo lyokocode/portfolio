@@ -13,11 +13,11 @@ export const Card = ({ blog }) => {
                     -
                     <span className="category">{blog.category}</span>
                 </div>
-                <Link to={`/blogs/${blog.id}`} >
+                <Link to={`/blogs/${blog.slug}`} >
                     <h1 className="postTitle">{blog.title}</h1>
                 </Link>
                 <p className="postDesc">{blog.description}</p>
-                <Link to={`/blogs/${blog.id}`} >read more</Link>
+                <Link to={`/blogs/${blog.slug}`} >read more</Link>
             </div>
         </article>
     )

@@ -5,9 +5,9 @@ import useFetch from "../../hooks/useFetch"
 import { AiOutlineFileImage, AiOutlineUser } from "react-icons/ai"
 export const SingleBlog = () => {
 
-    const { id } = useParams()
+    const { slug } = useParams()
     const { data: blog, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${id}`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}`
     );
     if (loading) {
         return "loading"
