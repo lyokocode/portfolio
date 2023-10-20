@@ -20,7 +20,7 @@ export const Categories = () => {
                     placeholder="search to category"
                 />
                 <Link to="/categories" className="createBtn">
-                    Create a new Blog
+                    Create a new Category
                 </Link>
                 <button
                     className="reloadBtn"

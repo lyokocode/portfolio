@@ -2,7 +2,7 @@ import "./sidebar.scss"
 import { Link } from 'react-router-dom'
 
 import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications } from "react-icons/md"
-import { AiOutlineUser, AiOutlineProject } from "react-icons/ai"
+import { AiOutlineUser, AiOutlineProject, AiOutlineEdit } from "react-icons/ai"
 import { BiCategory, BiLogoBlogger, BiUserCircle } from "react-icons/bi"
 
 
@@ -52,6 +52,12 @@ export const Sidebar = () => {
                     <li>
                         <MdNotifications className="icon" />
                         <span>Notifications</span>
+                    </li>
+                    <li>
+                        <Link to="/editor">
+                            <AiOutlineEdit className="icon" />
+                            <span>Editor</span>
+                        </Link>
                     </li>
                     <p className="title">Service</p>
                     <li>

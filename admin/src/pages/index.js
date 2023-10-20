@@ -7,4 +7,6 @@ export { Categories } from "./Categories"
 
 export { Projects } from "./Projects"
 
+export { Editor } from "./Editor"
+
 export { Login } from "./Login"
