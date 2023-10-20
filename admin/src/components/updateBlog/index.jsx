@@ -15,7 +15,6 @@ export const UpdateBlog = ({ onClose, blogData }) => {
         date: "",
         popular: blogData?.popular || false,
         editorsPick: blogData?.editorsPick || false,
-        // Diğer özellikler
     });
 
     const handleUpdateBlog = async (e) => {

@@ -7,4 +7,5 @@ export { UpdateBlog } from "./UpdateBlog"
 
 
 export { CategoryList } from "./CategoryList"
+export { UpdateCategory } from "./UpdateCategory"
 

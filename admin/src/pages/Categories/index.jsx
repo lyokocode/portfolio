@@ -33,7 +33,7 @@ export const Categories = () => {
                     loading ? ("loading") : (error ? "error" : (
                         <div className="categoryWrapper">
                             {categories && categories.map(category => (
-                                <CategoryList key={category.id} category={category} />
+                                <CategoryList key={category.id} category={category} reFetch={reFetch} />
                             ))}
                         </div>
                     ))
