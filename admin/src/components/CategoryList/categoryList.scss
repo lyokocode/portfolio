@@ -1,0 +1,51 @@
+.categoryCard {
+    display: flex;
+    width: calc(50% - 15px);
+    border: 1px solid #22d3ee;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    min-height: 250px;
+
+    &.popular {
+        background-color: #ecfeff;
+    }
+
+    .categoryDetails {
+
+        .category-title {
+            font-size: 1.2rem;
+            color: #333;
+
+        }
+    }
+
+    .colorContainer {
+        min-width: 15%;
+        border-radius: 5px;
+        height: 20px;
+    }
+
+    .buttonContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .actionButton {
+            padding: 8px 12px;
+            border-radius: 5px;
+
+            &.delete {
+                background-color: #f87171;
+                color: #b91c1c;
+            }
+
+            &.update {
+                background-color: #22d3ee;
+                color: #0e7490;
+            }
+        }
+    }
+}

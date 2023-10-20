@@ -1,23 +1,25 @@
-import "./blog.scss"
+import "./categories.scss"
 import useFetch from "../../hooks/useFetch"
 import { Link } from "react-router-dom"
 import { AiOutlineReload } from "react-icons/ai"
-import { BlogList } from "../../components";
-export const Blogs = () => {
+import { CategoryList } from "../../components"
 
-    const { data: blogs, loading, error, reFetch } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`
+export const Categories = () => {
+
+    const { data: categories, loading, error, reFetch } = useFetch(
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
     );
 
+
     return (
-        <section className="blogPage">
-            <header className="blogHeader">
+        <section className="categoriesPage">
+            <header className="categoriesHeader">
                 <input
                     className="searchInput"
                     type="text"
-                    placeholder="search to blog"
+                    placeholder="search to category"
                 />
-                <Link to="/blogs/create" className="createBtn">
+                <Link to="/categories" className="createBtn">
                     Create a new Blog
                 </Link>
                 <button
@@ -29,9 +31,9 @@ export const Blogs = () => {
             <>
                 {
                     loading ? ("loading") : (error ? "error" : (
-                        <div className="blogWrapper">
-                            {blogs && blogs.map(blog => (
-                                <BlogList key={blog?.id} blog={blog} reFetch={reFetch} />
+                        <div className="categoryWrapper">
+                            {categories && categories.map(category => (
+                                <CategoryList key={category.id} category={category} />
                             ))}
                         </div>
                     ))

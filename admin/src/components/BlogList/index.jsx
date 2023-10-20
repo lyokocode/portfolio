@@ -7,7 +7,7 @@ export const BlogList = ({ blog, reFetch }) => {
 
     const deleteBlog = async () => {
         try {
-            await axios.delete(`http://localhost:5000/api/blogs/blog?id=${blog.id}`);
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blog.id}`);
             reFetch()
         } catch (error) {
             // Hata durumunu işle

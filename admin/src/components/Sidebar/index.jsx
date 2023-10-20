@@ -38,7 +38,7 @@ export const Sidebar = () => {
                             <span>Blogs</span>
                         </li>
                     </Link>
-                    <Link to="/">
+                    <Link to="/categories">
                         <li>
                             <BiCategory className="icon" />
                             <span>Categories</span>

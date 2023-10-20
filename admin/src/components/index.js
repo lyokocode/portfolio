@@ -4,3 +4,7 @@ export { Sidebar } from "./Sidebar"
 
 export { BlogList } from "./BlogList"
 export { UpdateBlog } from "./UpdateBlog"
+
+
+export { CategoryList } from "./CategoryList"
+

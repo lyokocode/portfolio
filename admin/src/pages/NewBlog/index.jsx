@@ -50,7 +50,7 @@ export const NewBlog = () => {
             formData.append("description", description);
             formData.append("UserId", user?.id);
 
-            const response = await axios.post("http://localhost:5000/api/blogs", formData);
+            const response = await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData);
 
             console.log("Blog gönderildi:", response.data);
             navigate("/blogs")
