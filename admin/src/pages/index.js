@@ -4,6 +4,7 @@ export { Blogs } from "./Blogs"
 export { NewBlog } from "./NewBlog"
 
 export { Categories } from "./Categories"
+export { NewCategory } from "./NewCategory"
 
 export { Projects } from "./Projects"
 
