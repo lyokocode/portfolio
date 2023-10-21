@@ -1,5 +1,6 @@
 import "./sidebar.scss"
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications } from "react-icons/md"
 import { AiOutlineUser, AiOutlineProject, AiOutlineEdit } from "react-icons/ai"
@@ -7,6 +8,8 @@ import { BiCategory, BiLogoBlogger, BiUserCircle } from "react-icons/bi"
 
 
 export const Sidebar = () => {
+    const { user } = useSelector(state => state.auth)
+
     return (
         <div className='sidebar '
         >
@@ -26,12 +29,16 @@ export const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">Lists</p>
-                    <Link to="/">
-                        <li>
-                            <AiOutlineUser className="icon" />
-                            <span>Users</span>
-                        </li>
-                    </Link>
+                    {
+                        user?.isAdmin && (
+                            <Link to="/users">
+                                <li>
+                                    <AiOutlineUser className="icon" />
+                                    <span>Users</span>
+                                </li>
+                            </Link>
+                        )
+                    }
                     <Link to="/blogs">
                         <li>
                             <BiLogoBlogger className="icon" />

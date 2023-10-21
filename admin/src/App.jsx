@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject, NotFound } from './pages'
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
+import { Users } from './pages'
 
 function App() {
 
@@ -28,6 +29,8 @@ function App() {
               <Route path='create' element={<NewProject />} />
             </Route>
 
+
+            <Route path="/users" element={<Users />} />
 
             <Route path="/editor" element={<Editor />} />
           </Route>

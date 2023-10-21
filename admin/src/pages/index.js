@@ -9,6 +9,8 @@ export { NewCategory } from "./NewCategory"
 export { Projects } from "./Projects"
 export { NewProject } from "./NewProject"
 
+export { Users } from "./Users"
+
 export { Editor } from "./Editor"
 
 export { Login } from "./Login"

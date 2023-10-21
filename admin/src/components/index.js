@@ -14,3 +14,5 @@ export { UpdateCategory } from "./UpdateCategory"
 export { ProjectList } from "./ProjectList"
 export { UpdateProject } from "./UpdateProject"
 
+export { UserList } from "./UserList"
+
