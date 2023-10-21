@@ -2,7 +2,6 @@ import "./newCategory.scss"
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { UpdateCategory } from "../../components/UpdateCategory"
 
 export const NewCategory = () => {
 

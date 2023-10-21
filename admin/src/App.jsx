@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory } from './pages'
+import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject } from './pages'
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
 
@@ -23,7 +23,11 @@ function App() {
               <Route path='create' element={<NewCategory />} />
             </Route>
 
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects"  >
+              <Route index element={<Projects />} />
+              <Route path='create' element={<NewProject />} />
+            </Route>
+
 
             <Route path="/editor" element={<Editor />} />
           </Route>
