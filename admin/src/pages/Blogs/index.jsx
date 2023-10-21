@@ -1,8 +1,6 @@
 import "./blog.scss"
 import useFetch from "../../hooks/useFetch"
-import { Link } from "react-router-dom"
-import { AiOutlineReload } from "react-icons/ai"
-import { BlogList } from "../../components";
+import { BlogList, Header } from "../../components";
 export const Blogs = () => {
 
     const { data: blogs, loading, error, reFetch } = useFetch(
@@ -11,21 +9,7 @@ export const Blogs = () => {
 
     return (
         <section className="blogPage">
-            <header className="blogHeader">
-                <input
-                    className="searchInput"
-                    type="text"
-                    placeholder="search to blog"
-                />
-                <Link to="/blogs/create" className="createBtn">
-                    Create a new Blog
-                </Link>
-                <button
-                    className="reloadBtn"
-                    onClick={reFetch}>
-                    <AiOutlineReload className="reloadIcon" />
-                </button>
-            </header>
+            <Header title="blog" reFetch={reFetch} />
             <>
                 {
                     loading ? ("loading") : (error ? "error" : (

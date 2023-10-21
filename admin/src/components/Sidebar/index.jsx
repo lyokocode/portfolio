@@ -44,10 +44,12 @@ export const Sidebar = () => {
                             <span>Categories</span>
                         </li>
                     </Link>
-                    <li>
-                        <AiOutlineProject className="icon" />
-                        <span>Projects</span>
-                    </li>
+                    <Link to="/projects">
+                        <li>
+                            <AiOutlineProject className="icon" />
+                            <span>Projects</span>
+                        </li>
+                    </Link>
                     <p className="title">Useful</p>
                     <li>
                         <MdNotifications className="icon" />

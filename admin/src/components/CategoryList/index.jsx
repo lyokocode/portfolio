@@ -3,7 +3,7 @@ import "./categoryList.scss"
 import { useState } from "react";
 import { UpdateCategory } from "..";
 export const CategoryList = ({ category, reFetch }) => {
-    const { name, image, link, color, popular, id } = category;
+    const { name, image, color, popular, id } = category;
 
     const deleteBlog = async (id) => {
         try {
@@ -29,7 +29,7 @@ export const CategoryList = ({ category, reFetch }) => {
             <div className="category-image">
                 <img
                     style={{ width: "100px" }}
-                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${category?.image}`}
+                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${image}`}
                 />
             </div>
             <div className="categoryDetails">

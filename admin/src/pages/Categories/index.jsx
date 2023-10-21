@@ -1,8 +1,6 @@
 import "./categories.scss"
 import useFetch from "../../hooks/useFetch"
-import { Link } from "react-router-dom"
-import { AiOutlineReload } from "react-icons/ai"
-import { CategoryList } from "../../components"
+import { CategoryList, Header } from "../../components"
 
 export const Categories = () => {
 
@@ -13,21 +11,7 @@ export const Categories = () => {
 
     return (
         <section className="categoriesPage">
-            <header className="categoriesHeader">
-                <input
-                    className="searchInput"
-                    type="text"
-                    placeholder="search to category"
-                />
-                <Link to="./create" className="createBtn">
-                    Create a new Category
-                </Link>
-                <button
-                    className="reloadBtn"
-                    onClick={reFetch}>
-                    <AiOutlineReload className="reloadIcon" />
-                </button>
-            </header>
+            <Header title="category" reFetch={reFetch} />
             <>
                 {
                     loading ? ("loading") : (error ? "error" : (
