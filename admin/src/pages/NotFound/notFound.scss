@@ -7,10 +7,16 @@
     vertical-align: baseline;
     box-sizing: border-box;
     color: inherit;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
 
     .pageBody {
         background-image: linear-gradient(120deg, #4f0088 0%, #000000 100%);
         height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
 
         .statusCode {
             font-size: 45vw;
