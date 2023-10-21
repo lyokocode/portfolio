@@ -12,3 +12,5 @@ export { NewProject } from "./NewProject"
 export { Editor } from "./Editor"
 
 export { Login } from "./Login"
+
+export { NotFound } from "./NotFound"

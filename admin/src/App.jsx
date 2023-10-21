@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject } from './pages'
+import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject, NotFound } from './pages'
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
 
@@ -33,6 +33,8 @@ function App() {
           </Route>
         </Route>
         < Route path='/login' element={<Login />} />
+        <Route path='*' element={<NotFound />} />
+
       </Routes>
     </Router>
   )
