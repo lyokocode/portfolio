@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { UpdateProject } from "../UpdateProject";
 import "./projectList.scss"
 import axios from "axios"
 
@@ -13,6 +15,16 @@ export const ProjectList = ({ project, reFetch }) => {
         }
     };
 
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
     return (
         <div className="projectList">
             <img
@@ -24,9 +36,17 @@ export const ProjectList = ({ project, reFetch }) => {
                 <p>{project?.title}</p>
             </div>
             <div className="buttonContainer">
-                <button className="updateBtn" >update</button>
+                <button className="updateBtn" onClick={openModal}>update</button>
                 <button className="deleteBtn" onClick={() => deleteProject()}>delete</button>
             </div>
+
+            {modalVisible && (
+                <UpdateProject
+                    projectData={project}
+                    onClose={closeModal}
+                    reFetch={reFetch}
+                />
+            )}
         </div>
     )
 }

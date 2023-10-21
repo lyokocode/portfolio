@@ -141,7 +141,6 @@ export const UpdateBlog = ({ onClose, blogData }) => {
                     />
                 </div>
 
-                {/* blog description */}
                 <div className="formController">
                     <label> description:</label>
                     <textarea
@@ -152,6 +151,7 @@ export const UpdateBlog = ({ onClose, blogData }) => {
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     />
                 </div>
+
 
                 {/* blog Image */}
                 <div className="formController">

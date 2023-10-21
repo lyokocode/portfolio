@@ -42,13 +42,13 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
         try {
             const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${categoryData?.id}`, updatedData);
 
-            console.log("Blog güncellendi:", response.data);
+            console.log("Kategori güncellendi:", response.data);
             reFetch()
             onClose(); // Güncelleme işlemi tamamlandığında bileşeni kapat
 
             return response.data;
         } catch (error) {
-            console.error("Blog güncelleme sırasında hata oluştu:", error);
+            console.error("Kategori güncelleme sırasında hata oluştu:", error);
             throw error;
         }
 
@@ -107,8 +107,8 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
                     />
                 </div>
-                {/* category link */}
 
+                {/* category link */}
                 <div className="formController">
                     <label> category link:</label>
                     <input
@@ -120,10 +120,11 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
                     />
                 </div>
+
                 {/* category Image */}
                 <div className="formController">
                     <div className="imageController">
-                        <label htmlFor="file">Blog image:</label>
+                        <label htmlFor="file">Category image:</label>
                         <input
                             type='file'
                             id='file'
