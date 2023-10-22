@@ -9,7 +9,6 @@ import useFetch from "../../hooks/useFetch"
 export const SingleUser = () => {
     const { id } = useParams()
     const { user } = useSelector(state => state.auth)
-    console.log(user)
 
     const { data: auth, loading, error, reFetch } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${id}`)
 

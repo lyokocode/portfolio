@@ -4,7 +4,6 @@ import axios from "axios"
 import { AiOutlineClose } from "react-icons/ai";
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
-    console.log(blogData)
 
     const [errorMessage, setErrorMessage] = useState()
     const [error, serError] = useState(null)
