@@ -24,15 +24,12 @@ export const UpdateBlog = ({ onClose, blogData }) => {
     const handleUpdateBlog = async (e) => {
         e.preventDefault();
 
-        // Güncellenmiş verileri depolamak için yeni bir FormData oluşturun
         const updatedData = new FormData();
 
-        // description özelliğini kontrol edin ve güncelleme verilerine ekleyin
         if (formData.description) {
             updatedData.append("description", formData.description);
         }
 
-        // Diğer özellikleri kontrol edin ve güncelleme verilerine ekleyin
         if (formData.title) {
             updatedData.append("title", formData.title);
         }
@@ -62,7 +59,7 @@ export const UpdateBlog = ({ onClose, blogData }) => {
             const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`, updatedData);
 
             console.log("Blog güncellendi:", response.data);
-            onClose(); // Güncelleme işlemi tamamlandığında bileşeni kapat
+            onClose();
 
             return response.data;
         } catch (error) {
