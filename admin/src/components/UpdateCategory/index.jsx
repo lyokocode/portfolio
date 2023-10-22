@@ -2,10 +2,13 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateCategory.scss";
 import axios from "axios";
-
+import { Error } from "../Error";
 
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
-    console.log(categoryData)
+
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
+
     const [formData, setFormData] = useState({
         name: "",
         image: null,
@@ -48,8 +51,8 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
             return response.data;
         } catch (error) {
-            console.error("Kategori güncelleme sırasında hata oluştu:", error);
-            throw error;
+            serError(true)
+            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
         }
 
     }
@@ -146,6 +149,8 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
                 </button>
 
             </form>
+            {error && <Error error={errorMessage} />}
+
         </div>
     )
 }

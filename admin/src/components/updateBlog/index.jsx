@@ -2,9 +2,13 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateBlog.scss";
 import axios from "axios";
+import { Error } from "../Error";
 
 export const UpdateBlog = ({ onClose, blogData }) => {
-    console.log(blogData)
+
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
+
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -62,8 +66,8 @@ export const UpdateBlog = ({ onClose, blogData }) => {
 
             return response.data;
         } catch (error) {
-            console.error("Blog güncelleme sırasında hata oluştu:", error);
-            throw error;
+            serError(true)
+            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
         }
 
     };
@@ -211,6 +215,7 @@ export const UpdateBlog = ({ onClose, blogData }) => {
                     Update
                 </button>
             </form>
+            {error && <Error error={errorMessage} />}
         </div>
     );
 };

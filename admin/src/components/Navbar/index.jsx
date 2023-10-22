@@ -12,7 +12,7 @@ export const Navbar = () => {
         if (user) {
             try {
                 await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/auth/logout/${user.id}`);
-                dispatch(logout()); // Clear user info from Redux store
+                dispatch(logout());
             } catch (error) {
                 console.error('Logout error:', error);
             }

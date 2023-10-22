@@ -2,15 +2,20 @@
 import { Link } from 'react-router-dom'
 import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
 import axios from "axios"
+import { Error } from '../Error';
+import { useState } from 'react';
 export const UserList = ({ user, reFetch }) => {
+
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
 
     const deleteUser = async () => {
         try {
             await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${user.id}`);
             reFetch()
         } catch (error) {
-            // Hata durumunu işle
-            console.error("Kullanıcı silinirken hata oluştu:", error);
+            serError(true)
+            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
         }
     };
 
@@ -79,6 +84,8 @@ export const UserList = ({ user, reFetch }) => {
                     </div>
                 </td>
             </tr>
+            {error && <Error error={errorMessage} />}
+
         </tbody >
     )
 }

@@ -2,16 +2,19 @@ import { useState } from "react";
 import { UpdateProject } from "../UpdateProject";
 import "./projectList.scss"
 import axios from "axios"
+import { Error } from "..";
 
 export const ProjectList = ({ project, reFetch }) => {
-
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
 
     const deleteProject = async () => {
         try {
             await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/projects/project?id=${project.id}`);
             reFetch()
         } catch (error) {
-            console.error("Proje silinirken hata oluştu:", error);
+            serError(true)
+            setErrorMessage(error?.response?.data?.message)
         }
     };
 
@@ -47,6 +50,8 @@ export const ProjectList = ({ project, reFetch }) => {
                     reFetch={reFetch}
                 />
             )}
+            {error && <Error error={errorMessage} />}
+
         </div>
     )
 }

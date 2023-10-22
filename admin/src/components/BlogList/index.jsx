@@ -1,20 +1,21 @@
 import { useState } from "react";
 import "./blogList.scss"
 import axios from "axios"
-import { UpdateBlog } from "..";
+import { Error, UpdateBlog } from "..";
 
 export const BlogList = ({ blog, reFetch }) => {
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
 
     const deleteBlog = async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blog.id}`);
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blog?.id}`);
             reFetch()
         } catch (error) {
-            // Hata durumunu işle
-            console.error("Blog silinirken hata oluştu:", error);
+            serError(true)
+            setErrorMessage(error?.response?.data?.message)
         }
     };
-
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -47,6 +48,7 @@ export const BlogList = ({ blog, reFetch }) => {
                     onClose={closeModal}
                 />
             )}
+            {error && <Error error={errorMessage} />}
         </div>
     )
 }

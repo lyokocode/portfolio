@@ -2,9 +2,12 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateUser.scss"
 import axios from "axios";
+import { Error } from "../Error";
 
 export const UpdateUser = ({ onClose, userData, reFetch }) => {
-    console.log(userData)
+
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -46,16 +49,14 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
 
         try {
             const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${userData?.id}`, updatedData);
-
-            console.log("User güncellendi:", response.data);
             reFetch()
             onClose();
 
             return response.data;
 
         } catch (error) {
-            console.error("Proje güncelleme sırasında hata oluştu:", error);
-            throw error;
+            serError(true)
+            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
         }
     }
 
@@ -166,6 +167,8 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
                     Update
                 </button>
             </form>
+            {error && <Error error={errorMessage} />}
+
         </div>
     )
 }

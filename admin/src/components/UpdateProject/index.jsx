@@ -2,9 +2,14 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateProject.scss";
 import axios from "axios";
+import { Error } from "../Error";
 
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
+
+
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
 
     const [formData, setFormData] = useState({
         title: "",
@@ -59,8 +64,8 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
             return response.data;
 
         } catch (error) {
-            console.error("Proje güncelleme sırasında hata oluştu:", error);
-            throw error;
+            serError(true)
+            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
         }
     }
 
@@ -181,6 +186,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
                     Update
                 </button>
             </form>
+            {error && <Error error={errorMessage} />}
         </div>
     )
 }

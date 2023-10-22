@@ -1,17 +1,22 @@
 import axios from "axios";
 import "./categoryList.scss"
 import { useState } from "react";
-import { UpdateCategory } from "..";
+import { Error, UpdateCategory } from "..";
+
+
 export const CategoryList = ({ category, reFetch }) => {
     const { name, image, color, popular, id } = category;
 
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
+
     const deleteBlog = async (id) => {
         try {
-            console.log(id)
             await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${id}`);
             reFetch()
         } catch (error) {
-            console.error("Kategori silinirken hata oluştu:", error);
+            serError(true)
+            setErrorMessage(error?.response?.data?.message)
         }
     };
 
@@ -38,11 +43,12 @@ export const CategoryList = ({ category, reFetch }) => {
             <div className="colorContainer" style={{ background: color }} />
 
             <div className="buttonContainer">
-                <button className="actionButton delete" onClick={() => deleteBlog(id)}>
-                    Delete
-                </button>
                 <button className="actionButton update" onClick={openModal} >
                     Update
+                </button>
+
+                <button className="actionButton delete" onClick={() => deleteBlog(id)}>
+                    Delete
                 </button>
             </div>
             {modalVisible && (
@@ -52,6 +58,8 @@ export const CategoryList = ({ category, reFetch }) => {
                     reFetch={reFetch}
                 />
             )}
+            {error && <Error error={errorMessage} />}
+
         </div>
     )
 }

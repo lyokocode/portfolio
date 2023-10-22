@@ -1,5 +1,5 @@
 import "./project.scss"
-import { Header } from "../../components"
+import { Error, Header } from "../../components"
 import useFetch from "../../hooks/useFetch";
 import { ProjectList } from "../../components";
 export const Projects = () => {
@@ -13,7 +13,7 @@ export const Projects = () => {
 
             <>
                 {
-                    loading ? ("loading") : (error ? "error" : (
+                    loading ? ("loading") : (error ? <Error error={error.message} /> : (
                         <div className="projectWrapper">
                             {projects && projects.map(project => (
                                 <ProjectList key={project?.id} project={project} reFetch={reFetch} />

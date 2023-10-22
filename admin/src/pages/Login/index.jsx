@@ -16,11 +16,6 @@ export const Login = () => {
     const navigate = useNavigate();
     const { user, error } = useSelector(state => state.auth);
 
-    const [alert, setAlert] = useState({
-        show: false,
-        msg: "",
-        type: ""
-    })
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -33,14 +28,9 @@ export const Login = () => {
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Giriş sırasında bir hata oluştu';
             dispatch(loginFailure(errorMessage));
-            showAlert(true, "danger", "Lütfen yapılacakları giriniz!")
 
         }
     };
-
-    const showAlert = (show = true, type = "", msg = "") => {
-        setAlert({ show, type, msg })
-    }
 
     useEffect(() => {
         if (user) {
@@ -51,7 +41,6 @@ export const Login = () => {
 
     return (
         <div className="formWrapper">
-            {alert.show && <Error {...alert} removeAlert={showAlert} />}
             <form className="loginForm" onSubmit={handleLogin}>
                 <div className="logo">
                     {"<Aelita />"}
