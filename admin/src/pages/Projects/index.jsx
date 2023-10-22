@@ -1,7 +1,6 @@
 import "./project.scss"
-import { Error, Header, Loading } from "../../components"
+import { Error, Header, Loading, ProjectList } from "../../components"
 import useFetch from "../../hooks/useFetch";
-import { ProjectList } from "../../components";
 export const Projects = () => {
 
     const { data: projects, loading, error, reFetch } = useFetch(

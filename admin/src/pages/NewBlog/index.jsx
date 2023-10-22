@@ -3,7 +3,7 @@ import "./newBlog.scss"
 import axios from "axios"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import useFetch from "../../../../client/src/hooks/useFetch"
+import useFetch from "../../hooks/useFetch"
 
 export const NewBlog = () => {
     const { user } = useSelector(state => state.auth)

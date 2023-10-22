@@ -1,10 +1,10 @@
-import { useParams, Link, useNavigate } from "react-router-dom"
-import useFetch from "../../../../client/src/hooks/useFetch"
+import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import "./singleUser.scss"
 import { useState } from "react"
 import { AiOutlineUser } from "react-icons/ai"
 import { Loading, UpdateUser } from "../../components"
+import useFetch from "../../hooks/useFetch"
 
 export const SingleUser = () => {
     const { id } = useParams()
