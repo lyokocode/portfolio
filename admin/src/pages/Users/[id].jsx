@@ -11,9 +11,7 @@ export const SingleUser = () => {
     const { user } = useSelector(state => state.auth)
     console.log(user)
 
-    const { data: auth, loading, error, reFetch } = useFetch(`http://localhost:5000/api/users/user?id=${id}`)
-    console.log(auth)
-
+    const { data: auth, loading, error, reFetch } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${id}`)
 
     const [modalVisible, setModalVisible] = useState(false);
 
