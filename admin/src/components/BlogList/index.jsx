@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./blogList.scss"
 import axios from "axios"
-import { Error } from "..";
+import { Error, UpdateBlog } from "..";
 
 export const BlogList = ({ blog, reFetch }) => {
     const [errorMessage, setErrorMessage] = useState()
@@ -17,6 +17,16 @@ export const BlogList = ({ blog, reFetch }) => {
         }
     };
 
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const openModal = () => {
+        setModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setModalVisible(false);
+    };
+
 
     return (
         <div className="blogList">
@@ -29,10 +39,15 @@ export const BlogList = ({ blog, reFetch }) => {
                 <p>{blog?.title}</p>
             </div>
             <div className="buttonContainer">
-                <button className="updateBtn">update</button>
+                <button className="updateBtn" onClick={openModal}>update</button>
                 <button onClick={() => deleteBlog()} className="deleteBtn">delete</button>
             </div>
-
+            {modalVisible && (
+                <UpdateBlog
+                    blogData={blog}
+                    onClose={closeModal}
+                />
+            )}
             {error && <Error error={errorMessage} />}
         </div>
     )
