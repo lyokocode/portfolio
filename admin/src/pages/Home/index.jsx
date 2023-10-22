@@ -1,10 +1,10 @@
-import { Navbar } from "../../components"
+import { Loading } from "../../components"
 import "./home.scss"
 
 export const Home = () => {
     return (
         <div>
-            Home
+            <Loading />
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import "./singleUser.scss"
 import { useState } from "react"
 import { AiOutlineUser } from "react-icons/ai"
-import { UpdateUser } from "../../components"
+import { Loading, UpdateUser } from "../../components"
 
 export const SingleUser = () => {
     const { id } = useParams()
@@ -28,7 +28,7 @@ export const SingleUser = () => {
     return (
         <>
             {
-                loading ? "loading" : (error ? error : (
+                loading ? <Loading /> : (error ? error : (
                     <div className="singleUser">
                         <header>
                             <div className="container">

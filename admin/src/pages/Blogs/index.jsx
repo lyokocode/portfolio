@@ -1,6 +1,6 @@
 import "./blog.scss"
 import useFetch from "../../hooks/useFetch"
-import { BlogList, Error, Header } from "../../components";
+import { BlogList, Error, Header, Loading } from "../../components";
 export const Blogs = () => {
 
     const { data: blogs, loading, error, reFetch } = useFetch(
@@ -12,7 +12,7 @@ export const Blogs = () => {
             <Header title="blog" reFetch={reFetch} />
             <>
                 {
-                    loading ? ("loading") : (error ? <Error error={error.message} /> : (
+                    loading ? <Loading /> : (error ? <Error error={error.message} /> : (
                         <div className="blogWrapper">
                             {blogs && blogs.map(blog => (
                                 <BlogList key={blog?.id} blog={blog} reFetch={reFetch} />

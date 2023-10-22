@@ -1,6 +1,6 @@
 import "./categories.scss"
 import useFetch from "../../hooks/useFetch"
-import { CategoryList, Error, Header } from "../../components"
+import { CategoryList, Error, Header, Loading } from "../../components"
 
 export const Categories = () => {
 
@@ -14,7 +14,7 @@ export const Categories = () => {
             <Header title="category" reFetch={reFetch} />
             <>
                 {
-                    loading ? ("loading") : (error ? <Error error={error.message} /> : (
+                    loading ? <Loading /> : (error ? <Error error={error.message} /> : (
                         <div className="categoryWrapper">
                             {categories && categories.map(category => (
                                 <CategoryList key={category.id} category={category} reFetch={reFetch} />

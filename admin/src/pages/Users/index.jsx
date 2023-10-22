@@ -1,4 +1,4 @@
-import { Error, Header } from "../../components";
+import { Error, Header, Loading } from "../../components";
 import useFetch from "../../hooks/useFetch";
 import { UserList } from "../../components"
 import "./user.scss"
@@ -12,7 +12,7 @@ export const Users = () => {
 
             <div className="container">
                 {
-                    loading ? ("loading") : (error ? <Error error={error.message} /> : (
+                    loading ? <Loading /> : (error ? <Error error={error.message} /> : (
                         <div className="userWrapper">
                             <div className="content">
                                 <table className="table">

@@ -19,4 +19,5 @@ export { UpdateUser } from "./UpdateUser"
 
 
 export { Error } from "./Error"
+export { Loading } from "./Loading"
 
