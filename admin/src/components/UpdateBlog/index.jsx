@@ -61,11 +61,11 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
         }
 
         try {
-            const response = await axios.put(`http://localhost:5000/api/blogs/blog?id=${blogData?.id}`, updatedData);
+            const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`, updatedData);
 
             console.log("Blog güncellendi:", response.data);
+            reFetch()
             onClose(); // Güncelleme işlemi tamamlandığında bileşeni kapat
-
             return response.data;
         } catch (error) {
             console.error("Blog güncelleme sırasında hata oluştu:", error);

@@ -136,13 +136,13 @@ export const deleteBlog = async (req, res, next) => {
             return next(createError(404, " Blog is not defined"))
 
         }
-        if (category) {
+        if (blog) {
             await storageClient
                 .from('blog')
                 .remove([`images/${blog.image}`]);
         }
 
-        if (category) {
+        if (blog) {
             await storageClient
                 .from('blog')
                 .remove([`mdfiles/${blog.blog}`]);
