@@ -91,6 +91,12 @@ export const deleteCategory = async (req, res, next) => {
             return next(createError(404, " Category is not defined"))
 
         }
+        if (category) {
+            await storageClient
+                .from('blog')
+                .remove([`categories/${category.image}`]);
+        }
+
         await Category.destroy({
             where: {
                 id: category.id
@@ -107,6 +113,7 @@ export const deleteCategory = async (req, res, next) => {
 export const updateCategory = async (req, res, next) => {
     const { id } = req.query;
     const updatedFields = req.body;
+    const { newImage } = req.files || {};
 
     try {
         const category = await Category.findByPk(id);
@@ -114,6 +121,28 @@ export const updateCategory = async (req, res, next) => {
             return next(createError(404, " Category is not defined"))
         }
 
+        if (newImage) {
+            const { data: newImageData, error: newImageError } = await storageClient
+                .from('blog/categories')
+                .upload(`${newImage?.name}-${Date.now()}.png`, newImage.data, {
+                    contentType: newImage.mimetype,
+                    cacheControl: '3600',
+                });
+
+            if (newImageError) {
+                return res.status(500).json({ message: 'Resim yüklenirken bir hata oluştu.' });
+            }
+
+            // Eski resmi silmek (varsa)
+            if (category.image) {
+                await storageClient
+                    .from('blog')
+                    .remove([`categories/${category.image}`]);
+            }
+
+            // category verisini güncelleyin
+            category.image = newImageData.path;
+        }
         Object.keys(updatedFields).forEach((field) => {
             if (field !== 'id') {
                 category[field] = updatedFields[field];

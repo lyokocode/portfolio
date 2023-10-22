@@ -46,7 +46,6 @@ export const register = async (req, res, next) => {
     }
 }
 
-// LOGIN
 
 // LOGIN
 export const login = async (req, res, next) => {
@@ -67,7 +66,7 @@ export const login = async (req, res, next) => {
             isAdmin: user.isAdmin
         }, process.env.JWT_SECRET_KEY, { expiresIn: '6h' })
 
-        const { password, isAdmin, ...info } = user.dataValues
+        const { password, ...info } = user.dataValues
 
 
         return res

@@ -23,10 +23,11 @@ export const getAllBlogs = async (req, res, next) => {
 // GET Blog
 export const getBlog = async (req, res, next) => {
     try {
-        const { id } = req.query;
+        const { slug } = req.query;
+        console.log(slug)
 
         const blog = await Blog.findOne({
-            where: { id },
+            where: { slug },
             include: {
                 model: User,
                 attributes: ['userName', 'avatar'],
@@ -135,6 +136,17 @@ export const deleteBlog = async (req, res, next) => {
             return next(createError(404, " Blog is not defined"))
 
         }
+        if (category) {
+            await storageClient
+                .from('blog')
+                .remove([`images/${blog.image}`]);
+        }
+
+        if (category) {
+            await storageClient
+                .from('blog')
+                .remove([`mdfiles/${blog.blog}`]);
+        }
 
         await Blog.destroy({
             where: {
@@ -153,10 +165,59 @@ export const updateBlog = async (req, res, next) => {
     const { id } = req.query;
     const updatedFields = req.body;
 
+    const { newImage, newBlog } = req.files || {};
+
     try {
         const blog = await Blog.findByPk(id);
         if (!blog) {
-            return next(createError(404, " Blog is not defined"))
+            return next(createError(404, "Blog is not defined"));
+        }
+
+        // update image
+        if (newImage) {
+            const { data: newImageData, error: newImageError } = await storageClient
+                .from('blog/images')
+                .upload(`${newImage?.name}-${Date.now()}.png`, newImage.data, {
+                    contentType: newImage.mimetype,
+                    cacheControl: '3600',
+                });
+
+            if (newImageError) {
+                return res.status(500).json({ message: 'Resim yüklenirken bir hata oluştu.' });
+            }
+
+            // Eski resmi silmek (varsa)
+            if (blog.image) {
+                await storageClient
+                    .from('blog')
+                    .remove([`images/${blog.image}`]);
+            }
+
+            // Blog verisini güncelleyin
+            blog.image = newImageData.path;
+        }
+        // update blog
+        if (newBlog) {
+            const { data: newBlogData, error: newBlogError } = await storageClient
+                .from('blog/mdfiles')
+                .upload(`${Date.now()}.md`, newBlog.data, {
+                    contentType: newBlog.mimetype,
+                    cacheControl: '3600',
+                });
+
+            if (newBlogError) {
+                return res.status(500).json({ message: 'Resim yüklenirken bir hata oluştu.' });
+            }
+
+            // Eski resmi silmek (varsa)
+            if (blog.blog) {
+                await storageClient
+                    .from('blog')
+                    .remove([`mdfiles/${blog.blog}`]);
+            }
+
+            // Blog verisini güncelleyin
+            blog.blog = newBlogData.path;
         }
 
         Object.keys(updatedFields).forEach((field) => {
@@ -169,6 +230,6 @@ export const updateBlog = async (req, res, next) => {
 
         return res.json({ blog });
     } catch (err) {
-        next(err)
+        next(err);
     }
 }

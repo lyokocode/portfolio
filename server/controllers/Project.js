@@ -53,8 +53,11 @@ export const createProject = async (req, res, next) => {
 
         const imageUrl = imageData.path;
 
+        const categories = projectInfo.categories.split(',').map((category) => category.trim());
+
         const newProject = await Project.create({
             ...projectInfo,
+            categories,
             image: imageUrl,
         });
 
@@ -64,7 +67,7 @@ export const createProject = async (req, res, next) => {
     }
 }
 
-// CREATE NEW PROJECT
+// DELETE  PROJECT
 export const deleteProject = async (req, res, next) => {
     const { id } = req.query;
 
@@ -73,6 +76,13 @@ export const deleteProject = async (req, res, next) => {
         if (!project) {
             return next(createError(404, "Project not defined"));
         }
+
+        if (project) {
+            await storageClient
+                .from('blog')
+                .remove([`projects/${project.image}`]);
+        }
+
         await Project.destroy({
             where: {
                 id: project.id
@@ -89,15 +99,42 @@ export const deleteProject = async (req, res, next) => {
 export const updateProject = async (req, res, next) => {
     const { id } = req.query;
     const updatedFields = req.body;
+    const { newImage } = req.files || {};
 
     try {
         const project = await Project.findByPk(id);
         if (!project) {
-            return next(createError(404, " Project is not defined"))
+            return next(createError(404, "Project is not defined"));
         }
 
+        if (newImage) {
+            const { data: newImageData, error: newImageError } = await storageClient
+                .from('blog/projects')
+                .upload(`${newImage?.name}-${Date.now()}.png`, newImage.data, {
+                    contentType: newImage.mimetype,
+                    cacheControl: '3600',
+                });
+
+            if (newImageError) {
+                return res.status(500).json({ message: 'Resim yüklenirken bir hata oluştu.' });
+            }
+
+            // Eski resmi silmek (varsa)
+            if (project.image) {
+                await storageClient
+                    .from('blog')
+                    .remove([`projects/${project.image}`]);
+            }
+
+            // Yeni resmi kaydet
+            project.image = newImageData.path;
+        }
+
+        project.categories = updatedFields.categories.split(',').map((category) => category.trim());
+
+
         Object.keys(updatedFields).forEach((field) => {
-            if (field !== 'id') {
+            if (field !== 'id' && field !== 'categories') {
                 project[field] = updatedFields[field];
             }
         });
@@ -106,6 +143,6 @@ export const updateProject = async (req, res, next) => {
 
         return res.json({ project });
     } catch (err) {
-        next(err)
+        next(err);
     }
 }
