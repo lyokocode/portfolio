@@ -46,6 +46,7 @@ export const BlogList = ({ blog, reFetch }) => {
                 <UpdateBlog
                     blogData={blog}
                     onClose={closeModal}
+                    reFetch={reFetch}
                 />
             )}
             {error && <Error error={errorMessage} />}
