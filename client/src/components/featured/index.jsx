@@ -33,7 +33,7 @@ export const Featured = () => {
                             <div className="textContainer">
                                 <h2 className="postTitle">{data[0]?.title}</h2>
                                 <p className="postDesc">{data[0]?.description}</p>
-                                <Link to={`/blogs/${data[0]?.id}`} className="postBtn">Read More </Link>
+                                <Link to={`/blogs/${data[0]?.slug}`} className="postBtn">Read More </Link>
                             </div>
                         </div>
                     ) : ("data is not defined")
