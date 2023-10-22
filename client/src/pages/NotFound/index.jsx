@@ -22,8 +22,8 @@ export const NotFound = () => {
     }, [])
 
     return (
-        <main className="pageContainer">
-            <section className="pageBody">
+        <main className="notFound">
+            <section className="notFoundBody">
                 <h1 className="statusCode">404</h1>
                 <div className="codeContainer" >
                     <p> <span>ERROR CODE</span>: "<i>HTTP 404 Not Found</i>"</p>

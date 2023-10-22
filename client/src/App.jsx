@@ -8,14 +8,15 @@ function App() {
     <Router>
       <Routes>
         <Route element={<Layout />}>
+
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<SingleBlog />} />
 
           <Route path="/projects" element={<Projects />} />
 
-          <Route path='*' element={<NotFound />} />
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </Router>
   )
