@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom'
 import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
 import axios from "axios"
-import { Error } from '../Error';
+import { Error } from '..';
 import { useState } from 'react';
 export const UserList = ({ user, reFetch }) => {
 

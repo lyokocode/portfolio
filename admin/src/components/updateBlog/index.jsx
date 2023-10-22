@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateBlog.scss";
 import axios from "axios";
-import { Error } from "../Error";
+import { Error } from "..";
 
 export const UpdateBlog = ({ onClose, blogData }) => {
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateCategory.scss";
 import axios from "axios";
-import { Error } from "../Error";
+import { Error } from "..";
 
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
