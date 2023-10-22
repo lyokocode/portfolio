@@ -2,7 +2,6 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateProject.scss";
 import axios from "axios";
-import useFetch from "../../hooks/useFetch";
 
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
@@ -15,7 +14,6 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
         description: "",
         projectLink: "",
         githubLink: "",
-
     });
 
     const handleUpdateProject = async (e) => {

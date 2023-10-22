@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject, NotFound } from './pages'
+import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject, NotFound, SingleUser } from './pages'
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
 import { Users } from './pages'
@@ -30,7 +30,10 @@ function App() {
             </Route>
 
 
-            <Route path="/users" element={<Users />} />
+            <Route path='/users'>
+              <Route index element={<Users />} />
+              <Route path=":id" element={<SingleUser />} />
+            </Route>
 
             <Route path="/editor" element={<Editor />} />
           </Route>

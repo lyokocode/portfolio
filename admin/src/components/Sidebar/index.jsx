@@ -82,10 +82,12 @@ export const Sidebar = () => {
                         <span>Settings</span>
                     </li>
                     <p className="title">User</p>
-                    <li>
-                        <BiUserCircle className="icon" />
-                        <span>Profile</span>
-                    </li>
+                    <Link to={`/users/${user.id}`}>
+                        <li>
+                            <BiUserCircle className="icon" />
+                            <span>Profile</span>
+                        </li>
+                    </Link>
 
                     <div className="bottom">
                         <button className="color-option" > </button>

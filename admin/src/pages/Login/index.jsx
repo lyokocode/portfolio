@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react"
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
-import axios from "axios"
-import "./login.scss"
-import { useDispatch, useSelector } from "react-redux"
-import { loginFailure, loginSuccess } from "../../store/authSlice"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import axios from "axios";
+import "./login.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { loginFailure, loginSuccess } from "../../store/authSlice";
+import { useNavigate } from "react-router-dom";
+import { Error } from "../../components"
 
 
 export const Login = () => {
-
-    const [view, setView] = useState(false)
-
+    const [view, setView] = useState(false);
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { user, error } = useSelector(state => state.auth);
 
-    const { user, error } = useSelector(state => state.auth)
-    const [showError, setShowError] = useState(false);
-
-    // error message duration time
-    const errorDisplayDuration = 3000;
+    const [alert, setAlert] = useState({
+        show: false,
+        msg: "",
+        type: ""
+    })
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -30,39 +30,29 @@ export const Login = () => {
                 password,
             });
             dispatch(loginSuccess(response.data));
-
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Giriş sırasında bir hata oluştu';
             dispatch(loginFailure(errorMessage));
-            setShowError(true);
+            showAlert(true, "danger", "Lütfen yapılacakları giriniz!")
 
-            setTimeout(() => {
-                setShowError(false);
-            }, errorDisplayDuration);
         }
     };
+
+    const showAlert = (show = true, type = "", msg = "") => {
+        setAlert({ show, type, msg })
+    }
+
     useEffect(() => {
         if (user) {
             navigate("/")
         }
     }, [user])
 
-    useEffect(() => {
-        if (showError) {
-            // Hata mesajını görüntüle
-            setTimeout(() => {
-                setShowError(false);
-            }, errorDisplayDuration);
-        }
-    }, [showError]);
-
 
     return (
         <div className="formWrapper">
-            <form
-                className="loginForm"
-                onSubmit={handleLogin}
-            >
+            {alert.show && <Error {...alert} removeAlert={showAlert} />}
+            <form className="loginForm" onSubmit={handleLogin}>
                 <div className="logo">
                     {"<Aelita />"}
                 </div>
@@ -98,16 +88,11 @@ export const Login = () => {
                     >
                         Log In
                     </button>
-                    <input
-                    />
+                    <input />
                     <div className="clear-fix"></div>
                 </div>
-                {showError && (
-                    <div className="errorMessage">
-                        {error}
-                    </div>
-                )}
             </form>
+            {error && <Error error={error} />}
         </div>
     )
 }

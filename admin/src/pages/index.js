@@ -10,6 +10,7 @@ export { Projects } from "./Projects"
 export { NewProject } from "./NewProject"
 
 export { Users } from "./Users"
+export { SingleUser } from "./Users/[id]"
 
 export { Editor } from "./Editor"
 

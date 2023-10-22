@@ -15,4 +15,8 @@ export { ProjectList } from "./ProjectList"
 export { UpdateProject } from "./UpdateProject"
 
 export { UserList } from "./UserList"
+export { UpdateUser } from "./UpdateUser"
+
+
+export { Error } from "./Error"
 
