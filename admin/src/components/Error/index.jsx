@@ -23,7 +23,7 @@ export const Error = ({ error }) => {
     return (
         isVisible && (
             <div className="error-container">
-                <p className="error-message">{error}</p>
+                <p className="error-message">{error ? error : "something went wrong"}</p>
             </div>
         )
     );

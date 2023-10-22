@@ -39,7 +39,7 @@ export const BlogList = ({ blog, reFetch }) => {
                 <p>{blog?.title}</p>
             </div>
             <div className="buttonContainer">
-                <button className="updateBtn" onClick={openModal}>update</button>
+                <button className="updateBtn" onClick={() => openModal()}>update</button>
                 <button onClick={() => deleteBlog()} className="deleteBtn">delete</button>
             </div>
             {modalVisible && (
@@ -49,6 +49,7 @@ export const BlogList = ({ blog, reFetch }) => {
                 />
             )}
             {error && <Error error={errorMessage} />}
+
         </div>
     )
 }
