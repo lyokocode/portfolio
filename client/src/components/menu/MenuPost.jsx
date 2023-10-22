@@ -5,7 +5,7 @@ export const MenuPost = ({ withImage, blogs }) => {
         <article className="items">
             {blogs ? (
                 blogs.map((blog) => (
-                    <Link to={`/blogs/${blog.slug}`} key={blog.id} className="item">
+                    <Link to={`/blogs/${blog.slug}`} key={blog.slug} className="item">
                         {withImage && (
                             <div className="imageContainer">
                                 <img
