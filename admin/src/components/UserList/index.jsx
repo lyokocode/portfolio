@@ -8,7 +8,7 @@ export const UserList = ({ user, reFetch }) => {
 
     const [errorMessage, setErrorMessage] = useState()
     const [error, serError] = useState(null)
-
+    console.log(user)
     const deleteUser = async () => {
         try {
             await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${user.id}`);

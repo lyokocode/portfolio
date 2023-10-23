@@ -1,52 +1,62 @@
-import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useState } from "react"
+import "./editor.scss"
+import Markdown from "markdown-to-jsx"
 import { saveAs } from 'file-saver';
+import { useRef } from "react";
 
 export const Editor = () => {
+    const [input, setInput] = useState("");
+    const textAreaRef = useRef(null);
 
-    const [text, setText] = useState('');
-    const [preview, setPreview] = useState(false);
+    const insertText = (text) => {
+        const startPos = textAreaRef.current.selectionStart;
+        const endPos = textAreaRef.current.selectionEnd;
 
-    const modules = {
-        toolbar: [
-            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            ['link'],
-            ['clean'],
-            ['image'],
-            ['code'],
-        ]
+        const newText = input.substring(0, startPos) + text + input.substring(endPos);
+        setInput(newText);
+
+        textAreaRef.current.focus();
     };
 
     const downloadMarkdown = () => {
-        const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+        const blob = new Blob([input], { type: 'text/markdown;charset=utf-8' });
         saveAs(blob, 'markdown-dosya.md');
+    };
+    const handleImageUpload = () => {
+        const imageUrl = prompt("Lütfen resmin URL'sini girin:");
+        if (imageUrl) {
+            insertText(`![Resim Açıklaması](${imageUrl})`);
+        }
     };
 
     return (
-        <div className="markdown-editor">
-            <div className="editor">
-                <ReactQuill
-                    value={text}
-                    onChange={setText}
-                    modules={modules}
-                />
-            </div>
-            <div className="preview">
-                <button onClick={() => setPreview(!preview)}>
-                    {preview ? 'Düzenle' : 'Önizle'}
-                </button>
+        <div className="markdownContainer">
+            <div className="editor-header">
+                <button onClick={() => insertText("# ")}>Ana Başlık</button>
+                <button onClick={() => insertText("## ")}>Alt Başlık</button>
+                <button onClick={() => insertText("### ")}>önemli </button>
+                <button onClick={() => insertText("```\n\n```")}>kopyalanabilir içerik</button>
+                <button onClick={() => insertText("")}>düz metin</button>
+                <button onClick={handleImageUpload}>Resim Ekle</button>
 
-                {preview ? (
-                    <div className="markdown-preview">
-                        <ReactMarkdown>{text}</ReactMarkdown>
-                    </div>
-                ) : null}
             </div>
-            <button onClick={downloadMarkdown}>İndir</button>
+            <div className="markdown-editor">
+                <textarea
+                    className="textArea"
+                    ref={textAreaRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                />
+                <div className="markdown">
+                    <Markdown>{input}</Markdown>
+                </div>
+            </div>
+            <div className="buttonContainer">
+                <button className="downloadBtn" onClick={downloadMarkdown}>
+                    İndir
+                </button>
+            </div>
         </div>
-    )
-}
+    );
+};
+

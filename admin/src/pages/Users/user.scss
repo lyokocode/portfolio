@@ -19,7 +19,7 @@
             width: 100%;
 
             @media (min-width: 1024px) {
-                width: 83.33333%;
+                width: 90%;
             }
 
             .content {
@@ -27,6 +27,7 @@
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 border-radius: 4px;
                 margin: 24px 0;
+                overflow-x: auto;
 
                 .table {
                     width: 100%;

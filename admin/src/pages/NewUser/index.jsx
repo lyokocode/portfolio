@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import "./newUser.scss"
+import { useSelector } from 'react-redux'
+import { Error } from "../../components";
+
 
 export const NewUser = () => {
+
+    const [errorMessage, setErrorMessage] = useState()
+    const [error, serError] = useState(null)
+
+
+    const { user } = useSelector(state => state.auth)
 
     const navigate = useNavigate()
 
@@ -42,9 +51,16 @@ export const NewUser = () => {
 
             navigate("/users")
         } catch (error) {
-            console.error('Kategori oluşturulurken bir hata oluştu:', error);
+            serError(true)
+            setErrorMessage(error?.response?.data?.message)
         }
     };
+
+    useEffect(() => {
+        if (!user.isAdmin) {
+            navigate("/")
+        }
+    }, [user])
 
 
     return (
@@ -105,6 +121,7 @@ export const NewUser = () => {
                         onChange={handleChange}
                         defaultValue="false"
                     >
+                        <option value=""></option>
                         <option value="false">false</option>
                         <option value="true">true</option>
                     </select>
@@ -119,8 +136,8 @@ export const NewUser = () => {
                     />
                 </div>
                 <button type="submit" className="submit-button">create new user</button>
-
             </form>
+            {error && <Error error={errorMessage} />}
         </div>
     )
 }

@@ -72,15 +72,15 @@ export const SingleUser = () => {
 
                                         <ul>
                                             <li><span className="profile-stat-count">{auth?.Blogs?.length}</span> Blog</li>
-                                            <li><span className="profile-stat-count">188</span> followers</li>
-                                            <li><span className="profile-stat-count">206</span> following</li>
+                                            <li><span className="profile-stat-count"></span> Legit Hukuk</li>
+                                            <li><span className="profile-stat-count"></span> İzmir</li>
                                         </ul>
 
                                     </div>
 
                                     <div className="profile-bio">
 
-                                        <p><span className="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+                                        <p><span className="profile-real-name">{auth.fullName}</span> 👨‍⚖️⚖️ </p>
 
                                     </div>
 

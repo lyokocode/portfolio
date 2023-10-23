@@ -1,0 +1,84 @@
+/* Global Stiller */
+$primary-color: #008CBA;
+$secondary-color: #4CAF50;
+$font-color: #fff;
+$button-border-radius: 5px;
+
+/* Ana Container */
+.markdownContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+
+    img {
+        width: 80%;
+    }
+
+    .editor-header {
+
+        /* Diğer Butonlar */
+        button {
+            background-color: $secondary-color;
+            color: $font-color;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: $button-border-radius;
+        }
+
+        /* Hover Etkisi */
+        button:hover {
+            background-color: darken($secondary-color, 10%);
+        }
+
+    }
+
+    .markdown-editor {
+        width: 60%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+        .textArea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    }
+
+    .buttonContainer {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+
+
+/* Markdown Önizleme */
+.markdown {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+
+    p {
+        margin: 0;
+    }
+}
+
+
+/* İndirme Butonu */
+.downloadBtn {
+    background-color: $primary-color;
+    color: $font-color;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: $button-border-radius;
+}

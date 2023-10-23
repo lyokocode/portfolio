@@ -135,18 +135,20 @@
     /* Gallery Section */
 
     .gallery {
+        width: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-wrap: wrap;
-        margin: -1rem -1rem;
-        padding-bottom: 3rem;
     }
 
     .gallery-item {
         position: relative;
-        flex: 1 0 22rem;
-        margin: 1rem;
+        max-width: 450px;
+        min-width: 250px;
         color: #fff;
         cursor: pointer;
+
     }
 
     .gallery-item:hover .gallery-item-info,
