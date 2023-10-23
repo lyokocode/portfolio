@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Markdown from "markdown-to-jsx"
 import { Code } from ".."
 import axios from "axios";
+import "./markdownBlog.scss"
 
 export const MarkdownBlog = ({ blog }) => {
 
@@ -32,7 +33,7 @@ export const MarkdownBlog = ({ blog }) => {
 
 
     return (
-        <article className="article">
+        <article className="blogArticle">
             <div className="container">
                 <div className="post-wrapper">
                     <Markdown options={{ overrides }}>

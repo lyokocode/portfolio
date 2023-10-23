@@ -1,4 +1,4 @@
-.article {
+.blogArticle {
     margin: 4rem 0;
     width: 100%;
 
@@ -9,15 +9,15 @@
         height: 100%;
 
         @media screen and (max-width:768px) {
-            max-width: 35rem;
+            width: 35rem;
         }
 
         @media screen and (max-width:640px) {
-            max-width: 27rem;
+            width: 27rem;
         }
 
         @media screen and (max-width:480px) {
-            max-width: 24rem;
+            width: 24rem;
         }
 
         .postWrapper {
