@@ -8,7 +8,6 @@ export { Featured } from "./featured"
 export { Categories } from "./categories"
 
 // blog
-
 export { CardList } from "./cardList"
 export { Card } from "./card"
 
@@ -27,3 +26,7 @@ export { Project } from "./project"
 
 // footer
 export { Footer } from "./footer"
+
+
+// handler
+export { Loading } from "./loading"

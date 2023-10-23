@@ -1,4 +1,4 @@
-import { MenuPost, MenuCategories } from ".."
+import { MenuPost, MenuCategories, Loading } from ".."
 import useFetch from "../../hooks/useFetch";
 import "./menu.scss"
 
@@ -11,25 +11,21 @@ export const Menu = () => {
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick`
     );
 
-    if (loading) {
-        return "loading"
-    } else if (error) {
-        return "error"
-    } else {
-        return (
-            <aside className="menuContainer">
-                <h2 className="subtitle">{"What's hot"}</h2>
-                <h1 className="title">Most Popular</h1>
-                <MenuPost withImage={false} blogs={popularBlogs} />
+    return (
+        <aside className="menuContainer">
+            {loading ? <Loading /> : (error ? "error" : (
+                <>   <h2 className="subtitle">{"What's hot"}</h2>
+                    <h1 className="title">Most Popular</h1>
+                    <MenuPost withImage={false} blogs={popularBlogs} />
 
-                <h2 className="subtitle">Discover by topic</h2>
-                <h1 className="title">Categories</h1>
-                <MenuCategories />
+                    <h2 className="subtitle">Discover by topic</h2>
+                    <h1 className="title">Categories</h1>
+                    <MenuCategories />
 
-                <h2 className="subtitle">Chosen by the editor</h2>
-                <h1 className="title">Editors pick</h1>
-                <MenuPost withImage={true} blogs={editorPicks} />
-            </aside>
-        )
-    }
+                    <h2 className="subtitle">Chosen by the editor</h2>
+                    <h1 className="title">Editors pick</h1>
+                    <MenuPost withImage={true} blogs={editorPicks} /></>
+            ))}
+        </aside>
+    )
 }

@@ -1,6 +1,8 @@
 .menuContainer {
     flex: 2;
     margin-top: 60px;
+    min-width: 250px;
+    max-width: 350px;
 
     @media screen and (max-width: 768px) {
         display: none;

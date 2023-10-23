@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const MenuPost = ({ withImage, blogs }) => {
     return (
         <article className="items">
-            {blogs ? (
+            {blogs && (
                 blogs.map((blog) => (
                     <Link to={`/blogs/${blog.slug}`} key={blog.slug} className="item">
                         {withImage && (
@@ -25,7 +25,7 @@ export const MenuPost = ({ withImage, blogs }) => {
                         </div>
                     </Link>
                 ))
-            ) : ("blog is not found")}
+            )}
         </article>
     );
 };
