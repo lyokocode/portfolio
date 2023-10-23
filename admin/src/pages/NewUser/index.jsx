@@ -7,7 +7,7 @@ export const NewUser = () => {
 
     const navigate = useNavigate()
 
-    const [categoryData, setCategoryData] = useState({
+    const [userData, setUserData] = useState({
         fullName: '',
         userName: '',
         email: '',
@@ -20,8 +20,8 @@ export const NewUser = () => {
         const { name, value, type, checked, files } = e.target;
         const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
 
-        setCategoryData({
-            ...categoryData,
+        setUserData({
+            ...userData,
             [name]: newValue,
         });
     };
@@ -30,12 +30,12 @@ export const NewUser = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('fullName', categoryData.fullName);
-        formData.append('userName', categoryData.userName);
-        formData.append('email', categoryData.email);
-        formData.append('password', categoryData.password);
-        formData.append('avatar', categoryData.avatar);
-        formData.append('isAdmin', categoryData.isAdmin);
+        formData.append('fullName', userData.fullName);
+        formData.append('userName', userData.userName);
+        formData.append('email', userData.email);
+        formData.append('password', userData.password);
+        formData.append('avatar', userData.avatar);
+        formData.append('isAdmin', userData.isAdmin);
 
         try {
             await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/auth/register`, formData);
@@ -58,7 +58,7 @@ export const NewUser = () => {
                     <input
                         type="text"
                         name="fullName"
-                        value={categoryData.fullName}
+                        value={userData.fullName}
                         onChange={handleChange}
                     />
                 </div>
@@ -69,7 +69,7 @@ export const NewUser = () => {
                     <input
                         type="text"
                         name="userName"
-                        value={categoryData.userName}
+                        value={userData.userName}
                         onChange={handleChange}
                     />
                 </div>
@@ -80,7 +80,7 @@ export const NewUser = () => {
                     <input
                         type="text"
                         name="email"
-                        value={categoryData.email}
+                        value={userData.email}
                         onChange={handleChange}
                     />
                 </div>
@@ -91,7 +91,7 @@ export const NewUser = () => {
                     <input
                         type="text"
                         name="password"
-                        value={categoryData.password}
+                        value={userData.password}
                         onChange={handleChange}
                     />
                 </div>
@@ -101,7 +101,7 @@ export const NewUser = () => {
                     <label>is admin?:</label>
                     <select
                         name="isAdmin"
-                        value={categoryData.isAdmin}
+                        value={userData.isAdmin}
                         onChange={handleChange}
                         defaultValue="false"
                     >

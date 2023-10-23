@@ -15,7 +15,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
         avatar: null,
         email: "",
         password: "",
-        isAdmin: "",
+        isAdmin: null,
     });
 
     const updateUser = async (e) => {
@@ -152,6 +152,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
                         <div className="formController">
                             <label>Admin:</label>
                             <select
+                                defaultValue={userData.isAdmin}
                                 value={formData.isAdmin}
                                 onChange={(e) => setFormData({ ...formData, isAdmin: e.target.value })}
                             >
