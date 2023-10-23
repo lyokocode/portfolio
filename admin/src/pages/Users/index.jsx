@@ -1,15 +1,38 @@
-import { Error, Header, Loading } from "../../components";
+import { Error, Loading } from "../../components";
 import useFetch from "../../hooks/useFetch";
 import { UserList } from "../../components"
 import "./user.scss"
+import { AiOutlineReload } from "react-icons/ai"
+import { Link } from "react-router-dom"
+import { useSelector } from 'react-redux'
+
 export const Users = () => {
+
+    const { user } = useSelector(state => state.auth)
+
     const { data: users, loading, error, reFetch } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/users`
     );
+
     return (
         <div className="userPage">
-            <Header title="user" reFetch={reFetch} />
-
+            <header className="pageHeader">
+                <input
+                    className="searchInput"
+                    type="text"
+                    placeholder={`search to users`}
+                />
+                {user.isAdmin ? (
+                    <Link to="/user-create" className="createBtn">
+                        Create a new user
+                    </Link>
+                ) : (<></>)}
+                <button
+                    className="reloadBtn"
+                    onClick={() => reFetch ? reFetch() : console.log("yenilenemedi")}>
+                    <AiOutlineReload className="reloadIcon" />
+                </button>
+            </header>
             <div className="container">
                 {
                     loading ? <Loading /> : (error ? <Error error={error.message} /> : (

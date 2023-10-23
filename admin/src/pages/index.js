@@ -11,6 +11,7 @@ export { NewProject } from "./NewProject"
 
 export { Users } from "./Users"
 export { SingleUser } from "./Users/[id]"
+export { NewUser } from "./NewUser"
 
 export { Editor } from "./Editor"
 

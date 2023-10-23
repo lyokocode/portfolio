@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewProject, NotFound, SingleUser } from './pages'
+import { Blogs, Home, Login, NewBlog, Projects, Categories, Editor, NewCategory, NewUser, NewProject, NotFound, SingleUser } from './pages'
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
 import { Users } from './pages'
@@ -34,6 +34,8 @@ function App() {
               <Route index element={<Users />} />
               <Route path=":id" element={<SingleUser />} />
             </Route>
+            <Route path="/user-create" element={<NewUser />} />
+
 
             <Route path="/editor" element={<Editor />} />
           </Route>
