@@ -1,0 +1,3 @@
+https://aelita.vercel.app
+https://aelita.vercel.app/blogs
+https://aelita.vercel.app/projects
