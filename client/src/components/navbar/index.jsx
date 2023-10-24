@@ -7,13 +7,13 @@ export const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="social">
-                <a href="#">
+                <a target="_blank" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">
                     <AiFillLinkedin size={24} />
                 </a>
-                <a href="#">
+                <a target="_blank" href="https://github.com/lyokocode">
                     <AiOutlineGithub size={24} />
                 </a>
-                <a href="#">
+                <a target="_blank" href="https://twitter.com/Mustafausakli">
                     <AiOutlineTwitter size={24} />
                 </a>
             </div>
