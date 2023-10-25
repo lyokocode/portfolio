@@ -17,7 +17,11 @@ export const Navbar = () => {
                     <AiOutlineTwitter size={24} />
                 </a>
             </div>
-            <h1 className="logo">{"<Aelita />"}</h1>
+            <h1 className="logo">
+                <Link to="/">
+                    {"<Aelita />"}
+                </Link>
+            </h1>
             <div className="links">
                 <ThemeToggle />
                 <Link to="/" className="link">Homepage</Link>
