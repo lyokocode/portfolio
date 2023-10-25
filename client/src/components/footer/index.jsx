@@ -30,7 +30,6 @@ export const Footer = () => {
                     <Link to="/">Homepage</Link>
                     <Link to="/blogs">Blogs</Link>
                     <Link to="/projects">projects</Link>
-                    <Link to="/">Contact</Link>
                 </div>
                 <div className="list">
                     <span className="listTitle">Tags</span>
@@ -41,9 +40,9 @@ export const Footer = () => {
                 </div>
                 <div className="list">
                     <span className="listTitle">Social</span>
-                    <Link to="/">github</Link>
-                    <Link to="/">linkedin</Link>
-                    <Link to="/">twitter</Link>
+                    <a target="_blank" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">linkedin</a>
+                    <a target="_blank" href="https://github.com/lyokocode" to="/">github</a>
+                    <a target="_blank" href="https://twitter.com/Mustafausakli">twitter</a>
                 </div>
             </div>
         </footer>
