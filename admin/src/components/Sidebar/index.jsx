@@ -62,12 +62,12 @@ export const Sidebar = () => {
                         <MdNotifications className="icon" />
                         <span>Notifications</span>
                     </li>
-                    <li>
-                        <Link to="/editor">
+                    <Link to="/editor">
+                        <li>
                             <AiOutlineEdit className="icon" />
                             <span>Editor</span>
-                        </Link>
-                    </li>
+                        </li>
+                    </Link>
                     <p className="title">Service</p>
                     <li>
                         <MdSettingsSystemDaydream className="icon" />

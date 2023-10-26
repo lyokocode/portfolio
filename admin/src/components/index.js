@@ -17,6 +17,7 @@ export { UserList } from "./UserList"
 export { UpdateUser } from "./UpdateUser"
 
 
+export { Code } from "./Code"
 export { Error } from "./Error"
 export { Loading } from "./Loading"
 
