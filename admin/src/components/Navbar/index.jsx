@@ -21,7 +21,9 @@ export const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="logo">
-                {"<Aelita />"}
+                <a href="https://aelita.vercel.app">
+                    {"<Aelita />"}
+                </a>
             </div>
             <div className="userInfo">
                 <>

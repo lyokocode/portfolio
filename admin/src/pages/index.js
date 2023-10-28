@@ -4,14 +4,13 @@ export { Blogs } from "./Blogs"
 export { NewBlog } from "./NewBlog"
 
 export { Categories } from "./Categories"
-export { NewCategory } from "./NewCategory"
 
 export { Projects } from "./Projects"
-export { NewProject } from "./NewProject"
 
 export { Users } from "./Users"
 export { SingleUser } from "./Users/[id]"
-export { NewUser } from "./NewUser"
+
+export { New } from "./New"
 
 export { Editor } from "./Editor"
 

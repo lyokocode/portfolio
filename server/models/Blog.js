@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
 import { User } from "./User.js";
+import slugify from 'slugify';
 
 export const Blog = sequelize.define('Blog', {
     slug: {
@@ -20,6 +21,10 @@ export const Blog = sequelize.define('Blog', {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
+        set(value) {
+            this.setDataValue('title', value);
+            this.setDataValue('slug', slugify(value, { lower: true }));
+        },
     },
     description: {
         type: DataTypes.TEXT,

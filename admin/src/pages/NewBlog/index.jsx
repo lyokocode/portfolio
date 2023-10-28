@@ -4,6 +4,7 @@ import axios from "axios"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import useFetch from "../../hooks/useFetch"
+import { MdDriveFolderUpload } from "react-icons/md"
 
 export const NewBlog = () => {
     const { user } = useSelector(state => state.auth)
@@ -23,24 +24,14 @@ export const NewBlog = () => {
     const [editorsPick, setEditorsPick] = useState(false);
     const [categories, setCategories] = useState([]);
 
-    function createSlug(title) {
-        return title
-            .toLowerCase() // Başlığı küçük harfe çevir
-            .replace(/\s+/g, '-') // Boşlukları tire ile değiştir
-            .replace(/[^a-z0-9-]/g, '') // Alfanümerik olmayan karakterleri kaldır
-            .replace(/-+/g, '-') // Ardışık tireleri tek bir tire ile değiştir
-            .replace(/^-|-$/g, ''); // Baştaki ve sondaki tireleri kaldır
-    }
 
-    // Örnek kullanım
-    const slug = createSlug(title);
+
 
     const handlePostBlog = async (e) => {
         e.preventDefault();
         try {
             const formData = new FormData();
             formData.append("title", title);
-            formData.append("slug", slug);
             formData.append("blog", blog);
             formData.append("date", date);
             formData.append("image", image);
@@ -59,120 +50,135 @@ export const NewBlog = () => {
         }
     };
     return (
-        <div className="newBlogPage">
-            <header className="newBlogHeader">
-                Create a new blog
+        <div className="newPage">
+            <header className="top">
+                <h1>  Create a new blog</h1>
             </header>
-
-            <form className="newBlogForm">
-                {/* blog name */}
-                <div className="formController">
-                    <label> blog name:</label>
-                    <input
-                        className="newBlog"
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
+            <div className="bottom">
+                <div className="left">
+                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt="" />
                 </div>
+                <div className="right">
+                    <form onSubmit={handlePostBlog}>
+                        {/* blog name */}
+                        <div className="formInput">
+                            <label> blog name:</label>
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
 
-                {/* blog description */}
-                <div className="formController">
-                    <label> blog description:</label>
-                    <textarea
-                        className="newBlog"
-                        type="textarea"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
+                        {/* blog description */}
+                        <div className="formInput">
+                            <label> blog description:</label>
+                            <textarea
+                                type="textarea"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+
+                        {/* blog file */}
+                        <div className="formInput">
+                            <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <MdDriveFolderUpload size={35} />
+                            </label>
+                            <div>
+                                blog file
+                            </div>
+                            <input
+                                type='file'
+                                id='file'
+                                name="file"
+                                required
+                                style={{ display: "none" }}
+                                onChange={(e) => setBlog(e.target.files[0])}
+                            />
+                        </div>
+
+                        {/* blog date */}
+                        <div className="formInput">
+                            <label >Date:</label>
+                            <input
+                                type="date"
+                                value={date}
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+
+                        </div>
+
+                        {/* blog Image */}
+                        <div className="formInput">
+                            <label htmlFor="image" style={{ cursor: "pointer" }}>
+                                <MdDriveFolderUpload size={35} />
+                            </label>
+                            <div>
+                                blog image
+                            </div>
+                            <input
+                                type='file'
+                                id='image'
+                                name="image"
+                                placeholder="Upload an Image"
+                                required
+                                className="newBlog"
+                                style={{ display: "none" }}
+
+                                onChange={(e) => setImage(e.target.files[0])}
+
+                            />
+                        </div>
+
+                        {/* popular */}
+                        <div className="formInput">
+                            <label>Popular:</label>
+                            <select
+                                value={popular}
+                                onChange={(e) => setPopular(e.target.value === "true")}
+                            >
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+
+                        {/* editors pick */}
+                        <div className="formInput">
+                            <label>Editors pick:</label>
+                            <select
+                                value={editorsPick ? "true" : "false"}
+                                onChange={(e) => setEditorsPick(e.target.value === "true")}
+                            >
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+
+                        {/* categories */}
+                        <div className="formInput">
+                            <label>Categories:</label>
+                            <select
+                                multiple
+                                value={categories}
+                                onChange={(e) =>
+                                    setCategories(Array.from(e.target.selectedOptions, (option) => option.value))
+                                }
+                            >
+                                {data && data?.map((cat) => (
+                                    <option key={cat.id} value={cat.name}>
+                                        {cat.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="formInput">
+                            <button type="submit" className="sendBtn">Send</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                {/* blog file */}
-                <div className="formController">
-                    <label> blog file:</label>
-                    <input
-                        type='file'
-                        id='file'
-                        name="file"
-                        placeholder="Upload an Image"
-                        required
-                        className="newBlog"
-                        onChange={(e) => setBlog(e.target.files[0])}
-                    />
-                </div>
-
-                {/* blog date */}
-                <div className="formController">
-                    <label >Date:</label>
-                    <input
-                        type="date"
-                        className="newBlog"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                    />
-
-                </div>
-
-                {/* blog Image */}
-                <div className="formController">
-                    <label> blog image:</label>
-                    <input
-                        type='file'
-                        id='file'
-                        name="file"
-                        placeholder="Upload an Image"
-                        required
-                        className="newBlog"
-                        onChange={(e) => setImage(e.target.files[0])}
-
-                    />
-                </div>
-
-                {/* popular */}
-                <div className="formController">
-                    <label>Popular:</label>
-                    <select
-                        value={popular}
-                        onChange={(e) => setPopular(e.target.value === "true")}
-                    >
-                        <option value="false">false</option>
-                        <option value="true">true</option>
-                    </select>
-                </div>
-
-                {/* editors pick */}
-                <div className="formController">
-                    <label>Editors pick:</label>
-                    <select
-                        value={editorsPick ? "true" : "false"}
-                        onChange={(e) => setEditorsPick(e.target.value === "true")}
-                    >
-                        <option value="false">false</option>
-                        <option value="true">true</option>
-                    </select>
-                </div>
-
-                {/* categories */}
-                <div className="formController">
-                    <label>Categories:</label>
-                    <select
-                        multiple
-                        value={categories}
-                        onChange={(e) =>
-                            setCategories(Array.from(e.target.selectedOptions, (option) => option.value))
-                        }
-                    >
-                        {data && data?.map((cat) => (
-                            <option key={cat.id} value={cat.name}>
-                                {cat.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <button className="post-btn" type="submit" onClick={handlePostBlog}>
-                    post
-                </button>
-            </form>
         </div>
     )
 }
