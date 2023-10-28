@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom"
 import "./project.scss"
 import { AiFillGithub, AiOutlineLink } from "react-icons/ai"
+import PropTypes from 'prop-types';
+
 export const Project = ({ project }) => {
-    console.log(project)
+
     return (
         <article className="project">
             <div className="imageContainer">
@@ -24,12 +25,12 @@ export const Project = ({ project }) => {
                 <h1 className="postTitle">{project.title}</h1>
                 <p className="postDesc">{project.description}</p>
                 <div className="linkContainer">
-                    <div className="test">
+                    <div className="links">
                         <AiFillGithub size={20} />
-                        <a href={project.githubLink} target="_blank" className="link">github</a>
+                        <a href={project.githubLink} target="_blank" rel="noreferrer" className="link">github</a>
                     </div>
-                    <div className="test">
-                        <a href={project.projectLink} target="_blank" className="link">project</a>
+                    <div className="links">
+                        <a href={project.projectLink} target="_blank" rel="noreferrer" className="link">project</a>
                         <AiOutlineLink size={20} />
                     </div>
                 </div>
@@ -37,3 +38,15 @@ export const Project = ({ project }) => {
         </article>
     )
 }
+
+Project.propTypes = {
+    project: PropTypes.shape({
+        date: PropTypes.string,
+        categories: PropTypes.arrayOf(PropTypes.string),
+        image: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        githubLink: PropTypes.string,
+        projectLink: PropTypes.string
+    }).isRequired
+};

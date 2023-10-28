@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export const MenuPost = ({ withImage, blogs }) => {
+    console.log(blogs)
     return (
         <article className="items">
             {blogs && (
@@ -16,10 +18,13 @@ export const MenuPost = ({ withImage, blogs }) => {
                             </div>
                         )}
                         <div className="textContainer">
-                            <span className={`category ${blog.category}`}>{blog.category}</span>
+                            <span
+                                className="category"
+                                style={{ backgroundColor: blog?.Category?.color }}
+                            >{blog.Category.name}</span>
                             <h3 className="postTitle">{blog.title}</h3>
                             <div className="detail">
-                                <span className="username">{blog.User.username}</span> -
+                                <span className="username">{blog.User.userName}</span> -
                                 <span className="date">{blog.date}</span>
                             </div>
                         </div>
@@ -28,4 +33,22 @@ export const MenuPost = ({ withImage, blogs }) => {
             )}
         </article>
     );
+};
+MenuPost.propTypes = {
+    withImage: PropTypes.bool.isRequired,
+    blogs: PropTypes.arrayOf(
+        PropTypes.shape({
+            slug: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            Category: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                color: PropTypes.string.isRequired
+            }),
+            title: PropTypes.string.isRequired,
+            User: PropTypes.shape({
+                userName: PropTypes.string.isRequired
+            }),
+            date: PropTypes.string.isRequired
+        })
+    ).isRequired
 };

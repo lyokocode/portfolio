@@ -5,15 +5,11 @@ import "./cardList.scss"
 import { useSearchParams } from "react-router-dom";
 export const CardList = () => {
 
-
     const [searchParams] = useSearchParams()
 
-
-    const { data, loading, error, reFetch } = useFetch(
+    const { data, loading, error } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs?${searchParams.toString()}`
     );
-
-
 
     return (
         <div className="cardList">

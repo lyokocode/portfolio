@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import Markdown from "markdown-to-jsx"
-import { Code } from ".."
 import axios from "axios";
+import PropTypes from 'prop-types';
+import { Code } from ".."
 import "./markdownBlog.scss"
+
 
 export const MarkdownBlog = ({ blog }) => {
 
@@ -44,3 +46,8 @@ export const MarkdownBlog = ({ blog }) => {
         </article>
     )
 }
+
+
+MarkdownBlog.propTypes = {
+    blog: PropTypes.string.isRequired,
+};

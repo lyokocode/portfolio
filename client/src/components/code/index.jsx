@@ -6,12 +6,11 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { materialDark, materialLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useSelector } from 'react-redux';
 import "./code.scss"
+import PropTypes from 'prop-types';
 
 export const Code = ({ children, language }) => {
 
     const darkMode = useSelector((state) => state.theme.dark);
-
-
 
     const [copied, setCopied] = useState(false);
 
@@ -21,7 +20,6 @@ export const Code = ({ children, language }) => {
         }, 1000)
         return () => clearTimeout(timer)
     }, [copied])
-
 
     return (
         <div className="code">
@@ -39,3 +37,8 @@ export const Code = ({ children, language }) => {
         </div>
     )
 }
+
+Code.propTypes = {
+    children: PropTypes.string.isRequired,
+    language: PropTypes.string
+};
