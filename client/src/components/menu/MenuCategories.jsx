@@ -16,7 +16,7 @@ export const MenuCategories = () => {
                     {categories && categories.map(category => (
                         <Link
                             key={category.id}
-                            to={category?.link}
+                            to={`blogs?categoryId=${category.id}`}
                             className="category"
                             style={{ background: category?.color }}
                         >
