@@ -1,8 +1,10 @@
 import { Blog } from "../models/Blog.js";
 import { User } from "../models/User.js";
+import { Category } from "../models/Category.js";
 import { storageClient } from "../database/supabase.js";
 import { createError } from "../utils/error.js";
 import bcrypt from "bcryptjs"
+import { Project } from "../models/Project.js";
 
 
 // GET ALL USERS
@@ -10,9 +12,11 @@ export const getAllUser = async (req, res, next) => {
     try {
         const users = await User.findAll({
             include: [
-                {
-                    model: Blog,
-                },
+
+                Blog,
+                Category,
+                Project
+
             ],
         });
 
@@ -56,9 +60,11 @@ export const getUser = async (req, res, next) => {
         const { id } = req.query;
         const user = await User.findByPk(id, {
             include: [
-                {
-                    model: Blog,
-                },
+
+                Blog,
+                Category,
+                Project
+
             ],
         });
 

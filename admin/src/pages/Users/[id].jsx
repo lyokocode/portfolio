@@ -22,6 +22,8 @@ export const SingleUser = () => {
         setModalVisible(false);
     };
 
+    const [selected, setSelected] = useState("Blogs")
+
     return (
         <>
             {
@@ -71,9 +73,9 @@ export const SingleUser = () => {
                                     <div className="profile-stats">
 
                                         <ul>
-                                            <li><span className="profile-stat-count">{auth?.Blogs?.length}</span> Blog</li>
-                                            <li><span className="profile-stat-count"></span> Legit Hukuk</li>
-                                            <li><span className="profile-stat-count"></span> İzmir</li>
+                                            <li onClick={() => setSelected("Blogs")}><span className="profile-stat-count" >{auth?.Blogs?.length}</span> Blog</li>
+                                            <li onClick={() => setSelected("Projects")}><span className="profile-stat-count" >{auth?.Projects?.length}</span> Project</li>
+                                            <li onClick={() => setSelected("Categories")}><span className="profile-stat-count" >{auth?.Categories?.length}</span> Categories</li>
                                         </ul>
 
                                     </div>
@@ -97,8 +99,10 @@ export const SingleUser = () => {
 
                                 <div className="gallery">
 
+
+
                                     {
-                                        auth?.Blogs && auth?.Blogs.map((blog, i) => (
+                                        selected === "Blogs" ? auth?.Blogs && auth?.Blogs.map((blog, i) => (
                                             <div key={i} className="gallery-item" tabIndex="0">
 
 
@@ -112,7 +116,39 @@ export const SingleUser = () => {
                                                 </div>
 
                                             </div>
-                                        ))
+                                        )) : (
+                                            selected === "Categories" ? auth?.Categories && auth?.Categories.map((category, i) => (
+                                                <div key={i} className="gallery-item" tabIndex="0">
+
+
+                                                    <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${category.image}`} className="gallery-image" alt="" />
+
+                                                    <div className="gallery-item-info">
+                                                        <ul>
+                                                            <li className="gallery-item-likes"><span className="visually-hidden">name:</span><i className="fas fa-heart" aria-hidden="true"></i> {category?.name}</li>
+                                                            {/* <li className="gallery-item-comments"><span className="visually-hidden">Comments:</span><i className="fas fa-comment" aria-hidden="true"></i> 2</li> */}
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            )) : (
+                                                selected === "Projects" && auth?.Projects && auth?.Projects?.map((project, i) => (
+                                                    <div key={i} className="gallery-item" tabIndex="0">
+
+
+                                                        <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${project.image}`} className="gallery-image" alt="" />
+
+                                                        <div className="gallery-item-info">
+                                                            <ul>
+                                                                <li className="gallery-item-likes"><span className="visually-hidden">name:</span><i className="fas fa-heart" aria-hidden="true"></i> {project?.title}</li>
+                                                                {/* <li className="gallery-item-comments"><span className="visually-hidden">Comments:</span><i className="fas fa-comment" aria-hidden="true"></i> 2</li> */}
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                ))
+                                            )
+                                        )
                                     }
 
 

@@ -11,7 +11,7 @@ export const Card = ({ blog }) => {
                 <div className="detail">
                     <span className="date">{blog.date}</span>
                     -
-                    <span className="category">{blog.category}</span>
+                    <span className="category">{blog.Category?.name}</span>
                 </div>
                 <Link to={`/blogs/${blog.slug}`} >
                     <h1 className="postTitle">{blog.title}</h1>

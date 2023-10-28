@@ -16,7 +16,7 @@ export const Categories = () => {
                     <div className="categories">
                         {categories && categories.map(category => (
                             <Link
-                                href={category?.link}
+                                to={`blogs?categoryId=${category.id}`}
                                 className="category"
                                 style={{ background: category?.color }}
                                 key={category.id}

@@ -36,7 +36,7 @@ export const NewBlog = () => {
             formData.append("date", date);
             formData.append("image", image);
             formData.append("popular", popular);
-            formData.append("category", categories);
+            formData.append("CategoryId", categories);
             formData.append("editorsPick", editorsPick);
             formData.append("description", description);
             formData.append("UserId", user?.id);
@@ -166,7 +166,7 @@ export const NewBlog = () => {
                                 }
                             >
                                 {data && data?.map((cat) => (
-                                    <option key={cat.id} value={cat.name}>
+                                    <option key={cat.id} value={cat.id}>
                                         {cat.name}
                                     </option>
                                 ))}

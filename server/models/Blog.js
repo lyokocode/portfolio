@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
 import { User } from "./User.js";
 import slugify from 'slugify';
+import { Category } from "./Category.js";
 
 export const Blog = sequelize.define('Blog', {
     slug: {
@@ -13,10 +14,6 @@ export const Blog = sequelize.define('Blog', {
     image: {
         type: DataTypes.STRING,
         unique: true,
-    },
-    category: {
-        type: DataTypes.STRING,
-        allowNull: false,
     },
     title: {
         type: DataTypes.STRING,
@@ -51,6 +48,14 @@ export const Blog = sequelize.define('Blog', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    CategoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 });
+
 Blog.belongsTo(User, { foreignKey: 'UserId' });
 User.hasMany(Blog)
+
+Blog.belongsTo(Category, { foreignKey: 'CategoryId' });
+Category.hasMany(Blog)

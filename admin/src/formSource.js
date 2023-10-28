@@ -58,13 +58,7 @@ export const categoryInputs = [
         type: "text",
         placeholder: "ReactJS"
     },
-    {
-        id: 3,
-        label: "Category Link",
-        model: "link",
-        type: "text",
-        placeholder: "/react"
-    },
+
     {
         id: 4,
         label: "Category Color",
@@ -78,7 +72,8 @@ export const categoryInputs = [
         model: "popular",
         type: "select",
         options: ["true", "false"]
-    }
+    },
+
 ]
 export const blogInputs = [
     {
@@ -121,7 +116,7 @@ export const blogInputs = [
         id: 7,
         label: "Blog Categories",
         type: "text",
-        placeholder: "React,tailwindcss, redux"
+        placeholder: ""
     },
 ]
 

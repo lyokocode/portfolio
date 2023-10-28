@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
+import { User } from "./User.js";
 
 export const Category = sequelize.define('Category', {
     id: {
@@ -14,10 +15,6 @@ export const Category = sequelize.define('Category', {
     image: {
         type: DataTypes.STRING,
     },
-    link: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
     color: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -26,4 +23,11 @@ export const Category = sequelize.define('Category', {
         type: DataTypes.BOOLEAN,
         default: false
     },
+    UserId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
 });
+
+Category.belongsTo(User, { foreignKey: 'UserId' });
+User.hasMany(Category)

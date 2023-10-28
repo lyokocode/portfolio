@@ -3,6 +3,7 @@ import "./singleBlog.scss"
 import useFetch from "../../hooks/useFetch"
 import { AiOutlineFileImage, AiOutlineUser } from "react-icons/ai"
 import { Loading, MarkdownBlog } from "../../components"
+
 export const SingleBlog = () => {
 
     const { slug } = useParams()

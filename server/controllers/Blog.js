@@ -2,19 +2,45 @@ import { Blog } from "../models/Blog.js";
 import { createError } from "../utils/error.js";
 import { storageClient } from "../database/supabase.js"
 import { User } from "../models/User.js";
+import { Category } from "../models/Category.js";
 
 // GET ALL BLOGS
 export const getAllBlogs = async (req, res, next) => {
+    const { categoryId } = req.query
 
     try {
-        const blogs = await Blog.findAll({
-            include: {
-                model: User,
-                attributes: ['userName', 'avatar'],
-            },
-        });
-        res.status(200).json(blogs);
+        let blogs;
+        if (categoryId) {
+            blogs = await Blog.findAll({
+                where: { CategoryId: categoryId },
+                include: [
+                    {
+                        model: User,
+                        attributes: ['userName', 'avatar'],
+                    },
+                    {
+                        model: Category,
+                        attributes: ['name'],
+                    },
+                ]
 
+            });
+        } else {
+            blogs = await Blog.findAll({
+                include: [
+                    {
+                        model: User,
+                        attributes: ['userName', 'avatar'],
+                    },
+                    {
+                        model: Category,
+                        attributes: ['name'],
+                    },
+                ]
+            });
+        }
+
+        res.status(200).json(blogs);
     } catch (err) {
         next(err)
     }
@@ -28,10 +54,17 @@ export const getBlog = async (req, res, next) => {
 
         const blog = await Blog.findOne({
             where: { slug },
-            include: {
-                model: User,
-                attributes: ['userName', 'avatar'],
-            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['userName', 'avatar'],
+                },
+                {
+                    model: Category, // Category modelini ekledik
+                    attributes: ['name'], // Sadece kategori ismini almak için
+                },
+            ],
+
         });
 
         if (!blog) {

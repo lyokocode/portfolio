@@ -3,16 +3,20 @@ import "./new.scss"
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
     const navigate = useNavigate()
-
+    const { user } = useSelector(state => state.auth)
+    const UserId = user?.id
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const form = new FormData();
+            form.append('UserId', UserId);
+
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
@@ -32,7 +36,6 @@ export const New = ({ title, inputs, api }) => {
             [name]: newValue,
         });
     };
-    console.log(formData)
 
     return (
         <div className="newPage">
