@@ -1,9 +1,10 @@
 
-import { Link } from 'react-router-dom'
-import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
-import axios from "axios"
-import { Error } from '..';
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
+import { Error } from '..';
+import PropTypes from 'prop-types';
+import axios from "axios"
+import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
 export const UserList = ({ user, reFetch }) => {
 
     const [errorMessage, setErrorMessage] = useState()
@@ -89,3 +90,14 @@ export const UserList = ({ user, reFetch }) => {
         </tbody >
     )
 }
+
+UserList.propTypes = {
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        fullName: PropTypes.string,
+        avatar: PropTypes.string,
+        email: PropTypes.string,
+        isAdmin: PropTypes.bool,
+    }),
+    reFetch: PropTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
 import { AiOutlineReload } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types';
 import "./header.scss"
 
 export const Header = ({ reFetch, title }) => {
@@ -21,3 +22,9 @@ export const Header = ({ reFetch, title }) => {
         </header>
     )
 }
+
+
+Header.propTypes = {
+    reFetch: PropTypes.func,
+    title: PropTypes.string.isRequired
+};

@@ -2,44 +2,36 @@ import { useState } from "react"
 import "./updateBlog.scss"
 import axios from "axios"
 import { AiOutlineClose } from "react-icons/ai";
+import PropTypes from 'prop-types';
+
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
-
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
 
     const [formData, setFormData] = useState({
         title: "",
         description: "",
         image: null,
         blog: null,
-        slug: "",
         category: "",
         date: "",
         popular: blogData?.popular || false,
         editorsPick: blogData?.editorsPick || false,
-        // Diğer özellikler
     });
 
 
     const handleUpdateBlog = async (e) => {
         e.preventDefault();
 
-        // Güncellenmiş verileri depolamak için yeni bir FormData oluşturun
         const updatedData = new FormData();
 
-        // description özelliğini kontrol edin ve güncelleme verilerine ekleyin
         if (formData.description) {
             updatedData.append("description", formData.description);
         }
 
-        // Diğer özellikleri kontrol edin ve güncelleme verilerine ekleyin
         if (formData.title) {
             updatedData.append("title", formData.title);
         }
-        if (formData.slug) {
-            updatedData.append("slug", formData.slug);
-        }
+
         if (formData.image) {
             updatedData.append("newImage", formData.image);
         }
@@ -64,27 +56,13 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
             console.log("Blog güncellendi:", response.data);
             reFetch()
-            onClose(); // Güncelleme işlemi tamamlandığında bileşeni kapat
+            onClose();
             return response.data;
         } catch (error) {
             console.error("Blog güncelleme sırasında hata oluştu:", error);
             throw error;
         }
 
-    };
-
-    const createSlug = (title) => {
-        return title
-            .toLowerCase()
-            .replace(/\s+/g, '-') // Boşlukları tire ile değiştir
-            .replace(/[^a-z0-9-]/g, '') // Alfanümerik olmayan karakterleri kaldır
-            .replace(/-+/g, '-') // Ardışık tireleri tek bir tire ile değiştir
-            .replace(/^-|-$/g, ''); // Baştaki ve sondaki tireleri kaldır
-    };
-    const handleTitleChange = (e) => {
-        const newTitle = e.target.value;
-        const newSlug = createSlug(newTitle);
-        setFormData({ ...formData, title: newTitle, slug: newSlug });
     };
 
     return (
@@ -131,18 +109,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                         type="text"
                         placeholder={blogData?.title}
                         value={formData.title}
-                        onChange={handleTitleChange}
-                    />
-                </div>
-
-                {/* slug */}
-                <div className="formController">
-                    <label>Slug:</label>
-                    <input
-                        className="newBlog"
-                        type="text"
-                        value={formData.slug}
-                        disabled
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     />
                 </div>
 
@@ -219,3 +186,19 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
         </div>
     )
 }
+
+UpdateBlog.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    blogData: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+        popular: PropTypes.bool.isRequired,
+        editorsPick: PropTypes.bool.isRequired,
+    }),
+    reFetch: PropTypes.func.isRequired
+};

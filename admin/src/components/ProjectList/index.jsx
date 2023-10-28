@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { UpdateProject } from "../UpdateProject";
-import "./projectList.scss"
+import PropTypes from 'prop-types';
 import axios from "axios"
+import { UpdateProject } from "../UpdateProject";
 import { Error } from "..";
+import "./projectList.scss"
 
 export const ProjectList = ({ project, reFetch }) => {
     const [errorMessage, setErrorMessage] = useState()
@@ -55,3 +56,12 @@ export const ProjectList = ({ project, reFetch }) => {
         </div>
     )
 }
+
+ProjectList.propTypes = {
+    project: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired
+    }).isRequired,
+    reFetch: PropTypes.func.isRequired
+};

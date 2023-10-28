@@ -1,9 +1,11 @@
-import { MdDriveFolderUpload } from "react-icons/md"
-import "./new.scss"
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import PropTypes from 'prop-types';
+import { MdDriveFolderUpload } from "react-icons/md"
+import "./new.scss"
+
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
@@ -21,7 +23,7 @@ export const New = ({ title, inputs, api }) => {
                 form.append(key, formData[key]);
             }
             await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/${api}`, form);
-            navigate("/")
+            navigate("..")
         } catch (error) {
             console.error('Error:', error);
         }
@@ -122,3 +124,23 @@ export const New = ({ title, inputs, api }) => {
         </div>
     );
 }
+
+New.propTypes = {
+    title: PropTypes.string.isRequired,
+    inputs: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired,
+            placeholder: PropTypes.string,
+            model: PropTypes.string.isRequired,
+            options: PropTypes.arrayOf(PropTypes.string),
+        })
+    ).isRequired,
+    api: PropTypes.string.isRequired,
+};
+
+
+
+
+

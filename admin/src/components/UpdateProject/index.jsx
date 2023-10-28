@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
-import "./updateProject.scss";
 import axios from "axios";
+import PropTypes from 'prop-types';
+import { AiOutlineClose } from "react-icons/ai";
 import { Error } from "..";
-
+import "./updateProject.scss";
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
-
 
     const [errorMessage, setErrorMessage] = useState()
     const [error, serError] = useState(null)
@@ -15,7 +14,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
         title: "",
         image: null,
         date: "",
-        categories: projectData.categories || [],
+        categories: projectData?.categories || [],
         description: "",
         projectLink: "",
         githubLink: "",
@@ -142,8 +141,6 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
                     />
                 </div>
 
-
-
                 {/* Project description */}
                 <div className="formController">
                     <label> description:</label>
@@ -155,8 +152,6 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     />
                 </div>
-
-
 
                 {/* project link */}
                 <div className="formController">
@@ -190,3 +185,24 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
         </div>
     )
 }
+
+
+UpdateProject.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    projectData: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        image: PropTypes.string,
+        date: PropTypes.string,
+        categories: PropTypes.array,
+        description: PropTypes.string,
+        projectLink: PropTypes.string,
+        githubLink: PropTypes.string,
+    }),
+    reFetch: PropTypes.func.isRequired,
+};
+
+
+
+
+

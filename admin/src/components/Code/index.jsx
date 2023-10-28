@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import PropTypes from 'prop-types';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { materialDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { AiFillCopy } from "react-icons/ai"
@@ -32,3 +33,8 @@ export const Code = ({ children, language }) => {
         </div>
     )
 }
+
+Code.propTypes = {
+    children: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired
+};

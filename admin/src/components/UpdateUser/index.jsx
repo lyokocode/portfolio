@@ -1,8 +1,9 @@
 import { useState } from "react";
+import axios from "axios";
+import PropTypes from 'prop-types';
+import { Error } from "..";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateUser.scss"
-import axios from "axios";
-import { Error } from "..";
 
 export const UpdateUser = ({ onClose, userData, reFetch }) => {
 
@@ -121,7 +122,6 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
                     />
                 </div>
 
-
                 {/* User email */}
                 <div className="formController">
                     <label> user email:</label>
@@ -134,7 +134,6 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
 
                     />
                 </div>
-
 
                 {/* User password */}
                 <div className="formController">
@@ -163,7 +162,6 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
                     )
                 }
 
-
                 <button className="post-btn" type="submit">
                     Update
                 </button>
@@ -173,3 +171,16 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
         </div>
     )
 }
+
+UpdateUser.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    userData: PropTypes.shape({
+        id: PropTypes.number,
+        fullName: PropTypes.string,
+        userName: PropTypes.string,
+        avatar: PropTypes.string,
+        email: PropTypes.string,
+        isAdmin: PropTypes.bool,
+    }),
+    reFetch: PropTypes.func.isRequired,
+};

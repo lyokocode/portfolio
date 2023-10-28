@@ -1,8 +1,9 @@
 import { useState } from "react";
+import axios from "axios";
+import PropTypes from 'prop-types';
+import { Error } from "..";
 import { AiOutlineClose } from "react-icons/ai";
 import "./updateCategory.scss";
-import axios from "axios";
-import { Error } from "..";
 
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
@@ -12,9 +13,8 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
     const [formData, setFormData] = useState({
         name: "",
         image: null,
-        link: "",
         color: "",
-        popular: categoryData?.popular || false
+        popular: categoryData?.popular
     });
 
     const handleUpdateCategory = async (e) => {
@@ -24,10 +24,6 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
         if (formData.name) {
             updatedData.append("name", formData.name);
-        }
-
-        if (formData.link) {
-            updatedData.append("link", formData.link);
         }
 
         if (formData.color) {
@@ -43,13 +39,11 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
         }
 
         try {
-            const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${categoryData?.id}`, updatedData);
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${categoryData?.id}`, updatedData);
 
-            console.log("Kategori güncellendi:", response.data);
             reFetch()
-            onClose(); // Güncelleme işlemi tamamlandığında bileşeni kapat
+            onClose();
 
-            return response.data;
         } catch (error) {
             serError(true)
             setErrorMessage(error?.response?.data?.message || "there is a problem on server")
@@ -111,18 +105,6 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
                     />
                 </div>
 
-                {/* category link */}
-                <div className="formController">
-                    <label> category link:</label>
-                    <input
-                        className="newCategory"
-                        type="text"
-                        placeholder={categoryData?.link}
-                        value={formData.link}
-                        onChange={(e) => setFormData({ ...formData, link: e.target.value })}
-
-                    />
-                </div>
 
                 {/* category Image */}
                 <div className="formController">
@@ -154,3 +136,16 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
         </div>
     )
 }
+
+
+UpdateCategory.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    categoryData: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        popular: PropTypes.bool.isRequired,
+    }),
+    reFetch: PropTypes.func.isRequired
+};

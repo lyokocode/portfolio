@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './error.scss';
 
 export const Error = ({ error }) => {
@@ -16,9 +16,6 @@ export const Error = ({ error }) => {
         }
     }, [error]);
 
-    const clearError = () => {
-        setIsVisible(false);
-    };
 
     return (
         isVisible && (

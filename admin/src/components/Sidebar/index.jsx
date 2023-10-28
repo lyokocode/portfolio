@@ -89,10 +89,6 @@ export const Sidebar = () => {
                         </li>
                     </Link>
 
-                    <div className="bottom">
-                        <button className="color-option" > </button>
-                        <button className="color-option" > </button>
-                    </div>
                 </ul>
             </div>
         </div>

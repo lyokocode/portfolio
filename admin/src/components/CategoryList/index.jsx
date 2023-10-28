@@ -2,7 +2,7 @@ import axios from "axios";
 import "./categoryList.scss"
 import { useState } from "react";
 import { Error, UpdateCategory } from "..";
-
+import PropTypes from 'prop-types';
 
 export const CategoryList = ({ category, reFetch }) => {
     const { name, image, color, popular, id } = category;
@@ -63,5 +63,14 @@ export const CategoryList = ({ category, reFetch }) => {
         </div>
     )
 }
-
+CategoryList.propTypes = {
+    category: PropTypes.shape({
+        name: PropTypes.string,
+        image: PropTypes.string,
+        color: PropTypes.string,
+        popular: PropTypes.bool,
+        id: PropTypes.number
+    }),
+    reFetch: PropTypes.func
+};
 

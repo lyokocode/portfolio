@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./blogList.scss"
 import axios from "axios"
 import { Error, UpdateBlog } from "..";
+import PropTypes from 'prop-types';
+
 
 export const BlogList = ({ blog, reFetch }) => {
     const [errorMessage, setErrorMessage] = useState()
@@ -54,3 +56,11 @@ export const BlogList = ({ blog, reFetch }) => {
         </div>
     )
 }
+BlogList.propTypes = {
+    blog: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        image: PropTypes.string
+    }),
+    reFetch: PropTypes.func
+};

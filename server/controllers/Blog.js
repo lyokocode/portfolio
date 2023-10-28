@@ -82,7 +82,16 @@ export const getPopularBlogs = async (req, res, next) => {
     try {
         const popularBlogs = await Blog.findAll({
             where: { popular: true },
-            include: [{ model: User, attributes: ['userName'] }],
+            include: [
+                {
+                    model: User,
+                    attributes: ['userName', 'avatar'],
+                },
+                {
+                    model: Category,
+                    attributes: ['name', "color"],
+                },
+            ]
         });
 
         res.status(200).json(popularBlogs);
@@ -95,7 +104,16 @@ export const getEditorsPickBlogs = async (req, res, next) => {
     try {
         const editorsPickBlogs = await Blog.findAll({
             where: { editorsPick: true },
-            include: [{ model: User, attributes: ['userName'] }],
+            include: [
+                {
+                    model: User,
+                    attributes: ['userName', 'avatar'],
+                },
+                {
+                    model: Category,
+                    attributes: ['name', "color"],
+                },
+            ]
         });
 
         res.status(200).json(editorsPickBlogs);
