@@ -9,7 +9,7 @@ export const UserList = ({ user, reFetch }) => {
 
     const [errorMessage, setErrorMessage] = useState()
     const [error, serError] = useState(null)
-    console.log(user)
+
     const deleteUser = async () => {
         try {
             await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${user.id}`);
@@ -21,7 +21,6 @@ export const UserList = ({ user, reFetch }) => {
     };
 
     return (
-
         <tbody className="body" >
             <tr >
                 {/* full name */}
@@ -54,13 +53,6 @@ export const UserList = ({ user, reFetch }) => {
                     <div >
                         <span>{user?.id}</span>
                     </div>
-                </td>
-
-                {/* status */}
-                <td className="center status">
-                    <span className={'inactive'}>
-                        {/* {isActive ? 'Active' : 'Inactive'} */}
-                    </span>
                 </td>
 
                 {/* role */}

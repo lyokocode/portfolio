@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import "./singleUser.scss"
 import { useState } from "react"
-import { AiOutlineUser } from "react-icons/ai"
+import { AiOutlineUser, AiOutlineSetting } from "react-icons/ai"
 import { Loading, UpdateUser } from "../../components"
 import useFetch from "../../hooks/useFetch"
 
@@ -55,13 +55,16 @@ export const SingleUser = () => {
                                         <h1 className="profile-user-name">@{auth.userName}</h1>
 
                                         {
-                                            user?.id == id && (
+                                            user.isAdmin | user?.id == id && (
                                                 <button
                                                     className="btn profile-edit-btn"
                                                     onClick={openModal}
 
                                                 >
-                                                    Edit Profile
+                                                    <span>
+                                                        Edit Profile
+                                                        <AiOutlineSetting />
+                                                    </span>
                                                 </button>
                                             )
                                         }

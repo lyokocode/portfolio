@@ -129,7 +129,7 @@ New.propTypes = {
     title: PropTypes.string.isRequired,
     inputs: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired,
             type: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
             placeholder: PropTypes.string,

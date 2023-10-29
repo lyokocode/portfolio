@@ -1,132 +1,106 @@
-$new-blog-bg: #f5f5f5;
-$primary-color: #007BFF;
-$secondary-color: #6C757D;
-$border-color: #ced4da;
-
-.updateProject {
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #e2e8f0;
-    padding: 20px;
+.updatePage {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    min-height: 90vh;
+    z-index: 999;
     top: 0;
     left: 0;
-    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    background-color: #fafafa;
 
     .closeBtn {
         position: absolute;
-        right: 0;
-        top: 0;
+        right: 5%;
+        top: 3.5%;
     }
 
-    .updateProjectHeader {
-        font-size: 24px;
-        color: $primary-color;
-        margin-bottom: 20px;
-    }
+    .top,
+    .bottom {
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 10px;
+        margin: 20px;
+        display: flex;
 
-    .updateProjectForm {
-        max-width: 500px;
-        width: 100%;
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        h1 {
+            color: lightgray;
+            font-size: 20px;
+        }
 
-        .formController {
-            margin-bottom: 20px;
+        .left {
+            flex: 1;
+            text-align: center;
 
-            label {
-                display: block;
-                font-weight: bold;
-                margin-bottom: 5px;
+            @media screen and (max-width:768px) {
+                display: none;
             }
 
-            input[type="text"],
-            input[type="file"],
-            input[type="date"],
-            textarea {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid $border-color;
-                border-radius: 5px;
-                background-color: #fff;
-                transition: border-color 0.2s;
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
             }
+        }
 
-            select {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid $border-color;
-                border-radius: 5px;
-                background-color: #fff;
-                transition: border-color 0.2s;
-            }
+        .right {
+            flex: 2;
 
-            input[type="file"] {
-                border: none;
-            }
-
-            input[type="file"]:focus {
-                outline: none;
-            }
-
-            input[type="file"]::placeholder,
-            textarea::placeholder {
-                color: $secondary-color;
-            }
-
-            .imageController {
+            form {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 30px;
-                text-wrap: nowrap;
-                align-items: center;
-            }
+                justify-content: space-around;
 
-            .updateProjectImage {
-                width: 200px;
-                height: 60px;
-
-                img {
-                    width: 100%;
-                    height: 100%;
+                @media screen and (max-width:640px) {
+                    flex-direction: column;
                 }
-            }
-        }
 
-        .post-btn {
-            background-color: $primary-color;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.2s;
+                .formInput {
+                    width: 40%;
 
-            &:hover {
-                background-color: darken($primary-color, 10%);
+                    @media screen and (max-width:640px) {
+                        width: 80%;
+
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .icon {
+                            cursor: pointer;
+                        }
+                    }
+
+                    input,
+                    select {
+                        width: 100%;
+                        padding: 5px;
+                        border: none;
+                        border-bottom: 1px solid gray;
+                    }
+
+                    textarea {
+                        border: 1px solid #94a3b8;
+                        min-width: 100%;
+                        max-width: 100%;
+                        max-height: 15vh;
+                    }
+
+                    .sendBtn {
+                        width: 150px;
+                        padding: 10px;
+                        border: none;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        margin-top: 10px;
+                    }
+                }
+
             }
         }
     }
-}
-
-.formController select:focus {
-    outline: none;
-}
-
-.formController select option {
-    background-color: #fff;
-}
-
-.formController input[type="text"]:focus,
-.formController input[type="file"]:focus,
-.formController input[type="date"]:focus,
-.formController textarea:focus,
-.formController select:focus {
-    border-color: $primary-color;
 }

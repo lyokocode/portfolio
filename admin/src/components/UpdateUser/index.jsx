@@ -1,68 +1,49 @@
 import { useState } from "react";
 import axios from "axios";
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
-import { Error } from "..";
 import { AiOutlineClose } from "react-icons/ai";
+import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateUser.scss"
 
 export const UpdateUser = ({ onClose, userData, reFetch }) => {
+    const { user } = useSelector(state => state.auth)
 
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
 
-    const [formData, setFormData] = useState({
-        fullName: "",
-        userName: "",
-        avatar: null,
-        email: "",
-        password: "",
-        isAdmin: null,
-    });
+    const [formData, setFormData] = useState({});
 
-    const updateUser = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedData = new FormData();
-
-        if (formData.fullName) {
-            updatedData.append("fullName", formData.fullName);
-        }
-
-        if (formData.avatar) {
-            updatedData.append("newImage", formData.avatar);
-        }
-
-        if (formData.userName) {
-            updatedData.append("userName", formData.userName);
-        }
-
-        if (formData.email) {
-            updatedData.append("email", formData.email);
-        }
-
-        if (formData.password) {
-            updatedData.append("password", formData.password);
-        }
-
-        if (formData.isAdmin) {
-            updatedData.append("isAdmin", formData.isAdmin);
-        }
-
 
         try {
-            const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${userData?.id}`, updatedData);
+            const form = new FormData();
+
+            for (const key in formData) {
+                form.append(key, formData[key]);
+            }
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${userData?.id}`, form);
+
             reFetch()
             onClose();
-
-            return response.data;
-
         } catch (error) {
-            serError(true)
-            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
+            console.log(error)
         }
+
     }
 
+    const handleChange = (e) => {
+        const { name, type, checked, files, value } = e.target;
+        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
+
+        setFormData({
+            ...formData,
+            [name]: newValue,
+        });
+    };
+
+
     return (
-        <div className="updateProject">
+        <div className="updatePage">
             {/* close button */}
             <button
                 onClick={onClose}
@@ -70,104 +51,114 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
             >
                 <AiOutlineClose size={25} />
             </button>
-            <header className="updateProjectHeader">
-                Update Project
+
+            {/* page header */}
+            <header className="top">
+                <h1>Update User</h1>
             </header>
-            <form
-                onSubmit={updateUser}
-                className="updateProjectForm"
-            >
-                {/* User Image */}
-                <div className="formController">
-                    <div className="imageController">
-                        <label htmlFor="file">User image:</label>
-                        <input
-                            type='file'
-                            id='file'
-                            name="file"
-                            className="newProject"
-                            onChange={(e) => setFormData({ ...formData, avatar: e.target.files[0] })}
-                        />
-                        <div className="updateProjectImage">
-                            <img
-                                src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/user/${userData?.avatar}`}
-                                alt=""
+
+            <div className="bottom">
+                <div className="left">
+                    <img
+                        src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/user/${userData?.avatar}`}
+                        alt=""
+                    />
+                </div>
+                <div className="right">
+                    <form onSubmit={handleSubmit}>
+
+                        {/* username */}
+                        <div className="formInput">
+                            <label> username:</label>
+                            <input
+                                name="userName"
+                                type="text"
+                                placeholder={userData?.userName}
+                                value={formData.userName}
+                                onChange={handleChange}
                             />
                         </div>
-                    </div>
-                </div>
 
-                {/* User Name */}
-                <div className="formController">
-                    <label> User name:</label>
-                    <input
-                        className="newProject"
-                        type="text"
-                        placeholder={userData?.userName}
-                        value={formData.userName}
-                        onChange={(e) => setFormData({ ...formData, userName: e.target.value })}
-
-                    />
-                </div>
-                {/* Full Name */}
-                <div className="formController">
-                    <label> User full name:</label>
-                    <input
-                        className="newProject"
-                        type="text"
-                        placeholder={userData?.fullName}
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-
-                    />
-                </div>
-
-                {/* User email */}
-                <div className="formController">
-                    <label> user email:</label>
-                    <input
-                        className="newProject"
-                        type="text"
-                        placeholder={userData?.email}
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-
-                    />
-                </div>
-
-                {/* User password */}
-                <div className="formController">
-                    <label> user password:</label>
-                    <input
-                        className="newProject"
-                        type="text"
-                        placeholder="password"
-                        value={formData.password}
-                        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    />
-                </div>
-                {
-                    userData && userData.isAdmin && (
-                        <div className="formController">
-                            <label>Admin:</label>
-                            <select
-                                defaultValue={userData.isAdmin}
-                                value={formData.isAdmin}
-                                onChange={(e) => setFormData({ ...formData, isAdmin: e.target.value })}
-                            >
-                                <option value="false">false</option>
-                                <option value="true">true</option>
-                            </select>
+                        {/* fullName */}
+                        <div className="formInput">
+                            <label> fullName:</label>
+                            <input
+                                name="fullName"
+                                type="text"
+                                placeholder={userData?.fullName}
+                                value={formData.fullName}
+                                onChange={handleChange}
+                            />
                         </div>
-                    )
-                }
 
-                <button className="post-btn" type="submit">
-                    Update
-                </button>
-            </form>
-            {error && <Error error={errorMessage} />}
+                        {/* email */}
+                        <div className="formInput">
+                            <label> email:</label>
+                            <input
+                                name="email"
+                                type="text"
+                                placeholder={userData?.email}
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                        </div>
 
+                        {/* password */}
+                        <div className="formInput">
+                            <label> password:</label>
+                            <input
+                                name="password"
+                                type="text"
+                                value={formData.password}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* Avatar */}
+                        <div className="formInput">
+                            <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <MdDriveFolderUpload size={35} />
+                            </label>
+                            <div>
+                                User Image
+                            </div>
+                            <input
+                                type='file'
+                                id='file'
+                                name="avatar"
+                                style={{ display: "none" }}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* isAdmin */}
+                        {user.isAdmin && (
+                            <>
+                                <div className="formInput">
+                                    <label>isAdmin:</label>
+                                    <select
+                                        value={formData.isAdmin}
+                                        name="isAdmin"
+                                        onChange={handleChange}
+                                    >
+                                        <option value=""></option>
+                                        <option value="false">false</option>
+                                        <option value="true">true</option>
+                                    </select>
+                                </div>
+                            </>
+                        )}
+
+                        {/* send button */}
+                        <div className="formInput">
+                            <button className="sendBtn" type="submit">
+                                Update
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

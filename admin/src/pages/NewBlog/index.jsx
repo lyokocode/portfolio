@@ -14,6 +14,7 @@ export const NewBlog = () => {
         `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
     );
 
+
     const [title, setTitle] = useState("")
     const [blog, setBlog] = useState("")
     const [date, setDate] = useState("")
@@ -22,6 +23,8 @@ export const NewBlog = () => {
     const [description, setDescription] = useState("")
     const [editorsPick, setEditorsPick] = useState(false);
     const [categories, setCategories] = useState([]);
+
+
 
 
     const handlePostBlog = async (e) => {
@@ -33,7 +36,7 @@ export const NewBlog = () => {
             formData.append("date", date);
             formData.append("image", image);
             formData.append("popular", popular);
-            formData.append("CategoryId", categories);
+            formData.append("category", categories);
             formData.append("editorsPick", editorsPick);
             formData.append("description", description);
             formData.append("UserId", user?.id);
@@ -103,6 +106,7 @@ export const NewBlog = () => {
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
                             />
+
                         </div>
 
                         {/* blog Image */}
@@ -121,7 +125,9 @@ export const NewBlog = () => {
                                 required
                                 className="newBlog"
                                 style={{ display: "none" }}
+
                                 onChange={(e) => setImage(e.target.files[0])}
+
                             />
                         </div>
 
@@ -160,7 +166,7 @@ export const NewBlog = () => {
                                 }
                             >
                                 {data && data?.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
+                                    <option key={cat.id} value={cat.name}>
                                         {cat.name}
                                     </option>
                                 ))}
@@ -172,6 +178,7 @@ export const NewBlog = () => {
                     </form>
                 </div>
             </div>
+
         </div>
     )
 }

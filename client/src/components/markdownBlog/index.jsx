@@ -15,10 +15,7 @@ export const MarkdownBlog = ({ blog }) => {
                 if (blog) {
                     const response = await axios.get(`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/mdfiles/${blog}`);
                     setPostContent(response.data);
-                } else {
-                    console.log("blog is not found")
                 }
-
             } catch (error) {
                 console.error('Dosya alınırken bir hata oluştu:', error);
             }

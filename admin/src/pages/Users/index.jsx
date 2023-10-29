@@ -44,18 +44,15 @@ export const Users = () => {
                                         <tr>
                                             <th className="left">Full Name</th>
                                             <th className="left">Email</th>
-                                            <th className="center">Phone Number</th>
-                                            <th className="center">Status</th>
+                                            <th className="center">User ID</th>
                                             <th className="center">Role</th>
                                             <th className="center">Actions</th>
                                         </tr>
                                     </thead>
-
                                     {users && users.map(user => (
                                         <UserList key={user.id} user={user} reFetch={reFetch} />
                                     ))}
                                 </table>
-
                             </div>
                         </div>
                     ))

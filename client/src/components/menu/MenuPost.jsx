@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 export const MenuPost = ({ withImage, blogs }) => {
-    console.log(blogs)
     return (
         <article className="items">
             {blogs && (

@@ -1,72 +1,51 @@
 import { useState } from "react"
-import "./updateBlog.scss"
 import axios from "axios"
-import { AiOutlineClose } from "react-icons/ai";
 import PropTypes from 'prop-types';
+import { AiOutlineClose } from "react-icons/ai";
+import { MdDriveFolderUpload } from "react-icons/md"
+import "./updateBlog.scss"
+import useFetch from "../../hooks/useFetch"
 
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
-    const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        image: null,
-        blog: null,
-        category: "",
-        date: "",
-        popular: blogData?.popular || false,
-        editorsPick: blogData?.editorsPick || false,
-    });
+    const [formData, setFormData] = useState({});
 
+    const { data } = useFetch(
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
+    );
 
-    const handleUpdateBlog = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const updatedData = new FormData();
-
-        if (formData.description) {
-            updatedData.append("description", formData.description);
-        }
-
-        if (formData.title) {
-            updatedData.append("title", formData.title);
-        }
-
-        if (formData.image) {
-            updatedData.append("newImage", formData.image);
-        }
-        if (formData.blog) {
-            updatedData.append("newBlog", formData.blog);
-        }
-        if (formData.category) {
-            updatedData.append("category", formData.category);
-        }
-        if (formData.date) {
-            updatedData.append("date", formData.date);
-        }
-        if (formData.popular) {
-            updatedData.append("popular", formData.popular);
-        }
-        if (formData.editorsPick) {
-            updatedData.append("editorsPick", formData.editorsPick);
-        }
-
         try {
-            const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`, updatedData);
+            const form = new FormData();
+            for (const key in formData) {
+                form.append(key, formData[key]);
+            }
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`, form);
 
-            console.log("Blog güncellendi:", response.data);
             reFetch()
             onClose();
-            return response.data;
+
         } catch (error) {
-            console.error("Blog güncelleme sırasında hata oluştu:", error);
-            throw error;
+            console.log(error)
         }
 
-    };
+    }
+    console.log(blogData)
+    const handleChange = (e) => {
+        const { name, type, checked, files, value } = e.target;
+        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
 
+        setFormData({
+            ...formData,
+            [name]: newValue,
+        });
+    };
     return (
-        <div className="updateBlog">
+        <div className="updatePage">
+
             {/* close button */}
             <button
                 onClick={onClose}
@@ -76,113 +55,147 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
             </button>
 
             {/* page header */}
-            <header className="updateBlogHeader">
-                Update Blog
+            <header className="top">
+                <h1>Update Category</h1>
             </header>
 
-            <form className="updateBlogForm" onSubmit={handleUpdateBlog}>
-                {/* blog file */}
-                <div className="formController">
-                    <div className="imageController">
-                        <label htmlFor="file">Blog File:</label>
-                        <input
-                            type='file'
-                            id='file'
-                            name="file"
-                            className="newBlog"
-                            onChange={(e) => setFormData({ ...formData, blog: e.target.files[0] })}
-                        />
-                        <div className="updateBlogImage">
-                            <img
-                                src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blogData?.image}`}
-                                alt=""
+            <div className="bottom">
+                {/* blog image */}
+                <div className="left">
+                    <img
+                        src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blogData?.image}`}
+                        alt=""
+                    />
+                </div>
+
+                {/* form container */}
+                <div className="right">
+                    <form onSubmit={handleSubmit}>
+
+                        {/* blog file */}
+                        <div className="formInput">
+                            <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <MdDriveFolderUpload size={35} />
+                            </label>
+                            <div>
+                                Blog File
+                            </div>
+                            <input
+                                type='file'
+                                id='file'
+                                name="blog"
+                                style={{ display: "none" }}
+                                onChange={handleChange}
                             />
                         </div>
-                    </div>
-                </div>
 
-                {/* blog name */}
-                <div className="formController">
-                    <label> blog name:</label>
-                    <input
-                        className="newBlog"
-                        type="text"
-                        placeholder={blogData?.title}
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    />
-                </div>
-
-                {/* blog description */}
-                <div className="formController">
-                    <label> description:</label>
-                    <textarea
-                        className="newBlog"
-                        type="text"
-                        placeholder={blogData?.description}
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    />
-                </div>
-
-                {/* blog Image */}
-                <div className="formController">
-                    <div className="imageController">
-                        <label htmlFor="file">Blog image:</label>
-                        <input
-                            type='file'
-                            id='file'
-                            name="file"
-                            className="newBlog"
-                            onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
-                        />
-                        <div className="updateBlogImage">
-                            <img
-                                src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blogData?.image}`}
-                                alt=""
+                        {/* blog name */}
+                        <div className="formInput">
+                            <label> blog name:</label>
+                            <input
+                                name="title"
+                                type="text"
+                                placeholder={blogData?.title}
+                                value={formData.title}
+                                onChange={handleChange}
                             />
                         </div>
-                    </div>
-                </div>
 
-                {/* blog date */}
-                <div className="formController">
-                    <label >Date:</label>
-                    <input
-                        type="date"
-                        className="newBlog"
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    />
+                        {/* blog description */}
+                        <div className="formInput">
+                            <label> description:</label>
+                            <textarea
+                                name="description"
+                                type="text"
+                                placeholder={blogData?.description}
+                                value={formData.description}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                </div>
-                {/* popular */}
-                <div className="formController">
-                    <label>Popular:</label>
-                    <select
-                        value={formData.popular}
-                        onChange={(e) => setFormData({ ...formData, popular: e.target.value })}
-                    >
-                        <option value="false">false</option>
-                        <option value="true">true</option>
-                    </select>
-                </div>
-                {/* editors pick */}
-                <div className="formController">
-                    <label>Editor's Pick:</label>
-                    <select
-                        value={formData.editorsPick}
-                        onChange={(e) => setFormData({ ...formData, editorsPick: e.target.value })}
-                    >
-                        <option value="false">false</option>
-                        <option value="true">true</option>
-                    </select>
-                </div>
+                        {/* blog Image */}
+                        <div className="formInput">
+                            <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <MdDriveFolderUpload size={35} />
+                            </label>
+                            <div>
+                                Blog Image
+                            </div>
+                            <input
+                                type='file'
+                                id='file'
+                                name="image"
+                                style={{ display: "none" }}
+                                onChange={handleChange}
+                            />
+                        </div>
 
-                <button className="post-btn" type="submit">
-                    Update
-                </button>
-            </form>
+                        {/* blog date */}
+                        <div className="formInput">
+                            <label >Date:</label>
+                            <input
+                                type="date"
+                                name="date"
+                                defaultValue={blogData.date}
+                                value={formData.date}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* popular */}
+                        <div className="formInput">
+                            <label>Popular:</label>
+                            <select
+                                value={formData.popular}
+                                name="popular"
+                                onChange={handleChange}
+                            >
+                                <option value=""></option>
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+
+                        {/* editors pick */}
+                        <div className="formInput">
+                            <label>{"Editor's Pick:"}</label>
+                            <select
+                                value={formData.editorsPick}
+                                name="editorsPick"
+                                onChange={handleChange}
+                            >
+                                <option value=""></option>
+                                <option value="false">false</option>
+                                <option value="true">true</option>
+                            </select>
+                        </div>
+
+                        {/* categories */}
+                        <div className="formInput">
+                            <label>Categories:</label>
+                            <select
+                                value={formData.CategoryId}
+                                onChange={handleChange}
+                                name="CategoryId"
+                            >
+                                <option value=""></option>
+                                {data && data.map((cat) => (
+                                    <option key={cat.id} value={cat.id} >
+                                        {cat.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* send button */}
+                        <div className="formInput">
+                            <button className="sendBtn" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }
@@ -196,7 +209,6 @@ UpdateBlog.propTypes = {
         image: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
         slug: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
         popular: PropTypes.bool.isRequired,
         editorsPick: PropTypes.bool.isRequired,
     }),

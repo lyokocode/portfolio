@@ -2,74 +2,44 @@ import { useState } from "react";
 import axios from "axios";
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
-import { Error } from "..";
+import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateProject.scss";
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
+    const [formData, setFormData] = useState({});
 
-    const [formData, setFormData] = useState({
-        title: "",
-        image: null,
-        date: "",
-        categories: projectData?.categories || [],
-        description: "",
-        projectLink: "",
-        githubLink: "",
-    });
-
-    const handleUpdateProject = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedData = new FormData();
-
-        if (formData.title) {
-            updatedData.append("title", formData.title);
-        }
-
-        if (formData.image) {
-            updatedData.append("newImage", formData.image);
-        }
-
-        if (formData.date) {
-            updatedData.append("date", formData.date);
-        }
-
-        if (formData.categories) {
-            updatedData.append("categories", formData.categories);
-        }
-
-        if (formData.description) {
-            updatedData.append("description", formData.description);
-        }
-
-        if (formData.projectLink) {
-            updatedData.append("projectLink", formData.projectLink);
-        }
-
-        if (formData.githubLink) {
-            updatedData.append("githubLink", formData.githubLink);
-        }
-
 
         try {
-            const response = await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/projects/project?id=${projectData?.id}`, updatedData);
+            const form = new FormData();
 
-            console.log("Proje güncellendi:", response.data);
+            for (const key in formData) {
+                form.append(key, formData[key]);
+            }
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/projects/project?id=${projectData?.id}`, form);
+
             reFetch()
             onClose();
-
-            return response.data;
-
         } catch (error) {
-            serError(true)
-            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
+            console.log(error)
         }
+
     }
 
+    const handleChange = (e) => {
+        const { name, type, checked, files, value } = e.target;
+        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
+
+        setFormData({
+            ...formData,
+            [name]: newValue,
+        });
+    };
+
     return (
-        <div className="updateProject">
+        <div className="updatePage">
             {/* close button */}
             <button
                 onClick={onClose}
@@ -77,115 +47,123 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
             >
                 <AiOutlineClose size={25} />
             </button>
-            <header className="updateProjectHeader">
-                Update Project
+
+            {/* page header */}
+            <header className="top">
+                <h1>Update Category</h1>
             </header>
-            <form
-                onSubmit={handleUpdateProject}
-                className="updateProjectForm"
-            >
-                {/* Project Image */}
-                <div className="formController">
-                    <div className="imageController">
-                        <label htmlFor="file">Project image:</label>
-                        <input
-                            type='file'
-                            id='file'
-                            name="file"
-                            className="newProject"
-                            onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
-                        />
-                        <div className="updateProjectImage">
-                            <img
-                                src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${projectData?.image}`}
-                                alt=""
+
+            <div className="bottom">
+                <div className="left">
+                    <img
+                        src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${projectData?.image}`}
+                        alt=""
+                    />
+                </div>
+                <div className="right">
+                    <form onSubmit={handleSubmit}>
+                        {/* Project name */}
+                        <div className="formInput">
+                            <label> blog name:</label>
+                            <input
+                                name="title"
+                                type="text"
+                                placeholder={projectData?.title}
+                                value={formData.title}
+                                onChange={handleChange}
                             />
                         </div>
-                    </div>
+
+                        {/* Project description */}
+                        <div className="formInput">
+                            <label> description:</label>
+                            <textarea
+                                name="description"
+                                type="text"
+                                placeholder={projectData?.description}
+                                value={formData.description}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* Github link */}
+                        <div className="formInput">
+                            <label> Github link</label>
+                            <input
+                                name="githubLink"
+                                type="text"
+                                placeholder={projectData?.githubLink}
+                                value={formData.githubLink}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* Project Link */}
+                        <div className="formInput">
+                            <label> Project Link:</label>
+                            <input
+                                name="projectLink"
+                                type="text"
+                                placeholder={projectData?.projectLink}
+                                value={formData.projectLink}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* Project Image */}
+                        <div className="formInput">
+                            <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <MdDriveFolderUpload size={35} />
+                            </label>
+                            <div>
+                                Project Image
+                            </div>
+                            <input
+                                type='file'
+                                id='file'
+                                name="image"
+                                style={{ display: "none" }}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* Project date */}
+                        <div className="formInput">
+                            <label >Date:</label>
+                            <input
+                                type="date"
+                                name="date"
+                                defaultValue={projectData.date}
+                                value={formData.date}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* Project Categories */}
+                        <div className="formInput">
+                            <label> Project Categories:</label>
+                            <input
+                                name="categories"
+                                type="text"
+                                placeholder={projectData?.categories}
+                                value={formData.categories}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        {/* send button */}
+                        <div className="formInput">
+                            <button className="sendBtn" type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                {/* Project name */}
-                <div className="formController">
-                    <label> Project name:</label>
-                    <input
-                        className="newProject"
-                        type="text"
-                        placeholder={projectData?.title}
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-
-                    />
-                </div>
-
-                {/* Project date */}
-                <div className="formController">
-                    <label >Date:</label>
-                    <input
-                        type="date"
-                        className="newBlog"
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    />
-                </div>
-
-                {/* Project categories */}
-                <div className="formController">
-                    <label> Project categories:</label>
-                    <input
-                        className="newProject"
-                        type="text"
-                        placeholder="test edeceğim"
-                        value={formData.categories}
-                        onChange={(e) => setFormData({ ...formData, categories: e.target.value })}
-
-                    />
-                </div>
-
-                {/* Project description */}
-                <div className="formController">
-                    <label> description:</label>
-                    <textarea
-                        className="newBlog"
-                        type="text"
-                        placeholder={projectData?.description}
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    />
-                </div>
-
-                {/* project link */}
-                <div className="formController">
-                    <label> project link:</label>
-                    <input
-                        className="newCategory"
-                        type="text"
-                        placeholder={projectData?.projectLink}
-                        value={formData.projectLink}
-                        onChange={(e) => setFormData({ ...formData, projectLink: e.target.value })}
-                    />
-                </div>
-
-                {/* github link */}
-                <div className="formController">
-                    <label> github link:</label>
-                    <input
-                        className="newCategory"
-                        type="text"
-                        placeholder={projectData?.githubLink}
-                        value={formData.githubLink}
-                        onChange={(e) => setFormData({ ...formData, githubLink: e.target.value })}
-                    />
-                </div>
-
-                <button className="post-btn" type="submit">
-                    Update
-                </button>
-            </form>
-            {error && <Error error={errorMessage} />}
         </div>
     )
 }
-
 
 UpdateProject.propTypes = {
     onClose: PropTypes.func.isRequired,
