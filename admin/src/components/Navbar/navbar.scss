@@ -1,10 +1,10 @@
 .navbar {
-    height: 50.5px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    height: 5.05rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.095rem 1.095rem 2.06rem;
     display: flex;
     align-items: center;
-    padding: 0 60px;
-    gap: 30px;
+    padding: 0 6rem;
+    gap: 3rem;
 
     // justify-content: space-around;
     @media screen and (max-width:768px) {
@@ -12,7 +12,7 @@
     }
 
     .logo {
-        font-size: 32px;
+        font-size: 3.2rem;
         font-weight: 900;
         flex: 1;
 
@@ -26,11 +26,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 15px;
+        gap: 1.5rem;
 
         .userImage {
-            width: 40px;
-            height: 40px;
+            width: 4rem;
+            height: 4rem;
 
             img {
                 width: 100%;
@@ -40,7 +40,7 @@
         }
 
         .userName {
-            font-size: 22px;
+            font-size: 2.2rem;
             font-weight: 700;
 
             @media screen and (max-width:640px) {
@@ -52,8 +52,8 @@
 
     .logoutBtn {
         background-color: #f0abfc;
-        padding: 4px 6px;
-        border-radius: 5px;
-        min-width: 85px;
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.5rem;
+        min-width: 8.5rem;
     }
 }

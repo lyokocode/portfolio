@@ -15,7 +15,7 @@ export const Sidebar = () => {
         >
             <div className="top">
                 <Link to="/">
-                    <h1>aelita</h1>
+                    <h1 className="logo">aelita</h1>
                 </Link>
             </div>
             <div className="hr"></div>

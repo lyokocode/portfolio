@@ -4,31 +4,31 @@
     justify-content: center;
     margin: 0 auto;
     min-height: 75vh;
-    max-width: 1200px;
+    max-width: 120rem;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 
     .content {
-        padding: 15px;
+        padding: 1.5rem;
         overflow: hidden;
 
         .loadWrapp {
             float: left;
-            width: 100px;
-            height: 100px;
-            margin: 0 10px 10px 0;
-            padding: 20px 20px 20px;
-            border-radius: 5px;
+            width: 10rem;
+            height: 10rem;
+            margin: 0 1rem 1rem 0;
+            padding: 2rem 2rem 2rem;
+            border-radius: 0.5rem;
             text-align: center;
 
             .load {
                 .line {
                     display: inline-block;
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 15px;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 1.5rem;
                     background-color: #4b9cdb;
 
                     &:nth-last-child(1) {
@@ -55,7 +55,7 @@
     }
 
     50% {
-        transform: translate(0, 15px);
+        transform: translate(0, 1.5rem);
     }
 
     100% {

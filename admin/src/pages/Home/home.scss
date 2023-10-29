@@ -1,9 +1,9 @@
 .home {
-    padding: 20px;
+    padding: 2rem;
     display: grid;
-    gap: 20px;
+    gap: 2rem;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(180px, auto);
+    grid-auto-rows: minmax(18rem, auto);
     grid-auto-flow: dense;
 
     @media screen and (max-width: 1136px) {
@@ -19,10 +19,10 @@
     }
 
     .box {
-        padding: 20px;
-        border-radius: 10px;
+        padding: 2rem;
+        border-radius: 1rem;
         background-color: #f5f3ff;
-        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0.195rem 0.195rem 0.26rem;
 
 
         // widggets
@@ -32,22 +32,22 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px;
-            gap: 20px;
+            padding: 1rem;
+            gap: 2rem;
             overflow-x: auto;
 
             &::-webkit-scrollbar {
-                width: 20px;
+                width: 2rem;
             }
 
             &::-webkit-scrollbar-track {
-                box-shadow: inset 0 0 5px grey;
-                border-radius: 10px;
+                box-shadow: inset 0 0 0.5rem grey;
+                border-radius: 1rem;
             }
 
             &::-webkit-scrollbar-thumb {
                 background: #d8b4fe;
-                border-radius: 10px;
+                border-radius: 1rem;
             }
         }
 
@@ -56,20 +56,20 @@
             grid-column: span 1;
             grid-row: span 3;
             overflow-y: auto;
-            max-height: 570px;
+            max-height: 57rem;
 
             &::-webkit-scrollbar {
-                width: 10px;
+                width: 1rem;
             }
 
             &::-webkit-scrollbar-track {
-                box-shadow: inset 0 0 5px grey;
-                border-radius: 10px;
+                box-shadow: inset 0 0 0.5rem grey;
+                border-radius: 1rem;
             }
 
             &::-webkit-scrollbar-thumb {
                 background: #e9d5ff;
-                border-radius: 10px;
+                border-radius: 1rem;
             }
         }
 
@@ -99,39 +99,20 @@
         }
 
 
-        // top users
-        // &.box2 {
-        //     grid-column: span 1;
-        //     grid-row: span 2;
-        //     max-height: 600px;
-        //     overflow-y: auto;
 
         &::-webkit-scrollbar {
-            width: 10px;
+            width: 1rem;
         }
 
         &::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 5px grey;
-            border-radius: 10px;
+            box-shadow: inset 0 0 0.5rem grey;
+            border-radius: 1rem;
         }
 
         &::-webkit-scrollbar-thumb {
             background: #e5e7eb;
-            border-radius: 10px;
+            border-radius: 1rem;
         }
 
-        // }
-
-        // &.box3 {
-        //     grid-column: span 1;
-        //     grid-row: span 1;
-        //     overflow-y: auto;
-        // }
-
-        // &.box4 {
-        //     grid-column: span 1;
-        //     grid-row: span 1;
-        //     overflow-y: auto;
-        // }
     }
 }

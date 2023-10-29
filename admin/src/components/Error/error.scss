@@ -1,11 +1,11 @@
 .error-container {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 2rem;
+    right: 2rem;
     background-color: #ff0000;
     color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
     opacity: 0.9;
     transition: opacity 0.5s;
     z-index: 1000;

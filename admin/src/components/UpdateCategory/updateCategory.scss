@@ -9,21 +9,19 @@
 
     .closeBtn {
         position: absolute;
-        right: 5%;
-        top: 3.5%;
     }
 
     .top,
     .bottom {
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        padding: 10px;
-        margin: 20px;
+        -webkit-box-shadow: 0.2rem 0.4rem 1rem 0.1rem rgba(0, 0, 0, 0.47);
+        box-shadow: 2rem 4rem 1rem 1rem rgba(201, 201, 201, 0.47);
+        padding: 1rem;
+        margin: 2rem;
         display: flex;
 
         h1 {
             color: lightgray;
-            font-size: 20px;
+            font-size: 2rem;
         }
 
         .left {
@@ -35,8 +33,8 @@
             }
 
             img {
-                width: 100px;
-                height: 100px;
+                width: 10rem;
+                height: 10rem;
                 border-radius: 50%;
                 object-fit: cover;
             }
@@ -48,7 +46,7 @@
             form {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 30px;
+                gap: 3rem;
                 justify-content: space-around;
 
                 @media screen and (max-width:640px) {
@@ -60,13 +58,13 @@
 
                     @media screen and (max-width:640px) {
                         width: 80%;
-
                     }
 
                     label {
                         display: flex;
                         align-items: center;
-                        gap: 10px;
+                        gap: 1rem;
+                        font-size: 1.5rem;
 
                         .icon {
                             cursor: pointer;
@@ -76,27 +74,27 @@
                     input,
                     select {
                         width: 100%;
-                        padding: 5px;
+                        padding: 0.5rem;
                         border: none;
-                        border-bottom: 1px solid gray;
+                        border-bottom: 0.1rem solid gray;
                     }
 
                     textarea {
-                        border: 1px solid #94a3b8;
+                        border: 0.1rem solid #94a3b8;
                         min-width: 100%;
                         max-width: 100%;
                         max-height: 15vh;
                     }
 
                     .sendBtn {
-                        width: 150px;
-                        padding: 10px;
+                        width: 15rem;
+                        padding: 1rem;
                         border: none;
                         background-color: teal;
                         color: white;
                         font-weight: bold;
                         cursor: pointer;
-                        margin-top: 10px;
+                        margin-top: 1rem;
                     }
                 }
 

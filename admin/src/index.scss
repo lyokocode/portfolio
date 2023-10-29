@@ -1,3 +1,21 @@
+$root-font-size: 10px;
+
+:root {
+  font-size: $root-font-size;
+}
+
+@mixin convertToRem($property, $values...) {
+  $remValues: (
+  );
+
+@each $value in $values {
+  $remValues: append($remValues, $value / $root-font-size);
+}
+
+#{$property}: $remValues * 1rem;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -17,17 +35,18 @@ body {
 .app {
   width: 100%;
   height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
 
   .appContainer {
     overflow: hidden;
     flex: 6;
-    min-height: calc(100vh - 50.5px);
+    height: 100vh;
 
     .appWrapper {
       height: 100%;
-      padding: 30px;
+      padding: 3rem;
+      overflow: auto;
     }
   }
 }

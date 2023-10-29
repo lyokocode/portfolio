@@ -50,7 +50,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
             {/* page header */}
             <header className="top">
-                <h1>Update Category</h1>
+                <h1>Update Project</h1>
             </header>
 
             <div className="bottom">

@@ -25,8 +25,8 @@
             .content {
                 background-color: white;
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                border-radius: 4px;
-                margin: 24px 0;
+                border-radius: 0.44rem;
+                margin: 2.4rem 0;
                 overflow-x: auto;
 
                 .table {
@@ -36,14 +36,14 @@
 
                     thead {
                         tr {
-                            line-height: 20px;
-                            font-size: 14px;
+                            line-height: 2rem;
+                            font-size: 1.4rem;
                             text-transform: uppercase;
                             color: #4b5563;
                             background: #e5e7eb;
 
                             th {
-                                padding: 12px 24px;
+                                padding: 1.2rem 2.4rem;
 
                                 &.left {
                                     text-align: left;
@@ -59,19 +59,18 @@
 
                     .body {
                         color: #4b5563;
-                        font-size: 14px;
-                        line-height: 20px;
+                        font-size: 1.4rem;
+                        line-height: 2rem;
                         font-weight: 300;
 
                         tr {
-                            border-bottom: 1px solid #e5e7eb;
+                            border-bottom: 0.1rem solid #e5e7eb;
                             transition: 0.3s all;
 
                             &:nth-child(odd) {
                                 &:hover {
                                     background-color: #f3f4f6;
                                 }
-
                             }
 
                             &:nth-child(even) {
@@ -83,7 +82,7 @@
                             }
 
                             td {
-                                padding: 12px 24px;
+                                padding: 1.2rem 2.4rem;
 
                                 &:first-child {
                                     white-space: nowrap;
@@ -104,17 +103,14 @@
 
                                 span {
                                     font-weight: 500;
-
-
                                 }
 
                                 &>div>div {
-                                    margin-right: 8px;
+                                    margin-right: 0.8rem;
 
                                     img {
-
-                                        width: 24px;
-                                        height: 24px;
+                                        width: 2.4rem;
+                                        height: 2.4rem;
                                         border-radius: 50%;
                                     }
 
@@ -125,10 +121,10 @@
                                         justify-content: center;
 
                                         img {
-                                            width: 24px;
-                                            height: 24px;
+                                            width: 2.4rem;
+                                            height: 2.4rem;
                                             border-radius: 50%;
-                                            border: 1px solid #e5e7eb;
+                                            border: 0.1rem solid #e5e7eb;
                                             transition: 0.2s all;
 
                                             &:hover {
@@ -136,51 +132,20 @@
                                             }
 
                                             &:not(:first-child) {
-                                                margin: -4px;
+                                                margin: -0.4rem;
                                             }
                                         }
 
                                     }
                                 }
 
-                                &.status {
-                                    span {
-                                        font-size: 12px;
-                                        line-height: 16px;
-
-                                        padding: 4px 12px;
-                                        border-radius: 10px;
-
-                                        &.active {
-                                            color: #9333ea;
-                                            background-color: #e9d5ff;
-                                        }
-
-                                        &.inactive {
-                                            color: #dc2626;
-                                            background-color: #fecaca;
-
-                                        }
-                                    }
-                                }
-
                                 &.role {
                                     span {
-                                        font-size: 12px;
-                                        line-height: 16px;
+                                        font-size: 1.2rem;
+                                        line-height: 1.6rem;
 
-                                        padding: 4px 12px;
-                                        border-radius: 10px;
-
-                                        &.customer {
-                                            color: #e11d48;
-                                            background-color: #fecdd3;
-                                        }
-
-                                        &.user {
-                                            color: #c026d3;
-                                            background-color: #f5d0fe;
-                                        }
+                                        padding: 0.4rem 1.2rem;
+                                        border-radius: 1rem;
 
                                         &.admin {
                                             color: #4f46e5;
@@ -190,19 +155,17 @@
                                         &.superAdmin {
                                             color: #0d9488;
                                             background-color: #99f6e4;
-
                                         }
                                     }
-
                                 }
 
                                 &.actions {
                                     div {
-                                        gap: 15px;
+                                        gap: 1.5rem;
                                         justify-content: center;
 
                                         .iconContainer {
-                                            width: 18px;
+                                            width: 1.8rem;
                                             transition: 0.3s all;
 
                                             &:hover {
