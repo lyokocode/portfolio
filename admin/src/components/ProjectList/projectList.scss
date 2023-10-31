@@ -12,10 +12,13 @@
     padding: 0.4rem;
     min-width: 30rem;
     max-width: 40rem;
+    background-color: var(--background-secondary);
+
 
     img.projectImage {
         width: 70%;
         height: 70%;
+        border-radius: 1rem;
     }
 
     .projectInfo {

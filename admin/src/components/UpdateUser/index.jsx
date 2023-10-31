@@ -43,7 +43,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
 
 
     return (
-        <div className="updatePage">
+        <div className="updateUser">
             {/* close button */}
             <button
                 onClick={onClose}

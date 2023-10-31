@@ -5,14 +5,19 @@ import { useSelector } from 'react-redux'
 import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications } from "react-icons/md"
 import { AiOutlineUser, AiOutlineProject, AiOutlineEdit } from "react-icons/ai"
 import { BiCategory, BiLogoBlogger, BiUserCircle } from "react-icons/bi"
+import { createModal, useModals } from "../../utils/modal"
+import Modal from "../../modals"
 
 
 export const Sidebar = () => {
     const { user } = useSelector(state => state.auth)
 
+    const modals = useModals()
+
+
     return (
-        <div className='sidebar '
-        >
+        <div className='sidebar '>
+            {modals.length > 0 && <Modal />}
             <div className="top">
                 <Link to="/">
                     <h1 className="logo">aelita</h1>
@@ -77,10 +82,12 @@ export const Sidebar = () => {
                         <MdOutlinePsychology className="icon" />
                         <span>Logs</span>
                     </li>
-                    <li>
+                    <button onClick={() => {
+                        createModal("appeparance")
+                    }}>
                         <MdSettingsApplications className="icon" />
                         <span>Settings</span>
-                    </li>
+                    </button>
                     <p className="title">User</p>
                     <Link to={`/users/${user.id}`}>
                         <li>
@@ -91,6 +98,7 @@ export const Sidebar = () => {
 
                 </ul>
             </div>
+
         </div>
     )
 }

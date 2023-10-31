@@ -1,6 +1,6 @@
 import "./categories.scss"
-import useFetch from "../../hooks/useFetch"
-import { CategoryList, Error, Header, Loading } from "../../components"
+import useFetch from "~/hooks/useFetch"
+import { CategoryList, Error, Header, Loading } from "~/components"
 
 export const Categories = () => {
 

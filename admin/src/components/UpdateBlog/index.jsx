@@ -3,8 +3,8 @@ import axios from "axios"
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
-import "./updateBlog.scss"
 import useFetch from "../../hooks/useFetch"
+import "./updateBlog.scss"
 
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
@@ -44,7 +44,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
         });
     };
     return (
-        <div className="updatePage">
+        <div className="updateBlog">
 
             {/* close button */}
             <button
@@ -56,7 +56,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
             {/* page header */}
             <header className="top">
-                <h1>Update Category</h1>
+                <h1>Update Blog</h1>
             </header>
 
             <div className="bottom">

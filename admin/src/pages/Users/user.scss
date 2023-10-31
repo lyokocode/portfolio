@@ -10,9 +10,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #f0f4f8;
+        background-color: var(--background-secondary);
         font-family: sans-serif;
         overflow: hidden;
+        color: var(--color-base-secondary);
 
 
         .userWrapper {
@@ -23,7 +24,6 @@
             }
 
             .content {
-                background-color: white;
                 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 border-radius: 0.44rem;
                 margin: 2.4rem 0;
@@ -39,8 +39,8 @@
                             line-height: 2rem;
                             font-size: 1.4rem;
                             text-transform: uppercase;
-                            color: #4b5563;
-                            background: #e5e7eb;
+                            color: var(--background-third);
+                            background: var(--color-base);
 
                             th {
                                 padding: 1.2rem 2.4rem;
@@ -65,20 +65,10 @@
 
                         tr {
                             border-bottom: 0.1rem solid #e5e7eb;
-                            transition: 0.3s all;
+                            transition: 0.5s all;
 
-                            &:nth-child(odd) {
-                                &:hover {
-                                    background-color: #f3f4f6;
-                                }
-                            }
-
-                            &:nth-child(even) {
-                                background-color: #f9fafb;
-
-                                &:hover {
-                                    background-color: #f3f4f6;
-                                }
+                            &:hover {
+                                background-color: var(--color-base-secondary);
                             }
 
                             td {
@@ -181,30 +171,6 @@
                                 }
                             }
                         }
-                    }
-                }
-            }
-
-            .buttonContainer {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-evenly;
-                gap: 20px;
-
-                button {
-                    padding: 10px;
-                    border-radius: 4px;
-                    cursor: pointer;
-
-                    &.refresh {
-                        background-color: #059669;
-                        color: #a7f3d0;
-                    }
-
-                    &.filter {
-                        background-color: #0891b2;
-                        color: #a5f3fc;
                     }
                 }
             }

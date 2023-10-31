@@ -68,7 +68,7 @@ export const New = ({ title, inputs, api }) => {
                                         <label htmlFor="file" style={{ cursor: "pointer" }}>
                                             <MdDriveFolderUpload size={35} />
                                         </label>
-                                        <div>
+                                        <div className="labelText">
                                             {input.label}
                                         </div>
                                         <input

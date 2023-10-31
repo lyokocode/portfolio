@@ -16,6 +16,10 @@
         font-weight: 900;
         flex: 1;
 
+        a {
+            background-color: var(--background-secondary);
+        }
+
         @media screen and (max-width:768px) {
             display: none;
         }
@@ -42,6 +46,7 @@
         .userName {
             font-size: 2.2rem;
             font-weight: 700;
+            color: var(--color-base);
 
             @media screen and (max-width:640px) {
                 display: none;
@@ -51,9 +56,11 @@
     }
 
     .logoutBtn {
-        background-color: #f0abfc;
         padding: 0.4rem 0.6rem;
         border-radius: 0.5rem;
         min-width: 8.5rem;
+        font-size: 1.6rem;
+        color: var(--color-base-secondary);
+        background-color: var(--color-secondary);
     }
 }

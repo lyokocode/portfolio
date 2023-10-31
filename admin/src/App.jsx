@@ -3,7 +3,7 @@ import { Blogs, Home, Login, Projects, Categories, Editor, NotFound, SingleUser,
 import Layout from './utils/Layout'
 import { PrivateRoutes } from './utils/PrivateRoute'
 import { Users } from './pages'
-import { categoryInputs, projectInputs, userInputs } from './formSource'
+import { categoryInputs, projectInputs, userInputs } from './mockData/formSource'
 
 function App() {
 

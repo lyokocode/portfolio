@@ -39,7 +39,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
     };
 
     return (
-        <div className="updatePage">
+        <div className="updateProject">
             {/* close button */}
             <button
                 onClick={onClose}

@@ -29,7 +29,7 @@
                     width: 1.5rem;
                     height: 1.5rem;
                     border-radius: 1.5rem;
-                    background-color: #4b9cdb;
+                    background-color: var(--color-primary);
 
                     &:nth-last-child(1) {
                         animation: loadingC 0.6s 0.1s linear infinite;

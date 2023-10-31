@@ -6,6 +6,7 @@
     grid-auto-rows: minmax(18rem, auto);
     grid-auto-flow: dense;
 
+
     @media screen and (max-width: 1136px) {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -21,7 +22,7 @@
     .box {
         padding: 2rem;
         border-radius: 1rem;
-        background-color: #f5f3ff;
+        background-color: var(--background-secondary);
         box-shadow: rgba(0, 0, 0, 0.15) 0.195rem 0.195rem 0.26rem;
 
 

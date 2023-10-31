@@ -31,9 +31,7 @@ export const SingleUser = () => {
                     <div className="singleUser">
                         <header>
                             <div className="container">
-
                                 <div className="profile">
-
                                     <div className="profile-image">
                                         {auth?.avatar ? (
                                             <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/user/${auth?.avatar}`} alt="" />
@@ -137,8 +135,6 @@ export const SingleUser = () => {
                                             )) : (
                                                 selected === "Projects" && auth?.Projects && auth?.Projects?.map((project, i) => (
                                                     <div key={i} className="gallery-item" tabIndex="0">
-
-
                                                         <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${project.image}`} className="gallery-image" alt="" />
 
                                                         <div className="gallery-item-info">

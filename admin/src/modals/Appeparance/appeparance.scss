@@ -1,0 +1,217 @@
+.appeparance {
+    width: 60rem;
+    color: var(--color-base-secondary);
+
+    .title {
+        margin-top: 3.2rem;
+        margin-bottom: 1.2rem;
+        font-size: 2.3rem;
+        line-height: 2.8rem;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .desc {
+        padding: 0 3.2rem 3.2rem 3.2rem;
+
+        p {
+            text-align: center;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .profile {
+        margin: 0 3.2rem 1.6rem 3.2rem;
+
+        .profileWrapper {
+            border: 0.1rem solid var(--background-third);
+            padding: 1.2rem 1.6rem;
+            display: flex;
+            gap: 1.2rem;
+
+            .logo {
+                img {
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 50%;
+                }
+            }
+
+            .post {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                font-size: 1.5rem;
+                font-weight: 700;
+                line-height: 2rem;
+
+                .userInfo {
+                    margin-bottom: 0.2rem;
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        height: 1.875rem;
+                        width: 1.875rem;
+                        color: #1d9bf0;
+                        margin-left: 0.2rem;
+                    }
+
+                    .username {
+                        margin-left: 0.4rem;
+                        display: flex;
+                        align-items: center;
+                        color: #71767b;
+                    }
+                }
+
+                .postContent {
+                    color: var(--color-base-secondary);
+
+                }
+            }
+        }
+    }
+
+    .color {
+        h6 {
+            font-size: 1.2rem;
+            color: var(--color-base-secondary);
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            line-height: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .colorContainer {
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 1.6rem;
+            gap: 0.8rem;
+
+            .selectColor {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+
+                svg {
+                    color: var(--color-base);
+                }
+            }
+        }
+    }
+
+    .background {
+        h6 {
+            font-size: 1.2rem;
+            color: var(--color-base-secondary);
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+            line-height: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .backgroundContainer {
+            padding: 0.4rem 1.2rem;
+            margin-bottom: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            background-color: var(--background-secondary);
+            border-radius: 1.6rem;
+            gap: 0.8rem;
+
+            button {
+                height: 6.2rem;
+                border-radius: 0.4rem;
+                font-weight: 800;
+                border: 0.1rem solid rgba($color: white, $alpha: 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+
+                &.active {
+                    border: 0.2rem solid var(--color-primary);
+                }
+
+                &.light {
+                    background-color: #fff;
+                    color: #0f1419;
+                }
+
+                &.normal {
+                    background-color: #15202b;
+                    color: #a0a0a0;
+
+
+                }
+
+                &.dark {
+                    background-color: #000;
+                    color: #f7f9f9;
+
+                    &.active {
+                        border: 0.2rem solid var(--color-primary);
+                    }
+                }
+
+                .clickContainer {
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all .5 s;
+
+                    &:hover {
+                        background-color: rgba($color: #fff, $alpha: 0.1);
+                    }
+
+                    .content {
+                        width: 2rem;
+                        height: 2rem;
+                        border: 0.2rem solid #3e4144;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        svg {
+                            display: none;
+                        }
+
+                        &.active {
+                            background-color: var(--color-primary);
+
+                            svg {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .submitBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            background-color: var(--color-primary);
+            font-size: 1.8rem;
+            color: var(--color-base-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+        }
+    }
+
+}

@@ -39,7 +39,7 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
     };
 
     return (
-        <div className="updatePage">
+        <div className="updateCategory">
             {/* close button */}
             <button
                 onClick={onClose}

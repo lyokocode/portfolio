@@ -33,7 +33,7 @@ export const CategoryList = ({ category, reFetch }) => {
         <div className={`categoryCard ${popular ? 'popular' : ''}`}>
             <div className="category-image">
                 <img
-                    style={{ width: "100px" }}
+                    // style={{ width: "100px" }}
                     src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${image}`}
                 />
             </div>

@@ -11,10 +11,12 @@
     min-width: 30rem;
     max-width: 40rem;
     height: 30rem;
+    background-color: var(--background-secondary);
 
     img.blogImage {
         width: 70%;
         height: 70%;
+        border-radius: 1rem;
     }
 
     .blogInfo {

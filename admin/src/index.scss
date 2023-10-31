@@ -1,21 +1,3 @@
-$root-font-size: 10px;
-
-:root {
-  font-size: $root-font-size;
-}
-
-@mixin convertToRem($property, $values...) {
-  $remValues: (
-  );
-
-@each $value in $values {
-  $remValues: append($remValues, $value / $root-font-size);
-}
-
-#{$property}: $remValues * 1rem;
-}
-
-
 * {
   margin: 0;
   padding: 0;
@@ -30,6 +12,8 @@ html,
 body {
   width: 100%;
   height: 100vh;
+  font-size: var(--font-size);
+  background-color: var(--background-primary);
 }
 
 .app {

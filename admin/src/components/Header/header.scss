@@ -4,14 +4,19 @@
     align-items: center;
     justify-content: space-around;
     height: 4rem;
+    background-color: var(--background-secondary);
 
     .searchInput {
         border-radius: 0.5rem;
         height: 90%;
-        border: 0.1rem solid #f1f5f9;
+        border: 0.01rem solid var(--background-primary);
         padding-left: 1.5rem;
         min-width: 30rem;
         font-size: 1.3rem;
+        background-color: var(--background-third);
+        color: var(--color-base-secondary);
+
+
 
         @media screen and (max-width:640px) {
             display: none;

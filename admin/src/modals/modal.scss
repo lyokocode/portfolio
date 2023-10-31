@@ -1,0 +1,21 @@
+.modalContainer {
+    position: absolute;
+    background-color: var(--background-global-modal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    .modalContent {
+        z-index: 9999;
+        max-width: 60rem;
+        min-width: 40rem;
+        max-height: 90vh;
+        overflow: auto;
+        border-radius: 1.6rem;
+        background-color: var(--background-primary);
+
+    }
+
+}

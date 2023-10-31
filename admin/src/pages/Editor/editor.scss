@@ -4,12 +4,17 @@
     flex-direction: column;
     gap: 2rem;
 
+    .ql-container.ql-snow,
+    .ql-toolbar.ql-snow {
+        border: none;
+        border-right: 0.05rem solid var(--color-base-secondary);
+    }
+
     .editor {
         display: flex;
-        height: 80vh;
-        background-color: #292929;
-        color: #e5e5e5;
-
+        height: 85vh;
+        background-color: var(--background-secondary);
+        color: var(--color-base);
 
         .reactQuil {
             flex: 1;
@@ -19,7 +24,6 @@
                 width: 100%;
                 height: 100%;
             }
-
         }
 
         .view {
@@ -33,8 +37,6 @@
             img {
                 max-width: 75%;
             }
-
-
         }
     }
 
