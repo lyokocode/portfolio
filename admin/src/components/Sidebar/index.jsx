@@ -74,10 +74,12 @@ export const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">Service</p>
-                    <li>
+                    <button onClick={() => {
+                        createModal("systemHealth")
+                    }}>
                         <MdSettingsSystemDaydream className="icon" />
                         <span>System Health</span>
-                    </li>
+                    </button>
                     <li>
                         <MdOutlinePsychology className="icon" />
                         <span>Logs</span>

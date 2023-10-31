@@ -16,9 +16,11 @@
         font-weight: 900;
         flex: 1;
 
+
         a {
-            background-color: var(--background-secondary);
+            background-color: transparent;
         }
+
 
         @media screen and (max-width:768px) {
             display: none;
