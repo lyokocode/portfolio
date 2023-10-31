@@ -31,7 +31,6 @@ const Layout = () => {
     }, [appearance])
 
 
-    console.log(appearance)
     return (
         <main className="app">
             <Sidebar />

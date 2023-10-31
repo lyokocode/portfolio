@@ -1,19 +1,19 @@
 export const colors = [
     {
-        primary: '#1d9bf0',
-        secondary: '#8ecdf8'
+        primary: '#1d4ed8',
+        secondary: '#3b82f6'
     },
     {
         primary: '#ffd400',
         secondary: '#ffea80'
     },
     {
-        primary: '#f91880',
-        secondary: '#fc8cc0'
+        primary: '#c026d3',
+        secondary: '#d946ef'
     },
     {
-        primary: '#7856ff',
-        secondary: '#bcabff'
+        primary: '#6d28d9',
+        secondary: '#8b5cf6'
     },
     {
         primary: '#ff7a00',

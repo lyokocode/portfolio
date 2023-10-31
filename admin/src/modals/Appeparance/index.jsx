@@ -2,20 +2,24 @@ import { useAppearance } from "~/store/appearance/hooks"
 import "./appeparance.scss"
 import { MdVerified } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
-import { setBackgroundColor, setColor } from "~/store/appearance/actions"
-import { colors } from "~/mockData/appearence"
+import { setBackgroundColor, setColor, setFontSize } from "~/store/appearance/actions"
+import { colors, fontSizes } from "~/mockData/appearence"
+import { useEffect, useState } from "react"
 
 const Appeparance = ({ close }) => {
+    const { backgroundColor, color, fontSize } = useAppearance()
+    const [fontSizePercent, setFontSizePercent] = useState(0)
 
-    const { backgroundColor, color } = useAppearance()
+    useEffect(() => {
+        setTimeout(() => setFontSizePercent(document.querySelector('.activeFontSize').offsetLeft + 3), 1)
+    }, [fontSize])
 
-    console.log(color)
     return (
         <div className="appeparance">
             <h3 className="title">Customize Appearance</h3>
             <div className="desc">
                 <p>These settings affect all Admin Panel in this browser.</p>
-                <div className="profile">
+                <section className="profile">
                     <div className="profileWrapper">
                         <div className="logo">
                             <img src="/logo.png" alt="" />
@@ -34,9 +38,36 @@ const Appeparance = ({ close }) => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div className="color">
+                <section className="fontSize">
+                    <h6>Font Size</h6>
+                    <div className="fontSizeContainer">
+                        <p className="smaller">Aa</p>
+                        <div className="settings">
+                            <div
+                                className="thin"
+                                style={{ width: fontSizePercent }}
+                            />
+                            <div className="settingContent">
+                                {fontSizes.map(fs => (
+                                    <button
+                                        className={`settingBtn ${fs == fontSize && "activeFontSize"}`}
+                                        onClick={() => {
+                                            setFontSize(fs)
+                                        }}
+                                        key={fs}
+                                    >
+                                        <div className={`ball ${fs == fontSize && "active"}`} />
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                        <p className="bigger">Aa</p>
+                    </div>
+                </section>
+
+                <section className="color">
                     <h6>Color</h6>
                     <div className="colorContainer">
                         {colors.map((c, i) => (
@@ -61,9 +92,9 @@ const Appeparance = ({ close }) => {
                             </button>
                         ))}
                     </div>
-                </div>
+                </section>
 
-                <div className="background">
+                <section className="background">
                     <h6>Background</h6>
                     <div className="backgroundContainer">
                         <button
@@ -142,7 +173,7 @@ const Appeparance = ({ close }) => {
                             dark
                         </button>
                     </div>
-                </div>
+                </section>
                 <div className="submitBtn">
                     <button onClick={close}>Submit</button>
                 </div>

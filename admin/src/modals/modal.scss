@@ -9,13 +9,11 @@
 
     .modalContent {
         z-index: 9999;
-        max-width: 60rem;
-        min-width: 40rem;
+        width: 600px;
+        min-width: 350px;
         max-height: 90vh;
         overflow: auto;
         border-radius: 1.6rem;
         background-color: var(--background-primary);
-
     }
-
 }
