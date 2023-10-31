@@ -50,7 +50,7 @@ export const NewBlog = () => {
         }
     };
     return (
-        <div className="newPage">
+        <div className="newBlog">
             <header className="top">
                 <h1>  Create a new blog</h1>
             </header>

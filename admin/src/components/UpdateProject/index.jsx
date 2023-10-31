@@ -40,124 +40,127 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
     return (
         <div className="updateProject">
-            {/* close button */}
-            <button
-                onClick={onClose}
-                className="closeBtn"
-            >
-                <AiOutlineClose size={25} />
-            </button>
 
-            {/* page header */}
-            <header className="top">
-                <h1>Update Project</h1>
-            </header>
+            <div className="updateContainer">
+                {/* page header */}
+                <header className="top">
+                    <h1>Update Project</h1>
 
-            <div className="bottom">
-                <div className="left">
-                    <img
-                        src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${projectData?.image}`}
-                        alt=""
-                    />
-                </div>
-                <div className="right">
-                    <form onSubmit={handleSubmit}>
-                        {/* Project name */}
-                        <div className="formInput">
-                            <label> blog name:</label>
-                            <input
-                                name="title"
-                                type="text"
-                                placeholder={projectData?.title}
-                                value={formData.title}
-                                onChange={handleChange}
-                            />
-                        </div>
+                    {/* close button */}
+                    <button
+                        onClick={onClose}
+                        className="closeBtn"
+                    >
+                        <AiOutlineClose size={25} />
+                    </button>
+                </header>
 
-                        {/* Project description */}
-                        <div className="formInput">
-                            <label> description:</label>
-                            <textarea
-                                name="description"
-                                type="text"
-                                placeholder={projectData?.description}
-                                value={formData.description}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        {/* Github link */}
-                        <div className="formInput">
-                            <label> Github link</label>
-                            <input
-                                name="githubLink"
-                                type="text"
-                                placeholder={projectData?.githubLink}
-                                value={formData.githubLink}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        {/* Project Link */}
-                        <div className="formInput">
-                            <label> Project Link:</label>
-                            <input
-                                name="projectLink"
-                                type="text"
-                                placeholder={projectData?.projectLink}
-                                value={formData.projectLink}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        {/* Project Image */}
-                        <div className="formInput">
-                            <label htmlFor="file" style={{ cursor: "pointer" }}>
-                                <MdDriveFolderUpload size={35} />
-                            </label>
-                            <div>
-                                Project Image
+                <div className="bottom">
+                    <div className="left">
+                        <img
+                            src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${projectData?.image}`}
+                            alt=""
+                        />
+                    </div>
+                    <div className="right">
+                        <form onSubmit={handleSubmit}>
+                            {/* Project name */}
+                            <div className="formInput">
+                                <label> blog name:</label>
+                                <input
+                                    name="title"
+                                    type="text"
+                                    placeholder={projectData?.title}
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                />
                             </div>
-                            <input
-                                type='file'
-                                id='file'
-                                name="image"
-                                style={{ display: "none" }}
-                                onChange={handleChange}
-                            />
-                        </div>
 
-                        {/* Project date */}
-                        <div className="formInput">
-                            <label >Date:</label>
-                            <input
-                                type="date"
-                                name="date"
-                                defaultValue={projectData.date}
-                                value={formData.date}
-                                onChange={handleChange}
-                            />
-                        </div>
+                            {/* Project description */}
+                            <div className="formInput">
+                                <label> description:</label>
+                                <textarea
+                                    name="description"
+                                    type="text"
+                                    placeholder={projectData?.description}
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                />
+                            </div>
 
-                        {/* Project Categories */}
-                        <div className="formInput">
-                            <label> Project Categories:</label>
-                            <input
-                                name="categories"
-                                type="text"
-                                placeholder={projectData?.categories}
-                                value={formData.categories}
-                                onChange={handleChange}
-                            />
-                        </div>
+                            {/* Github link */}
+                            <div className="formInput">
+                                <label> Github link</label>
+                                <input
+                                    name="githubLink"
+                                    type="text"
+                                    placeholder={projectData?.githubLink}
+                                    value={formData.githubLink}
+                                    onChange={handleChange}
+                                />
+                            </div>
 
-                        {/* send button */}
-                        <div className="formInput">
-                            <button className="sendBtn" type="submit">
-                                Update
-                            </button>
-                        </div>
-                    </form>
+                            {/* Project Link */}
+                            <div className="formInput">
+                                <label> Project Link:</label>
+                                <input
+                                    name="projectLink"
+                                    type="text"
+                                    placeholder={projectData?.projectLink}
+                                    value={formData.projectLink}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {/* Project Image */}
+                            <div className="formInput">
+                                <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                    <MdDriveFolderUpload size={35} />
+                                </label>
+                                <div>
+                                    Project Image
+                                </div>
+                                <input
+                                    type='file'
+                                    id='file'
+                                    name="image"
+                                    style={{ display: "none" }}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {/* Project date */}
+                            <div className="formInput">
+                                <label >Date:</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    defaultValue={projectData.date}
+                                    value={formData.date}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {/* Project Categories */}
+                            <div className="formInput">
+                                <label> Project Categories:</label>
+                                <input
+                                    name="categories"
+                                    type="text"
+                                    placeholder={projectData?.categories}
+                                    value={formData.categories}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            {/* send button */}
+                            <div className="formInput">
+                                <button className="sendBtn" type="submit">
+                                    Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
