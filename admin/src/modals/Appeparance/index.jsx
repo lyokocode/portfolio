@@ -118,7 +118,6 @@ const Appeparance = ({ close }) => {
                             <div className="clickContainer">
                                 <div className={`content ${backgroundColor.name == "light" && "active"}`}>
                                     <TiTick />
-
                                 </div>
                             </div>
                             light

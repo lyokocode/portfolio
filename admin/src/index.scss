@@ -22,6 +22,20 @@ body {
   height: 100vh;
   display: flex;
 
+  .internetStatus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    background-color: #71717a;
+    z-index: 9999;
+  }
+
   .appContainer {
     overflow: hidden;
     flex: 6;
@@ -32,6 +46,8 @@ body {
       padding: 3rem;
       overflow: auto;
     }
+
+
   }
 }
 

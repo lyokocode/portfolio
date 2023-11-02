@@ -3,11 +3,15 @@ import { Outlet } from "react-router-dom"
 import "../index.scss"
 import { useAppearance } from "~/store/appearance/hooks";
 import { useEffect } from "react";
+import useConnection from "~/hooks/useConnection";
+import useBattery from "~/hooks/useBattery";
 
 
 const Layout = () => {
 
     const appearance = useAppearance()
+    const { Offline } = useConnection()
+    const { CriticalBattery } = useBattery()
 
     useEffect(() => {
 
@@ -33,8 +37,19 @@ const Layout = () => {
 
     return (
         <main className="app">
+            <CriticalBattery>
+                <div className="internetStatus ">
+                    PLEASE CHARGER YOUR DEVICE!
+                </div>
+            </CriticalBattery>
+            <Offline>
+                <div className="internetStatus">
+                    check your internet connection!
+                </div>
+            </Offline>
             <Sidebar />
             <section className="appContainer">
+
                 <Navbar />
                 <div className="appWrapper">
                     <Outlet />
