@@ -19,13 +19,13 @@ export const NewBlog = () => {
     const [blog, setBlog] = useState("")
     const [date, setDate] = useState("")
     const [image, setImage] = useState("")
+    const [CategoryId, setCategoryId] = useState("")
     const [popular, setPopular] = useState(false)
     const [description, setDescription] = useState("")
     const [editorsPick, setEditorsPick] = useState(false);
-    const [categories, setCategories] = useState([]);
 
 
-
+    console.log(CategoryId)
 
     const handlePostBlog = async (e) => {
         e.preventDefault();
@@ -36,7 +36,7 @@ export const NewBlog = () => {
             formData.append("date", date);
             formData.append("image", image);
             formData.append("popular", popular);
-            formData.append("category", categories);
+            formData.append("CategoryId", CategoryId);
             formData.append("editorsPick", editorsPick);
             formData.append("description", description);
             formData.append("UserId", user?.id);
@@ -159,14 +159,12 @@ export const NewBlog = () => {
                         <div className="formInput">
                             <label>Categories:</label>
                             <select
-                                multiple
-                                value={categories}
-                                onChange={(e) =>
-                                    setCategories(Array.from(e.target.selectedOptions, (option) => option.value))
-                                }
+
+                                value={CategoryId}
+                                onChange={(e) => setCategoryId(e.target.value)}
                             >
                                 {data && data?.map((cat) => (
-                                    <option key={cat.id} value={cat.name}>
+                                    <option key={cat.id} value={cat.id}>
                                         {cat.name}
                                     </option>
                                 ))}

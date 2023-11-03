@@ -11,8 +11,8 @@ const initialState = {
     },
     // Fuchsia
     color: {
-        primary: '#1d9bf0',
-        secondary: '#8ecdf8',
+        primary: '#c026d3',
+        secondary: '#d946ef',
         base: '#e7e9ea',
         baseSecondary: '#71767b'
     },
@@ -59,18 +59,42 @@ const appearance = createSlice({
     reducers: {
         _setBackgroundColor: (state, action) => {
             state.backgroundColor = action.payload
+            localStorage.setItem('appearance_backgroundColor', JSON.stringify(action.payload));
         },
         _setColor: (state, action) => {
             state.color = action.payload
+            localStorage.setItem('appearance_color', JSON.stringify(action.payload));
         },
         _setFontSize: (state, action) => {
             state.fontSize = action.payload
+            localStorage.setItem('appearance_fontSize', action.payload);
         },
         _setBoxShadow: (state, action) => {
             state.boxShadow = action.payload
+            localStorage.setItem('appearance_boxShadow', action.payload);
         }
     }
 })
 
+const savedBackgroundColor = JSON.parse(localStorage.getItem('appearance_backgroundColor'));
+const savedColor = JSON.parse(localStorage.getItem('appearance_color'));
+const savedFontSize = localStorage.getItem('appearance_fontSize');
+const savedBoxShadow = localStorage.getItem('appearance_boxShadow');
+
+const savedState = {
+    backgroundColor: savedBackgroundColor || initialState.backgroundColor,
+    color: savedColor || initialState.color,
+    fontSize: savedFontSize || initialState.fontSize,
+    boxShadow: savedBoxShadow || initialState.boxShadow,
+};
+
+const persistedState = { ...initialState, ...savedState };
+
+const appearanceReducer = (state = persistedState, action) => {
+    return appearance.reducer(state, action);
+};
+
+
 export const { _setBackgroundColor, _setColor, _setFontSize, _setBoxShadow } = appearance.actions
-export default appearance.reducer
+export default appearanceReducer;
+

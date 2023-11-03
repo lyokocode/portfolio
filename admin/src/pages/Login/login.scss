@@ -1,3 +1,7 @@
+:root {
+    font-size: 10px;
+}
+
 .formWrapper {
     background: rgba(0, 0, 0, .2);
     width: 100%;
@@ -6,34 +10,32 @@
     top: 0;
     left: 0;
     transition: all .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .loginForm {
-        position: absolute;
-        width: 36rem;
-        height: 32rem;
+        width: 360px;
+        height: 320px;
         height: auto;
         background-color: #fff;
         margin: auto;
-        border-radius: 1rem;
-        padding: 2rem;
-        left: 50%;
-        top: 50%;
-        margin-left: -18rem;
-        margin-top: -20rem;
+        border-radius: 10px;
+        padding: 20px;
     }
 
     .logo {
-        font-size: 5.2rem;
+        font-size: 52px;
         font-weight: bolder;
         text-align: center;
-        margin: 2rem 2rem 3rem 2rem;
+        margin: 20px 20px 30px 20px;
         fill: #566375;
     }
 
     .formItem {
         position: relative;
         display: block;
-        margin-bottom: 2rem;
+        margin-bottom: 20px;
 
 
         .inputForm {
@@ -41,12 +43,12 @@
             color: #8a8a8a;
             display: block;
             width: 90%;
-            height: 4.4rem;
-            padding: 0.5rem 5%;
-            border: 0.1rem solid #ccc;
-            -moz-border-radius: 2.7rem;
-            -webkit-border-radius: 2.7rem;
-            border-radius: 2.7rem;
+            height: 44px;
+            padding: 5px 5%;
+            border: 1px solid #ccc;
+            -moz-border-radius: 27px;
+            -webkit-border-radius: 27px;
+            border-radius: 27px;
             -moz-background-clip: padding;
             -webkit-background-clip: padding-box;
             background-clip: padding-box;
@@ -55,12 +57,12 @@
                 'Arial',
                 sans-serif;
             font-size: 105%;
-            letter-spacing: 0.1rem;
-            font-size: 1.3rem;
+            letter-spacing: 1px;
+            font-size: 13px;
 
             &:focus {
                 outline: none;
-                border: 0.1rem solid #58bff6;
+                border: 1px solid #58bff6;
                 color: #58bff6;
             }
         }
@@ -70,8 +72,8 @@
             top: 30%;
             right: 15%;
             cursor: pointer;
-            width: 2rem;
-            height: 2rem;
+            width: 20px;
+            height: 20px;
 
             svg {
                 width: 100%;
@@ -82,23 +84,23 @@
 
         .loginBtn {
             float: right;
-            width: 11.2rem;
-            height: 3.7rem;
-            -moz-border-radius: 1.9rem;
-            -webkit-border-radius: 1.9rem;
-            border-radius: 1.9rem;
+            width: 112px;
+            height: 37px;
+            -moz-border-radius: 19px;
+            -webkit-border-radius: 19px;
+            border-radius: 19px;
             -moz-background-clip: padding;
             -webkit-background-clip: padding-box;
             background-clip: padding-box;
             background-color: #55b1df;
-            border: 0.1rem solid #55b1df;
+            border: 1px solid #55b1df;
             border: none;
             color: #fff;
             font-weight: bold;
 
             &:hover {
                 background-color: #fff;
-                border: 0.1rem solid #55b1df;
+                border: 1px solid #55b1df;
                 color: #55b1df;
                 cursor: pointer;
             }
@@ -109,8 +111,8 @@
         background-color: #fb7185;
         color: #e11d48;
         width: max-content;
-        padding: 0.8rem 1.2rem;
-        border-radius: 0.5rem;
+        padding: 8px 12px;
+        border-radius: 5px;
     }
 
 }

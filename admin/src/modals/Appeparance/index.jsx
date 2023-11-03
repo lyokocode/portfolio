@@ -74,7 +74,7 @@ const Appeparance = ({ close }) => {
                             <button
                                 key={i}
                                 style={{ backgroundColor: c.primary }}
-                                className={`selectColor `}
+                                className="selectColor"
                                 onClick={() => {
                                     setColor(
                                         {
@@ -118,6 +118,7 @@ const Appeparance = ({ close }) => {
                             <div className="clickContainer">
                                 <div className={`content ${backgroundColor.name == "light" && "active"}`}>
                                     <TiTick />
+
                                 </div>
                             </div>
                             light
