@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     backgroundColor: {
-        name: 'dark',
-        primary: '#000',
-        secondary: '#030712', //gray950
-        third: '#111827',   //gray900
-        modal: '#090909',
+        name: 'light',
+        primary: '#fff',
+        secondary: '#f7f9f9', //gray950
+        third: '#eff3f4',   //gray900
+        modal: '#00000066',
         globalModal: "#5b708366"
     },
     // Fuchsia

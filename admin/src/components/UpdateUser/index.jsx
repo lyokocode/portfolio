@@ -128,7 +128,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
                                 <input
                                     type='file'
                                     id='file'
-                                    name="avatar"
+                                    name="newImage"
                                     style={{ display: "none" }}
                                     onChange={handleChange}
                                 />

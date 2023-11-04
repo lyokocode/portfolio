@@ -74,7 +74,7 @@ const Appeparance = ({ close }) => {
                             <button
                                 key={i}
                                 style={{ backgroundColor: c.primary }}
-                                className="selectColor"
+                                className={`selectColor `}
                                 onClick={() => {
                                     setColor(
                                         {

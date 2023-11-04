@@ -23,7 +23,7 @@
     }
 
     .post {
-        padding: 0 10px;
+        padding: 10px;
         margin-top: 60px;
         display: flex;
         align-items: center;
@@ -50,6 +50,7 @@
             .image {
                 object-fit: cover;
                 width: 80%;
+                border-radius: 10PX;
             }
         }
 

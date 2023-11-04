@@ -23,9 +23,7 @@
 
     .infoContainer {
         display: flex;
-
         flex-direction: column;
-
 
         .user {
             display: flex;
@@ -33,7 +31,7 @@
             flex-direction: column;
             gap: 5px;
             justify-content: flex-end;
-            padding-right: 20px;
+            padding-right: 25px;
             margin-top: 20px;
 
             .userImageContainer {
@@ -62,11 +60,9 @@
             }
         }
 
-
         .imageContainer {
             max-height: 450px;
             width: 100%;
-
 
             @media screen and (max-width: 640px) {
                 width: 100%;
@@ -86,7 +82,7 @@
         width: 100%;
 
         .post {
-            margin-top: 60px;
+            margin-top: 10px;
             width: 100%;
 
             .desc {
@@ -94,7 +90,6 @@
                 font-weight: 300;
                 margin-bottom: 20px;
                 width: 100%;
-
 
                 @media screen and (max-width: 768px) {
                     font-size: 20px;

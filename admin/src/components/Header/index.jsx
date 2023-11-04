@@ -16,7 +16,7 @@ export const Header = ({ reFetch, title }) => {
             </Link>
             <button
                 className="reloadBtn"
-                onClick={() => reFetch ? reFetch() : console.log("somethink went wrong")}>
+                onClick={() => reFetch && reFetch()}>
                 <AiOutlineReload className="reloadIcon" />
             </button>
         </header>

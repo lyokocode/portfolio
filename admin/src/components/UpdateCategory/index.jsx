@@ -114,7 +114,7 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
                                 <input
                                     type='file'
                                     id='file'
-                                    name="image"
+                                    name="newImage"
                                     style={{ display: "none" }}
                                     onChange={handleChange}
                                 />

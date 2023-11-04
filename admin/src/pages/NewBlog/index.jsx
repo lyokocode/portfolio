@@ -25,8 +25,6 @@ export const NewBlog = () => {
     const [editorsPick, setEditorsPick] = useState(false);
 
 
-    console.log(CategoryId)
-
     const handlePostBlog = async (e) => {
         e.preventDefault();
         try {
@@ -41,14 +39,15 @@ export const NewBlog = () => {
             formData.append("description", description);
             formData.append("UserId", user?.id);
 
-            const response = await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData);
+            // denedim
+            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData);
 
-            console.log("Blog gönderildi:", response.data);
             navigate("/blogs")
         } catch (error) {
             console.error("Blog gönderirken hata oluştu:", error);
         }
     };
+
     return (
         <div className="newBlog">
             <header className="top">

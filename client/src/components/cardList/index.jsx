@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Card, Loading } from ".."
 import useFetch from "../../hooks/useFetch"
 import "./cardList.scss"

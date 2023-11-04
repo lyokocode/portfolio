@@ -33,7 +33,6 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
         }
 
     }
-    console.log(blogData)
     const handleChange = (e) => {
         const { name, type, checked, files, value } = e.target;
         const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
@@ -84,7 +83,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                                 <input
                                     type='file'
                                     id='file'
-                                    name="blog"
+                                    name="newBlog"
                                     style={{ display: "none" }}
                                     onChange={handleChange}
                                 />
@@ -125,7 +124,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                                 <input
                                     type='file'
                                     id='file'
-                                    name="image"
+                                    name="newImage"
                                     style={{ display: "none" }}
                                     onChange={handleChange}
                                 />
