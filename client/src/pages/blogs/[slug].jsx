@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom"
-import "./singleBlog.scss"
 import useFetch from "../../hooks/useFetch"
+import { Helmet } from "react-helmet";
 import { AiOutlineFileImage, AiOutlineUser } from "react-icons/ai"
 import { Loading, MarkdownBlog } from "../../components"
+import "./singleBlog.scss"
 
 export const SingleBlog = () => {
 
@@ -13,6 +14,14 @@ export const SingleBlog = () => {
 
     return (
         <>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{blog?.title}</title>
+                <meta name="keywords" content="JavaScript, React, NextJS, PostgreSQL, Sequelize, Prisma, NodeJS, Express.js, Css, Sass, TailwindCss, " />
+                <link rel="canonical" href="https://aelita.vercel.app/blogs" />
+                <link rel="icon" type="image/svg+xml" href={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog?.image}`} />
+
+            </Helmet>
             <section className="singleBlog">
                 {loading ? <Loading /> : (error ? "error" : (
                     <>

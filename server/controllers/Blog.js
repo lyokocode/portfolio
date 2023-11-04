@@ -22,7 +22,9 @@ export const getAllBlogs = async (req, res, next) => {
                         model: Category,
                         attributes: ['name'],
                     },
-                ]
+                ],
+                order: [['date', 'DESC']]
+
 
             });
         } else {
@@ -36,7 +38,9 @@ export const getAllBlogs = async (req, res, next) => {
                         model: Category,
                         attributes: ['name'],
                     },
-                ]
+                ],
+                order: [['date', 'DESC']]
+
             });
         }
 
