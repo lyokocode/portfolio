@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 export const Users = () => {
 
-    const { user } = useSelector(state => state.auth)
+    const { auth } = useSelector(state => state.auth)
 
     const { data: users, loading, error, reFetch } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/users`
@@ -22,7 +22,7 @@ export const Users = () => {
                     type="text"
                     placeholder={`search to users`}
                 />
-                {user.isAdmin ? (
+                {auth.isAdmin ? (
                     <Link to="/user-create" className="createBtn">
                         Create a new user
                     </Link>

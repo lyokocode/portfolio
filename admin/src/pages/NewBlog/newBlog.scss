@@ -78,7 +78,8 @@
                         padding: 0.5rem;
                         border: none;
                         border-bottom: 0.1rem solid var(--color-base);
-                        background-color: var(--color-base-secondary);
+                        background-color: var(--background-primary);
+
 
                     }
 
@@ -87,6 +88,7 @@
                         min-width: 100%;
                         max-width: 100%;
                         max-height: 15vh;
+                        background-color: var(--background-primary);
                     }
 
                     .sendBtn {

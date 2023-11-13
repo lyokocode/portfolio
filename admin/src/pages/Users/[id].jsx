@@ -8,9 +8,10 @@ import useFetch from "../../hooks/useFetch"
 
 export const SingleUser = () => {
     const { id } = useParams()
-    const { user } = useSelector(state => state.auth)
+    const { auth } = useSelector(state => state.auth)
+    console.log(auth)
 
-    const { data: auth, loading, error, reFetch } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${id}`)
+    const { data: user, loading, error, reFetch } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${id}`)
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -45,7 +46,7 @@ export const SingleUser = () => {
                                     <div className="profile-user-settings">
                                         {modalVisible && (
                                             <UpdateUser
-                                                userData={auth}
+                                                userData={user}
                                                 onClose={closeModal}
                                                 reFetch={reFetch}
                                             />
@@ -53,11 +54,10 @@ export const SingleUser = () => {
                                         <h1 className="profile-user-name">@{auth.userName}</h1>
 
                                         {
-                                            user.isAdmin | user?.id == id && (
+                                            auth.isAdmin | auth?.id == id && (
                                                 <button
                                                     className="btn profile-edit-btn"
                                                     onClick={openModal}
-
                                                 >
                                                     <span>
                                                         Edit Profile
@@ -74,9 +74,9 @@ export const SingleUser = () => {
                                     <div className="profile-stats">
 
                                         <ul>
-                                            <li onClick={() => setSelected("Blogs")}><span className="profile-stat-count" >{auth?.Blogs?.length}</span> Blog</li>
-                                            <li onClick={() => setSelected("Projects")}><span className="profile-stat-count" >{auth?.Projects?.length}</span> Project</li>
-                                            <li onClick={() => setSelected("Categories")}><span className="profile-stat-count" >{auth?.Categories?.length}</span> Categories</li>
+                                            <li onClick={() => setSelected("Blogs")}><span className="profile-stat-count" >{user?.Blogs?.length}</span> Blog</li>
+                                            <li onClick={() => setSelected("Projects")}><span className="profile-stat-count" >{user?.Projects?.length}</span> Project</li>
+                                            <li onClick={() => setSelected("Categories")}><span className="profile-stat-count" >{user?.Categories?.length}</span> Categories</li>
                                         </ul>
 
                                     </div>
@@ -88,22 +88,16 @@ export const SingleUser = () => {
                                     </div>
 
                                 </div>
-                                {/* <!-- End of profile section --> */}
 
                             </div>
-                            {/* <!-- End of container --> */}
-
                         </header>
 
                         <main>
                             <div className="container">
 
                                 <div className="gallery">
-
-
-
                                     {
-                                        selected === "Blogs" ? auth?.Blogs && auth?.Blogs.map((blog, i) => (
+                                        selected === "Blogs" ? user?.Blogs && user?.Blogs.map((blog, i) => (
                                             <div key={i} className="gallery-item" tabIndex="0">
 
 
@@ -118,7 +112,7 @@ export const SingleUser = () => {
 
                                             </div>
                                         )) : (
-                                            selected === "Categories" ? auth?.Categories && auth?.Categories.map((category, i) => (
+                                            selected === "Categories" ? user?.Categories && user?.Categories.map((category, i) => (
                                                 <div key={i} className="gallery-item" tabIndex="0">
 
 
@@ -133,7 +127,7 @@ export const SingleUser = () => {
 
                                                 </div>
                                             )) : (
-                                                selected === "Projects" && auth?.Projects && auth?.Projects?.map((project, i) => (
+                                                selected === "Projects" && user?.Projects && user?.Projects?.map((project, i) => (
                                                     <div key={i} className="gallery-item" tabIndex="0">
                                                         <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/projects/${project.image}`} className="gallery-image" alt="" />
 
@@ -149,19 +143,14 @@ export const SingleUser = () => {
                                             )
                                         )
                                     }
-
-
-
                                 </div>
                                 {/* <!-- End of gallery --> */}
 
-                                {auth?.Blogs > 20 && (
+                                {user?.Blogs > 20 && (
                                     <div className="loader"></div>
                                 )}
 
                             </div>
-                            {/* <!-- End of container --> */}
-
                         </main>
                     </div>
                 ))

@@ -4,7 +4,7 @@ import { MdVerified } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
 import { setBackgroundColor, setColor, setFontSize } from "~/store/appearance/actions"
 import { colors, fontSizes } from "~/mockData/appearence"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const Appeparance = ({ close }) => {
     const { backgroundColor, color, fontSize } = useAppearance()
@@ -14,8 +14,44 @@ const Appeparance = ({ close }) => {
         setTimeout(() => setFontSizePercent(document.querySelector('.activeFontSize').offsetLeft + 3), 1)
     }, [fontSize])
 
+
+    const closeActionRef = useRef();
+
+    const handleKeyPress = (event) => {
+        if (event.keyCode === 27) { // 27 is the keyCode for the "Escape" key
+            close();
+            console.log(event.keyCode)
+        }
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (closeActionRef.current && !closeActionRef.current.contains(event.target)) {
+                close();
+            }
+        };
+
+        const handleOutsideClick = (event) => {
+            if (closeActionRef.current && !closeActionRef.current.contains(event.target)) {
+                handleClickOutside(event);
+            }
+        };
+
+        const handleKeyPressEvent = (event) => {
+            handleKeyPress(event);
+        };
+
+        document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('keydown', handleKeyPressEvent);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+            document.removeEventListener('keydown', handleKeyPressEvent);
+        };
+    }, [close]);
+
     return (
-        <div className="appeparance">
+        <div className="appeparance" ref={closeActionRef}>
             <h3 className="title">Customize Appearance</h3>
             <div className="desc">
                 <p>These settings affect all Admin Panel in this browser.</p>

@@ -82,7 +82,6 @@ export const login = async (req, res, next) => {
 }
 
 // LOGOUT
-// LOGOUT
 export const logout = async (req, res, next) => {
 
     try {

@@ -7,7 +7,7 @@ import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateUser.scss"
 
 export const UpdateUser = ({ onClose, userData, reFetch }) => {
-    const { user } = useSelector(state => state.auth)
+    const { auth } = useSelector(state => state.auth)
 
 
     const [formData, setFormData] = useState({});
@@ -135,7 +135,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
                             </div>
 
                             {/* isAdmin */}
-                            {user.isAdmin && (
+                            {auth.isAdmin && (
                                 <>
                                     <div className="formInput">
                                         <label>isAdmin:</label>

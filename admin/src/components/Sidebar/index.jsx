@@ -1,7 +1,6 @@
 import "./sidebar.scss"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
 import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications } from "react-icons/md"
 import { AiOutlineUser, AiOutlineProject, AiOutlineEdit } from "react-icons/ai"
 import { BiCategory, BiLogoBlogger, BiUserCircle } from "react-icons/bi"
@@ -10,7 +9,7 @@ import Modal from "../../modals"
 
 
 export const Sidebar = () => {
-    const { user } = useSelector(state => state.auth)
+    const { auth } = useSelector(state => state.auth)
 
     const modals = useModals()
 
@@ -35,7 +34,7 @@ export const Sidebar = () => {
                     </Link>
                     <p className="title">Lists</p>
                     {
-                        user?.isAdmin && (
+                        auth?.isAdmin && (
                             <Link to="/users">
                                 <li>
                                     <AiOutlineUser className="icon" />
@@ -91,7 +90,7 @@ export const Sidebar = () => {
                         <span>Settings</span>
                     </button>
                     <p className="title">User</p>
-                    <Link to={`/users/${user.id}`}>
+                    <Link to={`/users/${auth.id}`}>
                         <li>
                             <BiUserCircle className="icon" />
                             <span>Profile</span>

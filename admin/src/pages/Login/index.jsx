@@ -14,7 +14,7 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { user, error } = useSelector(state => state.auth);
+    const { auth, error } = useSelector(state => state.auth);
 
 
     const handleLogin = async (e) => {
@@ -33,10 +33,10 @@ export const Login = () => {
     };
 
     useEffect(() => {
-        if (user) {
+        if (auth) {
             navigate("/")
         }
-    }, [user])
+    }, [auth])
 
 
     return (
