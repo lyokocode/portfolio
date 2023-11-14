@@ -6,7 +6,7 @@ export const Blogs = () => {
     const { data: blogs, loading, error, reFetch } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`
     );
-
+    console.log(blogs)
     return (
         <section className="blogPage">
             <Header title="blog" reFetch={reFetch} />

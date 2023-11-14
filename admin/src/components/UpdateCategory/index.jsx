@@ -8,6 +8,7 @@ import "./updateCategory.scss";
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
     const [formData, setFormData] = useState({});
+    console.log(formData)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -7,7 +7,7 @@ import useFetch from "../../hooks/useFetch"
 import { MdDriveFolderUpload } from "react-icons/md"
 
 export const NewBlog = () => {
-    const { user } = useSelector(state => state.auth)
+    const { auth } = useSelector(state => state.auth)
     const navigate = useNavigate()
 
     const { data } = useFetch(
@@ -23,7 +23,7 @@ export const NewBlog = () => {
     const [popular, setPopular] = useState(false)
     const [description, setDescription] = useState("")
     const [editorsPick, setEditorsPick] = useState(false);
-
+    console.log(auth)
 
     const handlePostBlog = async (e) => {
         e.preventDefault();
@@ -37,9 +37,8 @@ export const NewBlog = () => {
             formData.append("CategoryId", CategoryId);
             formData.append("editorsPick", editorsPick);
             formData.append("description", description);
-            formData.append("UserId", user?.id);
+            formData.append("UserId", auth?.id);
 
-            // denedim
             await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData);
 
             navigate("/blogs")

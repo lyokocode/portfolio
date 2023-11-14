@@ -8,9 +8,11 @@ import categoryRoute from "./routes/category.js"
 import projectRoute from "./routes/project.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import fileUpload from 'express-fileupload';
 
 const app = express()
 // middlewares
+app.use(fileUpload());
 dotenv.config()
 app.use(express.json());
 app.use(cookieParser())

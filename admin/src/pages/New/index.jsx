@@ -10,8 +10,8 @@ import "./new.scss"
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
     const navigate = useNavigate()
-    const { user } = useSelector(state => state.auth)
-    const UserId = user?.id
+    const { auth } = useSelector(state => state.auth)
+    const UserId = auth?.id
 
     const handleSubmit = async (event) => {
         event.preventDefault();

@@ -48,6 +48,7 @@ export const getPopularCategories = async (req, res, next) => {
 
 // CREATE NEW CATEGORY
 export const createCategory = async (req, res, next) => {
+    console.log("categoryInfo")
     // Yüklenecek dosyayı alın
     const imagePath = req.files && req.files.image;
     const { ...categoryInfo } = req.body;
