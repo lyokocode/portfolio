@@ -10,6 +10,6 @@ dotenv.config()
 //     dialectModule: pg,
 // })
 
-export const sequelize = new Sequelize(SUPABASE_URI, {
+export const sequelize = new Sequelize(process.env.SUPABASE_URI, {
     dialectModule: pg,
 });
