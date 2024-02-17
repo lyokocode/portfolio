@@ -32,7 +32,7 @@ html,
 body {
     list-style: none;
     width: 100vw;
-    min-height: 100vh;
+    height: 100%;
     overflow-x: hidden;
     font-family: Georgia, sans-serif;
 }
@@ -40,7 +40,7 @@ body {
 .appContainer {
     background-color: var(--bg);
     color: var(--textColor);
-    min-height: 100vh;
+    height: 100%;
 
     .responsive {
         width: 100%;
@@ -48,27 +48,18 @@ body {
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        padding: 0 60px;
 
         @media screen and (max-width:1536px) {
-            max-width: 80%;
+            width: 80%;
         }
-
-
 
         @media screen and (max-width:1024px) {
-            max-width: 90%;
-            padding: 0 30px;
-
+            width: 90%;
         }
-
-
 
         @media screen and (max-width:640px) {
             padding: 0 10px;
         }
-
-
 
         .wrapper {
             flex: 1;

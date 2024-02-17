@@ -20,7 +20,7 @@ export const Featured = () => {
                     {/* popular post */}
                     {
                         data ? (
-                            <div className="post">
+                            <div className="featuredPost">
                                 <div className="imgContainer">
                                     {
                                         data[0]?.image && <img className="image"
