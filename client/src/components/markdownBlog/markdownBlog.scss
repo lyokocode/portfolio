@@ -4,22 +4,9 @@
     list-style: circle;
 
     .container {
-        max-width: 1024px;
         margin: 0 auto;
-        padding: 0 0.5rem 0 0.5rem;
         height: 100%;
-
-        @media screen and (max-width:768px) {
-            width: 35rem;
-        }
-
-        @media screen and (max-width:640px) {
-            width: 27rem;
-        }
-
-        @media screen and (max-width:480px) {
-            width: 24rem;
-        }
+        padding: 0 20px;
 
         .postWrapper {
             width: 100%;
