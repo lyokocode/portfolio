@@ -25,7 +25,7 @@ export const SingleBlog = () => {
             <section className="singleBlog">
                 {loading ? <Loading /> : (error ? "error" : (
                     <>
-                        {blog && (
+                        {blog && blog.blog && blog.image && (
                             <>
                                 <h1 className="title">{blog?.title}</h1>
                                 <div className="infoContainer">
