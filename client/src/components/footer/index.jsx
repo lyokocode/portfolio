@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { AiFillLinkedin, AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai"
 import "./footer.scss"
+import { FaYoutube } from "react-icons/fa"
 export const Footer = () => {
     return (
         <footer className="footer">
@@ -21,6 +22,9 @@ export const Footer = () => {
                     </a>
                     <a target="_blank" rel="noreferrer" href="https://twitter.com/Mustafausakli">
                         <AiOutlineTwitter size={24} />
+                    </a>
+                    <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCEbXfmk9rhjE0qeoc3ykDDg">
+                        <FaYoutube size={24} />
                     </a>
                 </div>
             </div>
@@ -43,6 +47,7 @@ export const Footer = () => {
                     <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">linkedin</a>
                     <a target="_blank" rel="noreferrer" href="https://github.com/lyokocode" to="/">github</a>
                     <a target="_blank" rel="noreferrer" href="https://twitter.com/Mustafausakli">twitter</a>
+                    <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCEbXfmk9rhjE0qeoc3ykDDg">youtube</a>
                 </div>
             </div>
         </footer>
