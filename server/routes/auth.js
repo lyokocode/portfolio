@@ -17,10 +17,10 @@ router.post("/logout", logout)
 // CHECK AUTHANTICATED
 
 router.get("/check", verifyToken, (req, res, next) => {
-    res.send("you are loged in")
+    res.send("you are logged in")
 })
 router.get("/check/:id", verifyUser, (req, res, next) => {
-    res.send("you are loged in and you can delete your accaunt")
+    res.send("you are logged in and you can delete your accaunt")
 })
 
 export default router

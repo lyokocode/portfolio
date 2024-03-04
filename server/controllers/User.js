@@ -80,7 +80,7 @@ export const getUser = async (req, res, next) => {
 
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
-    const { id } = req.query;
+    const { id } = req.params;
     const updatedFields = req.body;
     const { newImage } = req.files || {};
 
@@ -88,6 +88,10 @@ export const updateUser = async (req, res, next) => {
         const user = await User.findByPk(id);
         if (!user) {
             return next(createError(404, "Kullanıcı bulunamadı"))
+        }
+
+        if (updatedFields.isAdmin !== undefined && !req.user.isAdmin) {
+            return next(createError(403, "Yetkilendirme reddedildi: Admin yetkisi sadece adminler tarafından düzenlenebilir"));
         }
 
         if (newImage) {
