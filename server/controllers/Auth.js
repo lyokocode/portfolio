@@ -70,7 +70,8 @@ export const login = async (req, res, next) => {
 
         return res
             .cookie("access_token", token, {
-                httpOnly: true
+                secure: true,
+                httpsOnly: true
             })
             .status(200)
             .json({ ...info });
