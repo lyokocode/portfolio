@@ -14,7 +14,6 @@ export const Menu = () => {
     const { data: editorPicks } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick`
     );
-    console.log("menu rendered")
     return (
         <aside className="menuContainer">
             {loading ? <Loading /> : (error ? "error" : (

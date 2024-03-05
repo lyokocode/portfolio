@@ -12,8 +12,7 @@ export const CardList = () => {
 
     // Varsayılan sayfa numarası ve sayfa boyutu
     const defaultPage = 1;
-    const defaultPageSize = 1;
-    console.log("blog render")
+    const defaultPageSize = 4;
 
     // URL'den sayfa numarasını ve sayfa boyutunu alın
     const page = parseInt(searchParams.get('page')) || defaultPage;

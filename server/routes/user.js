@@ -1,7 +1,7 @@
 import express from "express";
 
 import { deleteUser, getAllUser, getUser, updateUser } from "../controllers/User.js"
-import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router()
 
@@ -10,10 +10,10 @@ const router = express.Router()
 router.get("/", verifyAdmin, getAllUser)
 
 // DELETE USER
-router.delete("/user", deleteUser)
+router.delete("/user", verifyUser, deleteUser)
 
 // GET USER
-router.get("/user", getUser)
+router.get("/user", verifyUser, getUser)
 
 // UPDATE USER
 router.put("/:id", verifyUser, updateUser);

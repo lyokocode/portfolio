@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom"
 import useFetch from "../../hooks/useFetch"
 import { Helmet } from "react-helmet";
 import { AiOutlineUser } from "react-icons/ai"
-import { Loading, MarkdownBlog } from "../../components"
+import { Loading } from "../../components"
 import "./singleBlog.scss"
 import moment from "moment";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
+const LazyMarkdownBlog = lazy(() => import('../../components').then(module => ({ default: module.MarkdownBlog })));
 
 export const SingleBlog = () => {
 
@@ -55,15 +56,15 @@ export const SingleBlog = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <Suspense fallback={<h1>loading...</h1>}>
-                                    <div className="content">
-                                        <div className="post">
-                                            <div className="desc">
-                                                <MarkdownBlog blog={blog.blog} className="test" />
-                                            </div>
+                                <div className="content">
+                                    <div className="post">
+                                        <div className="desc">
+                                            <Suspense fallback={<h1>loading...</h1>}>
+                                                <LazyMarkdownBlog blog={blog.blog} className="test" />
+                                            </Suspense>
                                         </div>
                                     </div>
-                                </Suspense>
+                                </div>
                             </>
                         )}
                     </>

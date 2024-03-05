@@ -18,7 +18,6 @@ const SystemHealth = ({ close }) => {
     const handleKeyPress = (event) => {
         if (event.keyCode === 27) { // 27 is the keyCode for the "Escape" key
             close();
-            console.log(event.keyCode)
         }
     };
 

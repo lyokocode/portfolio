@@ -14,7 +14,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 <GrPrevious />
                 Önceki
             </button>
-
+            <span>mevcut sayfa: {currentPage}</span>
             <button className="button next"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
