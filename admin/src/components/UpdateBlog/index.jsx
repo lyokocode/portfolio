@@ -12,35 +12,54 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
     const [formData, setFormData] = useState({});
 
     const { data } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories?fields=id,name`
     );
-
+    console.log(formData)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const form = new FormData();
+
             for (const key in formData) {
-                form.append(key, formData[key]);
+                if (Array.isArray(formData[key])) {
+                    formData[key].forEach((file, index) => {
+                        form.append(`${key}_${index}`, file);
+                    });
+                } else {
+                    form.append(key, formData[key]);
+                }
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`, form);
 
-            reFetch()
+            await axios.put(
+                `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`,
+                form,
+                { withCredentials: true }
+            );
+
+            reFetch();
             onClose();
-
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
+    };
 
-    }
     const handleChange = (e) => {
         const { name, type, checked, files, value } = e.target;
-        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
+        let newValue;
 
-        setFormData({
-            ...formData,
+        if (type === "checkbox") {
+            newValue = checked;
+        } else if (type === "file") {
+            newValue = files.length > 1 ? Array.from(files) : files[0];
+        } else {
+            newValue = value;
+        }
+
+        setFormData((prevFormData) => ({
+            ...prevFormData,
             [name]: newValue,
-        });
+        }));
     };
     return (
         <div className="updateBlog">
@@ -74,7 +93,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
                             {/* blog file */}
                             <div className="formInput">
-                                <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <label htmlFor="blogFile" style={{ cursor: "pointer" }}>
                                     <MdDriveFolderUpload size={35} />
                                 </label>
                                 <div>
@@ -82,7 +101,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                                 </div>
                                 <input
                                     type='file'
-                                    id='file'
+                                    id='blogFile'
                                     name="newBlog"
                                     style={{ display: "none" }}
                                     onChange={handleChange}
@@ -115,7 +134,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
                             {/* blog Image */}
                             <div className="formInput">
-                                <label htmlFor="file" style={{ cursor: "pointer" }}>
+                                <label htmlFor="imageFile" style={{ cursor: "pointer" }}>
                                     <MdDriveFolderUpload size={35} />
                                 </label>
                                 <div>
@@ -123,7 +142,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                                 </div>
                                 <input
                                     type='file'
-                                    id='file'
+                                    id='imageFile'
                                     name="newImage"
                                     style={{ display: "none" }}
                                     onChange={handleChange}

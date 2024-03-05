@@ -27,7 +27,7 @@ export const getAllBlogs = async (req, res, next) => {
                         where: { id: categoryIdsArray }
                     },
                 ],
-                order: [['date', 'DESC']]
+                order: [['createdAt', 'DESC']]
             });
         } else {
             blogs = await Blog.findAll({
@@ -42,7 +42,7 @@ export const getAllBlogs = async (req, res, next) => {
                         attributes: ['name', 'id'],
                     },
                 ],
-                order: [['date', 'DESC']]
+                order: [['createdAt', 'DESC']]
             });
         }
 
@@ -93,7 +93,6 @@ export const getPopularBlogs = async (req, res, next) => {
         const popularBlogs = await Blog.findAll({
             where: { popular: true },
             attributes: selectedFields,
-
             include: [
                 {
                     model: User,
@@ -103,7 +102,10 @@ export const getPopularBlogs = async (req, res, next) => {
                     model: Category,
                     attributes: ['name', "color", 'id'],
                 },
-            ]
+
+            ],
+            order: [['createdAt', 'DESC']]
+
         });
 
         res.status(200).json(popularBlogs);
@@ -128,7 +130,8 @@ export const getEditorsPickBlogs = async (req, res, next) => {
                     model: Category,
                     attributes: ['name', "color", 'id'],
                 },
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
 
         res.status(200).json(editorsPickBlogs);

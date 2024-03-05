@@ -12,7 +12,6 @@ export const SingleBlog = () => {
     const { data: blog, loading, error } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}&fields=image,title,blog,createdAt`
     );
-    console.log(blog)
     return (
         <>
             <Helmet>

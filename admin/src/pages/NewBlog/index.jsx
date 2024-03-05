@@ -23,7 +23,7 @@ export const NewBlog = () => {
     const [popular, setPopular] = useState(false)
     const [description, setDescription] = useState("")
     const [editorsPick, setEditorsPick] = useState(false);
-    console.log(categoryIds)
+
     const handlePostBlog = async (e) => {
         e.preventDefault();
         try {
