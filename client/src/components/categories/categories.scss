@@ -4,10 +4,12 @@
     }
 
     .categories {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
         gap: 20px;
+
 
         .category {
             width: 15%;
@@ -27,6 +29,7 @@
                 border-radius: 50%;
                 width: 32px;
                 height: 32px;
+                z-index: 999;
             }
 
             @media screen and (max-width:1280px) {
@@ -41,7 +44,7 @@
                 width: 45%;
             }
 
-            @media screen and (max-width:640px) {
+            @media screen and (max-width:480px) {
                 width: 100%;
             }
 

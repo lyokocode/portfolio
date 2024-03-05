@@ -11,7 +11,7 @@ export const NewBlog = () => {
     const navigate = useNavigate()
 
     const { data } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories?fields=id,name`
     );
 
 
@@ -19,12 +19,11 @@ export const NewBlog = () => {
     const [blog, setBlog] = useState("")
     const [date, setDate] = useState("")
     const [image, setImage] = useState("")
-    const [CategoryId, setCategoryId] = useState("")
+    const [categoryIds, setCategoryIds] = useState([]);
     const [popular, setPopular] = useState(false)
     const [description, setDescription] = useState("")
     const [editorsPick, setEditorsPick] = useState(false);
-    console.log(auth)
-
+    console.log(categoryIds)
     const handlePostBlog = async (e) => {
         e.preventDefault();
         try {
@@ -34,16 +33,24 @@ export const NewBlog = () => {
             formData.append("date", date);
             formData.append("image", image);
             formData.append("popular", popular);
-            formData.append("CategoryId", CategoryId);
+            formData.append("categoryIds", categoryIds);
             formData.append("editorsPick", editorsPick);
             formData.append("description", description);
             formData.append("UserId", auth?.id);
 
-            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData);
+            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData, { withCredentials: true });
 
             navigate("/blogs")
         } catch (error) {
             console.error("Blog gönderirken hata oluştu:", error);
+        }
+    };
+
+    const handleCategoryChange = (categoryId) => {
+        if (categoryIds.includes(categoryId)) {
+            setCategoryIds((prevCategories) => prevCategories.filter((id) => id !== categoryId));
+        } else {
+            setCategoryIds((prevCategories) => [...prevCategories, categoryId]);
         }
     };
 
@@ -54,7 +61,13 @@ export const NewBlog = () => {
             </header>
             <div className="bottom">
                 <div className="left">
-                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt="" />
+                    {image ? (
+                        <img src={URL.createObjectURL(image)} alt="Uploaded" />
+                    ) : (
+                        <label htmlFor="imageInput" style={{ cursor: "pointer" }}>
+                            <MdDriveFolderUpload size={35} />
+                        </label>
+                    )}
                 </div>
                 <div className="right">
                     <form onSubmit={handlePostBlog}>
@@ -154,19 +167,21 @@ export const NewBlog = () => {
                         </div>
 
                         {/* categories */}
-                        <div className="formInput">
+                        <div className="formInput checkBox">
                             <label>Categories:</label>
-                            <select
-
-                                value={CategoryId}
-                                onChange={(e) => setCategoryId(e.target.value)}
-                            >
-                                {data && data?.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
-                                        {cat.name}
-                                    </option>
+                            {data &&
+                                data.map((cat) => (
+                                    <div key={cat.id}>
+                                        <input
+                                            type="checkbox"
+                                            id={cat.name}
+                                            value={cat.id}
+                                            checked={categoryIds.includes(cat.id)}
+                                            onChange={() => handleCategoryChange(cat.id)}
+                                        />
+                                        <label htmlFor={cat.name}>{cat.name}</label>
+                                    </div>
                                 ))}
-                            </select>
                         </div>
                         <div className="formInput">
                             <button type="submit" className="sendBtn">Send</button>

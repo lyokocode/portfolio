@@ -7,7 +7,7 @@ const router = express.Router()
 
 
 // GET ALL USERS
-router.get("/", verifyToken, getAllUser)
+router.get("/", getAllUser)
 
 // DELETE USER
 router.delete("/user", deleteUser)

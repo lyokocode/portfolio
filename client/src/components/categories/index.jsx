@@ -5,7 +5,7 @@ import { Loading } from "..";
 export const Categories = () => {
 
     const { data: categories, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories?fields=color,name,image,id`
     );
 
     return (
@@ -16,7 +16,7 @@ export const Categories = () => {
                     <div className="categories">
                         {categories && categories.map(category => (
                             <Link
-                                to={`blogs?categoryId=${category.id}`}
+                                to={`blogs?categoryIds=${category.id}`}
                                 className="category"
                                 style={{ background: category?.color }}
                                 key={category.id}

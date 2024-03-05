@@ -9,6 +9,8 @@ import "./new.scss"
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
+    const [imgSrc, setImgSrc] = useState("");
+
     const navigate = useNavigate()
     const { auth } = useSelector(state => state.auth)
     const UserId = auth?.id
@@ -22,7 +24,7 @@ export const New = ({ title, inputs, api }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/${api}`, form);
+            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/${api}`, form, { withCredentials: true });
             navigate("..")
         } catch (error) {
             console.error('Error:', error);
@@ -32,7 +34,9 @@ export const New = ({ title, inputs, api }) => {
     const handleChange = (e) => {
         const { name, type, checked, files, value } = e.target;
         const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
-
+        if (type === 'file' && files[0]) {
+            setImgSrc(URL.createObjectURL(files[0])); // Dosyayı görüntülemek için imgSrc state'ini güncelle
+        }
         setFormData({
             ...formData,
             [name]: newValue,
@@ -46,7 +50,8 @@ export const New = ({ title, inputs, api }) => {
             </header>
             <div className="bottom">
                 <div className="left">
-                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" alt="" />
+                    <img src={imgSrc || "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="" />
+
                 </div>
                 <div className="right">
                     <form onSubmit={handleSubmit}>

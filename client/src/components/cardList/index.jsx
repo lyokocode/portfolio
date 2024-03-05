@@ -7,7 +7,7 @@ export const CardList = () => {
     const [searchParams] = useSearchParams()
 
     const { data, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs?${searchParams.toString()}`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs?fields=title,description,image,slug,createdAt&${searchParams.toString()}`
     );
 
     return (

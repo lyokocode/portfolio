@@ -53,6 +53,7 @@
 
             .userTextContainer {
                 display: flex;
+                align-items: flex-end;
                 flex-direction: column;
                 gap: 5px;
                 color: var(--softTextColor);

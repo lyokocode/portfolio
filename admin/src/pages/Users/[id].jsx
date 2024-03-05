@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
 import "./singleUser.scss"
 import { useState } from "react"
 import { AiOutlineUser, AiOutlineSetting } from "react-icons/ai"
@@ -8,8 +7,6 @@ import useFetch from "../../hooks/useFetch"
 
 export const SingleUser = () => {
     const { id } = useParams()
-    const { auth } = useSelector(state => state.auth)
-    console.log(auth)
 
     const { data: user, loading, error, reFetch } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${id}`)
 
@@ -34,8 +31,8 @@ export const SingleUser = () => {
                             <div className="container">
                                 <div className="profile">
                                     <div className="profile-image">
-                                        {auth?.avatar ? (
-                                            <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/user/${auth?.avatar}`} alt="" />
+                                        {user?.avatar ? (
+                                            <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/user/${user?.avatar}`} alt="" />
 
                                         ) : (
                                             <AiOutlineUser />
@@ -51,10 +48,10 @@ export const SingleUser = () => {
                                                 reFetch={reFetch}
                                             />
                                         )}
-                                        <h1 className="profile-user-name">@{auth.userName}</h1>
+                                        <h1 className="profile-user-name">@{user.userName}</h1>
 
                                         {
-                                            auth.isAdmin | auth?.id == id && (
+                                            user.isAdmin | user?.id == id && (
                                                 <button
                                                     className="btn profile-edit-btn"
                                                     onClick={openModal}
@@ -83,7 +80,7 @@ export const SingleUser = () => {
 
                                     <div className="profile-bio">
 
-                                        <p><span className="profile-real-name">{auth.fullName}</span> 👨‍⚖️⚖️ </p>
+                                        <p><span className="profile-real-name">{user.fullName}</span> 👨‍⚖️⚖️ </p>
 
                                     </div>
 

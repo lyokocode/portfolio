@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
 import { User } from "./User.js";
+import { Blog } from "./Blog.js";
 
 export const Category = sequelize.define('Category', {
     id: {
@@ -31,3 +32,4 @@ export const Category = sequelize.define('Category', {
 
 Category.belongsTo(User, { foreignKey: 'UserId' });
 User.hasMany(Category)
+

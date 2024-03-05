@@ -12,7 +12,7 @@ export const CategoryList = ({ category, reFetch }) => {
 
     const deleteBlog = async (id) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${id}`);
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${id}`, { withCredentials: true });
             reFetch()
         } catch (error) {
             serError(true)

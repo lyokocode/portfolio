@@ -1,6 +1,6 @@
 import express from "express";
-
 import { createBlog, deleteBlog, getAllBlogs, getBlog, getEditorsPickBlogs, getPopularBlogs, updateBlog } from "../controllers/Blog.js"
+import { verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router()
 
@@ -17,13 +17,13 @@ router.get('/popular', getPopularBlogs);
 router.get('/editorpick', getEditorsPickBlogs);
 
 // CREATE NEW BLOG
-router.post("/", createBlog)
+router.post("/", verifyToken, createBlog)
 
 // DELETE BLOG
-router.delete("/blog", deleteBlog)
+router.delete("/blog", verifyUser, deleteBlog)
 
 // UPDATE BLOG
-router.put("/blog", updateBlog)
+router.put("/blog", verifyUser, updateBlog)
 
 
 

@@ -6,13 +6,16 @@ import { Category } from "../models/Category.js";
 
 // GET ALL BLOGS
 export const getAllBlogs = async (req, res, next) => {
-    const { categoryId } = req.query
+    const { categoryIds } = req.query;
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
+
 
     try {
         let blogs;
-        if (categoryId) {
+        if (categoryIds) {
+            const categoryIdsArray = categoryIds.split(',').map(id => parseInt(id.trim()));
             blogs = await Blog.findAll({
-                where: { CategoryId: categoryId },
+                attributes: selectedFields,
                 include: [
                     {
                         model: User,
@@ -20,15 +23,15 @@ export const getAllBlogs = async (req, res, next) => {
                     },
                     {
                         model: Category,
-                        attributes: ['name'],
+                        attributes: ['name', 'id'],
+                        where: { id: categoryIdsArray }
                     },
                 ],
                 order: [['date', 'DESC']]
-
-
             });
         } else {
             blogs = await Blog.findAll({
+                attributes: selectedFields,
                 include: [
                     {
                         model: User,
@@ -36,11 +39,10 @@ export const getAllBlogs = async (req, res, next) => {
                     },
                     {
                         model: Category,
-                        attributes: ['name'],
+                        attributes: ['name', 'id'],
                     },
                 ],
                 order: [['date', 'DESC']]
-
             });
         }
 
@@ -52,12 +54,14 @@ export const getAllBlogs = async (req, res, next) => {
 
 // GET Blog
 export const getBlog = async (req, res, next) => {
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
+
     try {
         const { slug } = req.query;
-        console.log(slug)
 
         const blog = await Blog.findOne({
             where: { slug },
+            attributes: selectedFields,
             include: [
                 {
                     model: User,
@@ -65,7 +69,7 @@ export const getBlog = async (req, res, next) => {
                 },
                 {
                     model: Category, // Category modelini ekledik
-                    attributes: ['name'], // Sadece kategori ismini almak için
+                    attributes: ['name', 'id'], // Sadece kategori ismini almak için
                 },
             ],
 
@@ -83,9 +87,13 @@ export const getBlog = async (req, res, next) => {
 
 // GET POPULAR BLOGS
 export const getPopularBlogs = async (req, res, next) => {
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
+
     try {
         const popularBlogs = await Blog.findAll({
             where: { popular: true },
+            attributes: selectedFields,
+
             include: [
                 {
                     model: User,
@@ -93,7 +101,7 @@ export const getPopularBlogs = async (req, res, next) => {
                 },
                 {
                     model: Category,
-                    attributes: ['name', "color"],
+                    attributes: ['name', "color", 'id'],
                 },
             ]
         });
@@ -105,9 +113,12 @@ export const getPopularBlogs = async (req, res, next) => {
 };
 // GET EDITOR PICKS BLOGS
 export const getEditorsPickBlogs = async (req, res, next) => {
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
+
     try {
         const editorsPickBlogs = await Blog.findAll({
             where: { editorsPick: true },
+            attributes: selectedFields,
             include: [
                 {
                     model: User,
@@ -115,7 +126,7 @@ export const getEditorsPickBlogs = async (req, res, next) => {
                 },
                 {
                     model: Category,
-                    attributes: ['name', "color"],
+                    attributes: ['name', "color", 'id'],
                 },
             ]
         });
@@ -131,7 +142,7 @@ export const createBlog = async (req, res, next) => {
     // Yüklenecek dosyayı alın
     const imagePath = req.files && req.files.image;
     const blogPath = req.files && req.files.blog;
-    const { ...blogInfo } = req.body;
+    const { categoryIds, ...blogInfo } = req.body;
 
     try {
         if (!imagePath) {
@@ -175,6 +186,15 @@ export const createBlog = async (req, res, next) => {
             blog: blogUrl
         });
 
+        const categoryIdsArray = categoryIds.split(',').map(id => parseInt(id.trim()));
+
+        // Kategorileri al ve bloga ekle
+        if (categoryIdsArray && categoryIdsArray.length > 0) {
+            const categories = await Category.findAll({
+                where: { id: categoryIdsArray }
+            });
+            await newBlog.setCategories(categories);
+        }
         return res.status(201).json(newBlog);
     } catch (err) {
         next(err);

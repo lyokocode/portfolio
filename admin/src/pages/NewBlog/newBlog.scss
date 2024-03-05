@@ -50,6 +50,16 @@
                 .formInput {
                     width: 40%;
 
+                    &.checkBox {
+                        height: 20rem;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        overflow-y: auto;
+                        padding-top: 2rem;
+                    }
+
                     @media screen and (max-width:640px) {
                         width: 80%;
                     }

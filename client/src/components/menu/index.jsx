@@ -5,7 +5,7 @@ import "./menu.scss"
 export const Menu = () => {
 
     const { data: popularBlogs, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/popular`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/popular?fields=title,createdAt,id,slug`
     );
     const { data: editorPicks } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick`

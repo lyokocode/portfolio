@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-
+import moment from "moment"
 export const MenuPost = ({ withImage, blogs }) => {
+    console.log(blogs)
     return (
         <article className="items">
             {blogs && (
@@ -17,14 +18,25 @@ export const MenuPost = ({ withImage, blogs }) => {
                             </div>
                         )}
                         <div className="textContainer">
-                            <span
-                                className="category"
-                                style={{ backgroundColor: blog?.Category?.color }}
-                            >{blog.Category.name}</span>
+                            <div >
+                                {
+                                    blog.Categories && blog.Categories.map(category => (
+                                        <span
+                                            key={category.id}
+                                            className="category"
+                                            style={{ backgroundColor: category?.color }}
+                                        >
+                                            <Link to={`blogs?categoryIds=${category.id}`}>
+                                                {category.name}
+                                            </Link>
+                                        </span>
+                                    ))
+                                }
+                            </div>
                             <h3 className="postTitle">{blog.title}</h3>
                             <div className="detail">
                                 <span className="username">{blog.User.userName}</span> -
-                                <span className="date">{blog.date}</span>
+                                <span className="date">{moment(blog.createdAt).fromNow()}</span>
                             </div>
                         </div>
                     </Link>

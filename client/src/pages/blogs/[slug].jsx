@@ -4,14 +4,15 @@ import { Helmet } from "react-helmet";
 import { AiOutlineFileImage, AiOutlineUser } from "react-icons/ai"
 import { Loading, MarkdownBlog } from "../../components"
 import "./singleBlog.scss"
+import moment from "moment";
 
 export const SingleBlog = () => {
 
     const { slug } = useParams()
     const { data: blog, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}&fields=image,title,blog,createdAt`
     );
-
+    console.log(blog)
     return (
         <>
             <Helmet>
@@ -19,7 +20,6 @@ export const SingleBlog = () => {
                 <title>{blog?.title}</title>
                 <meta name="keywords" content="JavaScript, React, NextJS, PostgreSQL, Sequelize, Prisma, NodeJS, Express.js, Css, Sass, TailwindCss, " />
                 <link rel="canonical" href="https://aelita.vercel.app/blogs" />
-                <link rel="icon" type="image/svg+xml" href={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog?.image}`} />
 
             </Helmet>
             <section className="singleBlog">
@@ -50,10 +50,9 @@ export const SingleBlog = () => {
                                             }
                                         </div>
                                         <div className="userTextContainer">
-                                            <span className="username">{blog?.author}</span>
-                                            <span className="date">{blog?.date}</span>
+                                            <span className="username">{blog?.User?.userName}</span>
+                                            <span className="date">{moment(blog.createdAt).fromNow()}</span>
                                         </div>
-
                                     </div>
                                 </div>
 

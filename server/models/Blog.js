@@ -48,14 +48,15 @@ export const Blog = sequelize.define('Blog', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    CategoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
 });
+
+const BlogCategory = sequelize.define('BlogCategory', {});
+
+
+
+Blog.belongsToMany(Category, { through: BlogCategory });
+Category.belongsToMany(Blog, { through: BlogCategory });
 
 Blog.belongsTo(User, { foreignKey: 'UserId' });
 User.hasMany(Blog)
 
-Blog.belongsTo(Category, { foreignKey: 'CategoryId' });
-Category.hasMany(Blog)

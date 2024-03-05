@@ -5,9 +5,14 @@ import { storageClient } from "../database/supabase.js"
 
 // GET ALL CATEGORIES
 export const getAllCategories = async (req, res, next) => {
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
 
     try {
-        const categories = await Category.findAll();
+        const categories = await Category.findAll({
+            attributes: selectedFields,
+            order: [['createdAt', 'ASC']]
+
+        });
         res.status(200).json(categories);
 
     } catch (err) {
@@ -35,9 +40,14 @@ export const getCategory = async (req, res, next) => {
 
 // GET POPULAR CATEGORIES
 export const getPopularCategories = async (req, res, next) => {
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
+
     try {
         const popularCategories = await Category.findAll({
             where: { popular: true },
+            attributes: selectedFields,
+            order: [['createdAt', 'ASC']]
+
         });
 
         res.status(200).json(popularCategories);
@@ -48,7 +58,6 @@ export const getPopularCategories = async (req, res, next) => {
 
 // CREATE NEW CATEGORY
 export const createCategory = async (req, res, next) => {
-    console.log("categoryInfo")
     // Yüklenecek dosyayı alın
     const imagePath = req.files && req.files.image;
     const { ...categoryInfo } = req.body;

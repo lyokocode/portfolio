@@ -23,7 +23,7 @@ export const Login = () => {
             const response = await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/auth/login`, {
                 userName,
                 password,
-            });
+            }, { withCredentials: true });
             dispatch(loginSuccess(response.data));
         } catch (error) {
             const errorMessage = error.response?.data?.message || 'Giriş sırasında bir hata oluştu';

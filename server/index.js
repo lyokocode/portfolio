@@ -12,11 +12,26 @@ import fileUpload from 'express-fileupload';
 
 const app = express()
 // middlewares
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Credentials', true);
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
+
 app.use(fileUpload());
 dotenv.config()
 app.use(express.json());
 app.use(cookieParser())
-app.use(cors())
+
+// CORS ayarları
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:5174'], // İzin verilen kök (origin) değerleri
+    credentials: true
+}));
+
+
 
 // Routes
 app.use("/api/blogs", blogRoute)
@@ -29,12 +44,6 @@ app.use("/", (req, res) => {
     res.send("server is running")
 })
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-})
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500

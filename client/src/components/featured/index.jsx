@@ -6,7 +6,7 @@ import { Loading } from "..";
 export const Featured = () => {
 
     const { data, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick?fields=id,title,description,image,slug`
     );
 
 

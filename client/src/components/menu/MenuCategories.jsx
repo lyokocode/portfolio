@@ -5,7 +5,7 @@ import { Loading } from "..";
 export const MenuCategories = () => {
 
     const { data: categories, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories/popular`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories/popular?fields=id,name,image,color`
 
     );
 
@@ -16,7 +16,7 @@ export const MenuCategories = () => {
                     {categories && categories.map(category => (
                         <Link
                             key={category.id}
-                            to={`blogs?categoryId=${category.id}`}
+                            to={`blogs?categoryIds=${category.id}`}
                             className="category"
                             style={{ background: category?.color }}
                         >
