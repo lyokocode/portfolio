@@ -27,7 +27,7 @@ app.use(cookieParser())
 
 // CORS ayarları
 app.use(cors({
-    origin: ['https://admin-aelita.vercel.app'],
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://admin-aelita.vercel.app'],
     credentials: true
 }));
 
