@@ -2,6 +2,7 @@ import { CardList } from "../../components"
 import { Helmet } from "react-helmet";
 import "./blog.scss"
 export const Blogs = () => {
+    console.log("blog page rendered")
     return (
         <section className="blogPage">
             <Helmet>

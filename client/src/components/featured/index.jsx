@@ -12,18 +12,20 @@ export const Featured = () => {
 
     return (
         <section className="featuredContainer">
+            {/* featured title */}
+
+            <h1 className="title"><b> Hey, Aelita here!</b> Discover my stories and creative ideas.</h1>
+
             {loading ? <Loading /> : (error ? "error" : (
                 <>
-                    {/* featured title */}
-                    <h1 className="title"><b> Hey, Aelita here!</b> Discover my stories and creative ideas.</h1>
 
                     {/* popular post */}
                     {
-                        data ? (
+                        data && (
                             <div className="featuredPost">
                                 <div className="imgContainer">
                                     {
-                                        data[0]?.image && <img className="image"
+                                        data && data[0]?.image && <img loading="lazy" className="image"
                                             src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${data[0]?.image}`}
                                             alt='popular blog image'
                                         />
@@ -35,7 +37,7 @@ export const Featured = () => {
                                     <Link to={`/blogs/${data[0]?.slug}`} className="postBtn">Read More </Link>
                                 </div>
                             </div>
-                        ) : ("data is not defined")
+                        )
                     }
                 </>
             ))}

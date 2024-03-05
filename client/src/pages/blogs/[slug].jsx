@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom"
 import useFetch from "../../hooks/useFetch"
 import { Helmet } from "react-helmet";
-import { AiOutlineFileImage, AiOutlineUser } from "react-icons/ai"
+import { AiOutlineUser } from "react-icons/ai"
 import { Loading, MarkdownBlog } from "../../components"
 import "./singleBlog.scss"
 import moment from "moment";
+import { Suspense } from "react";
 
 export const SingleBlog = () => {
 
@@ -24,18 +25,18 @@ export const SingleBlog = () => {
             <section className="singleBlog">
                 {loading ? <Loading /> : (error ? "error" : (
                     <>
-                        {blog && blog.blog && blog.image && (
+                        {blog && (
                             <>
                                 <h1 className="title">{blog?.title}</h1>
                                 <div className="infoContainer">
 
                                     <div className="imageContainer">
                                         {
-                                            blog?.image ? (<img
+                                            blog?.image && (<img
                                                 src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog?.image}`}
                                                 alt=""
                                                 className="image"
-                                            />) : (<AiOutlineFileImage />)
+                                            />)
                                         }
                                     </div>
                                     <div className="user">
@@ -54,14 +55,15 @@ export const SingleBlog = () => {
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className="content">
-                                    <div className="post">
-                                        <div className="desc">
-                                            <MarkdownBlog blog={blog.blog} className="test" />
+                                <Suspense fallback={<h1>loading...</h1>}>
+                                    <div className="content">
+                                        <div className="post">
+                                            <div className="desc">
+                                                <MarkdownBlog blog={blog.blog} className="test" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Suspense>
                             </>
                         )}
                     </>

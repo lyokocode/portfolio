@@ -6,6 +6,7 @@ import "./navbar.scss"
 import { AuthLinks, ThemeToggle } from ".."
 
 export const Navbar = () => {
+    console.log("navbar rendered")
     return (
         <nav className="navbar">
             <div className="social">

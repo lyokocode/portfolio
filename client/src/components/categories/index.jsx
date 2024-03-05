@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom"
 import useFetch from "../../hooks/useFetch";
 import "./categories.scss"
-import { Loading } from "..";
+import { CategoryCard, Loading } from "..";
 export const Categories = () => {
 
     const { data: categories, loading, error } = useFetch(
@@ -15,19 +14,7 @@ export const Categories = () => {
                     <h1 className="title">Popular Categories</h1>
                     <div className="categories">
                         {categories && categories.map(category => (
-                            <Link
-                                to={`blogs?categoryIds=${category.id}`}
-                                className="category"
-                                style={{ background: category?.color }}
-                                key={category.id}
-                            >
-                                <img
-                                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${category.image}`}
-                                    className="image"
-                                    alt={`${category?.name} image`}
-                                />
-                                <span className="categoryTitle">{category?.name}</span>
-                            </Link>
+                            <CategoryCard category={category} key={category.id} />
                         ))}
 
                     </div>

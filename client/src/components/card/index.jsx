@@ -7,10 +7,14 @@ export const Card = ({ blog }) => {
     return (
         <>
             {
-                blog && blog.image && (
+                blog && (
                     <article className="post">
                         <div className="imageContainer">
-                            <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog?.image}?t=2023-10-13T10%3A09%3A55.558Z`} alt="" className="image" />
+                            {
+                                blog?.image && (
+                                    <img src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog?.image}?t=2023-10-13T10%3A09%3A55.558Z`} alt="" className="image" />
+                                )
+                            }
                         </div>
                         <div className="textContainer">
                             <div className="detail">

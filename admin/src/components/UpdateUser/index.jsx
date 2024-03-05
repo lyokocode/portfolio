@@ -21,7 +21,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${userData?.id}`, form);
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${+userData?.id}`, form, { withCredentials: true });
 
             reFetch()
             onClose();

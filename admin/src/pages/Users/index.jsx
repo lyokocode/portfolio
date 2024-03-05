@@ -13,7 +13,6 @@ export const Users = () => {
     const { data: users, loading, error, reFetch } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/users`
     );
-
     return (
         <div className="userPage">
             <header className="pageHeader">
@@ -35,7 +34,7 @@ export const Users = () => {
             </header>
             <div className="container">
                 {
-                    loading ? <Loading /> : (error ? <Error error={error.message} /> : (
+                    loading ? <Loading /> : (error ? <Error error={error?.response?.data?.message} /> : (
                         <div className="userWrapper">
                             <div className="content">
                                 <table className="table">

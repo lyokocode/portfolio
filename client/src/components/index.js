@@ -11,6 +11,9 @@ export { Categories } from "./categories"
 export { CardList } from "./cardList"
 export { Card } from "./card"
 
+//category
+export { CategoryCard } from './categoryCard'
+
 // singleBlog
 export { MarkdownBlog } from "./markdownBlog"
 export { Code } from "./code"
@@ -30,3 +33,4 @@ export { Footer } from "./footer"
 
 // handler
 export { Loading } from "./loading"
+export { Pagination } from "./pagination"

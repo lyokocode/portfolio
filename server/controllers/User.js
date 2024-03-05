@@ -80,7 +80,7 @@ export const getUser = async (req, res, next) => {
 
 // UPDATE USER
 export const updateUser = async (req, res, next) => {
-    const { id } = req.params;
+    const { id } = req.query;
     const updatedFields = req.body;
     const { newImage } = req.files || {};
 

@@ -46,5 +46,5 @@ export const MarkdownBlog = ({ blog }) => {
 
 
 MarkdownBlog.propTypes = {
-    blog: PropTypes.string.isRequired,
+    blog: PropTypes.string,
 };

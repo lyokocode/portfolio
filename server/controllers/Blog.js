@@ -6,9 +6,11 @@ import { Category } from "../models/Category.js";
 
 // GET ALL BLOGS
 export const getAllBlogs = async (req, res, next) => {
-    const { categoryIds } = req.query;
-    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
 
+    const { categoryIds, page, pageSize } = req.query
+    const offset = (page - 1) * pageSize;
+
+    const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
 
     try {
         let blogs;
@@ -27,7 +29,9 @@ export const getAllBlogs = async (req, res, next) => {
                         where: { id: categoryIdsArray }
                     },
                 ],
-                order: [['createdAt', 'DESC']]
+                order: [['createdAt', 'DESC']],
+                offset,
+                limit: pageSize,
             });
         } else {
             blogs = await Blog.findAll({
@@ -42,7 +46,9 @@ export const getAllBlogs = async (req, res, next) => {
                         attributes: ['name', 'id'],
                     },
                 ],
-                order: [['createdAt', 'DESC']]
+                order: [['createdAt', 'DESC']],
+                offset,
+                limit: pageSize,
             });
         }
 

@@ -1,6 +1,10 @@
-import { MenuPost, MenuCategories, Loading } from ".."
+import { lazy } from "react";
+import { Loading } from ".."
 import useFetch from "../../hooks/useFetch";
 import "./menu.scss"
+
+const LazyMenuPost = lazy(() => import('../../components').then(module => ({ default: module.MenuPost })));
+const LazyMenuCategories = lazy(() => import('../../components').then(module => ({ default: module.MenuCategories })));
 
 export const Menu = () => {
 
@@ -10,21 +14,21 @@ export const Menu = () => {
     const { data: editorPicks } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick`
     );
-
+    console.log("menu rendered")
     return (
         <aside className="menuContainer">
             {loading ? <Loading /> : (error ? "error" : (
                 <>   <h2 className="subtitle">{"What's hot"}</h2>
                     <h1 className="title">Most Popular</h1>
-                    <MenuPost withImage={false} blogs={popularBlogs} />
+                    <LazyMenuPost withImage={false} blogs={popularBlogs} />
 
                     <h2 className="subtitle">Discover by topic</h2>
                     <h1 className="title">Categories</h1>
-                    <MenuCategories />
+                    <LazyMenuCategories />
 
                     <h2 className="subtitle">Chosen by the editor</h2>
                     <h1 className="title">Editors pick</h1>
-                    <MenuPost withImage={true} blogs={editorPicks} /></>
+                    <LazyMenuPost withImage={true} blogs={editorPicks} /></>
             ))}
         </aside>
     )

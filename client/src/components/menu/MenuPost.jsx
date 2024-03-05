@@ -11,7 +11,7 @@ export const MenuPost = ({ withImage, blogs }) => {
                             <div className="imageContainer">
                                 <img
                                     className="image"
-                                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog.image}`}
+                                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog?.image}`}
                                     alt="Blog Image"
                                 />
                             </div>
@@ -19,23 +19,21 @@ export const MenuPost = ({ withImage, blogs }) => {
                         <div className="textContainer">
                             <div className="categories">
                                 {
-                                    blog.Categories && blog.Categories.map(category => (
+                                    blog?.Categories && blog?.Categories.map(category => (
                                         <span
                                             key={category.id}
                                             className="category"
                                             style={{ backgroundColor: category?.color }}
                                         >
-                                            <Link to={`blogs?categoryIds=${category.id}`}>
-                                                {category.name}
-                                            </Link>
+                                            {category.name}
                                         </span>
                                     ))
                                 }
                             </div>
-                            <h3 className="postTitle">{blog.title}</h3>
+                            <h3 className="postTitle">{blog?.title}</h3>
                             <div className="detail">
-                                <span className="username">{blog.User.userName}</span> -
-                                <span className="date">{moment(blog.createdAt).fromNow()}</span>
+                                <span className="username">{blog?.User?.userName}</span> -
+                                <span className="date">{moment(blog?.createdAt).fromNow()}</span>
                             </div>
                         </div>
                     </Link>
@@ -49,7 +47,7 @@ MenuPost.propTypes = {
     blogs: PropTypes.arrayOf(
         PropTypes.shape({
             slug: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
+            image: PropTypes.string,
             Category: PropTypes.shape({
                 name: PropTypes.string.isRequired,
                 color: PropTypes.string.isRequired
@@ -58,7 +56,7 @@ MenuPost.propTypes = {
             User: PropTypes.shape({
                 userName: PropTypes.string.isRequired
             }),
-            date: PropTypes.string.isRequired
+            createdAt: PropTypes.string.isRequired
         })
     ).isRequired
 };
