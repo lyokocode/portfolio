@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { ProjectList } from "../../components"
+import { ProjectList } from "@/components"
 import "./projects.scss"
 
 export const Projects = () => {

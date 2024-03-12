@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom"
-import useFetch from "../../hooks/useFetch"
+import useFetch from "@/hooks/useFetch"
 import { Helmet } from "react-helmet";
 import { AiOutlineUser } from "react-icons/ai"
-import { Loading } from "../../components"
+import { Loading } from "@/components"
 import "./singleBlog.scss"
 import moment from "moment";
 import { Suspense, lazy } from "react";
-const LazyMarkdownBlog = lazy(() => import('../../components').then(module => ({ default: module.MarkdownBlog })));
+const LazyMarkdownBlog = lazy(() => import('@/components').then(module => ({ default: module.MarkdownBlog })));
 
 export const SingleBlog = () => {
 

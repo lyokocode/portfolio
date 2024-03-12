@@ -1,4 +1,4 @@
-import { CardList } from "../../components"
+import { CardList } from "@/components"
 import { Helmet } from "react-helmet";
 import "./blog.scss"
 export const Blogs = () => {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import useFetch from "../../hooks/useFetch";
-import { Loading } from "..";
+import useFetch from "@/hooks/useFetch";
+import { Loading } from "@/components";
 
 export const MenuCategories = () => {
 

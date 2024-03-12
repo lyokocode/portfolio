@@ -1,4 +1,4 @@
-import { Featured, Categories } from "../../components"
+import { Featured, Categories } from "@/components"
 import "./home.scss"
 
 export const Home = () => {

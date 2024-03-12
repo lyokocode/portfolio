@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
-import { Loading, Pagination } from ".."
-import useFetch from "../../hooks/useFetch"
+import { Loading, Pagination } from "@/components"
+import useFetch from "@/hooks/useFetch"
 import "./cardList.scss"
 import { useSearchParams, useNavigate } from "react-router-dom";
 

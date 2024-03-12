@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Loading } from ".."
-import useFetch from "../../hooks/useFetch";
+import useFetch from "@/hooks/useFetch";
 import "./menu.scss"
 
 const LazyMenuPost = lazy(() => import('../../components').then(module => ({ default: module.MenuPost })));

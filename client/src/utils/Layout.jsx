@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import { Helmet } from "react-helmet";
-import { Footer, Menu, Navbar } from "../components"
-import "../index.scss"
+import { Footer, Menu, Navbar } from "@/components"
+import "@/index.scss"
 import { useSelector } from "react-redux";
 const Layout = () => {
 

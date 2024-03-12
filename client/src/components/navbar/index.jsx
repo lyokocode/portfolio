@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom"
 import { AiFillLinkedin, AiOutlineGithub, AiOutlineTwitter } from "react-icons/ai"
 import { FaYoutube } from "react-icons/fa";
-
 import "./navbar.scss"
-import { AuthLinks, ThemeToggle } from ".."
+import { AuthLinks, ThemeToggle } from "@/components"
 
 export const Navbar = () => {
     return (

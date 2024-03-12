@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import "./notFound.scss";
 import { Link } from "react-router-dom";
+import "./notFound.scss";
 
 export const NotFound = () => {
 

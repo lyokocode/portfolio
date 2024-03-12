@@ -1,7 +1,7 @@
-import useFetch from "../../hooks/useFetch";
+import useFetch from "@/hooks/useFetch";
 import { Link } from "react-router-dom"
 import "./featured.scss"
-import { Loading } from "..";
+import { Loading } from "@/components";
 
 export const Featured = () => {
 

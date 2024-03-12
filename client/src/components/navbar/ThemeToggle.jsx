@@ -1,6 +1,6 @@
 import { BsFillSunFill, BsMoonStarsFill } from "react-icons/bs"
 import { useDispatch, useSelector } from "react-redux";
-import { setDarkMode } from "../../store/themeSlice";
+import { setDarkMode } from "@/store/themeSlice";
 
 export const ThemeToggle = () => {
     const dispatch = useDispatch();

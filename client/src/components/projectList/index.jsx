@@ -1,6 +1,5 @@
-import useFetch from "../../hooks/useFetch";
-import { Loading } from "..";
-import { Project } from "../project"
+import useFetch from "@/hooks/useFetch";
+import { Project, Loading } from "@/components"
 import "./projectList.scss"
 
 export const ProjectList = () => {
