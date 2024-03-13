@@ -41,7 +41,6 @@ body {
     background-color: var(--bg);
     color: var(--textColor);
     height: 100%;
-    max-width: 1536px;
 
     .responsive {
         width: 80%;
@@ -49,6 +48,7 @@ body {
         display: flex;
         flex-direction: column;
         margin: 0 auto;
+        max-width: 1536px;
 
         @media screen and (max-width:1536px) {
             width: 85%;

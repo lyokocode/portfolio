@@ -11,10 +11,10 @@ export const Error = () => {
         return () => clearTimeout(timer);
     }, []);
     return (
-        <div className={`container ${loading ? "loading" : ""}`}>
+        <div className={`error ${loading ? "loading" : ""}`}>
             <h1 className="title">500</h1>
             <h2 className="subtitle">
-                Something went wrong <b>:(</b>
+                Something went wrong <b>{':('}</b>
             </h2>
             <div className="gears">
                 <div className="gear one">
