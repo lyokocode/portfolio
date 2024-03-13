@@ -1,7 +1,7 @@
 import { Suspense, lazy, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDebounce } from "use-debounce";
-import { Loading, Pagination, SearchBar } from "@/components";
+import { Error, Loading, Pagination, SearchBar } from "@/components";
 import useFetch from "@/hooks/useFetch";
 import { usePagination, generateUrl } from "@/utils";
 import "./cardList.scss";
@@ -13,7 +13,7 @@ const LazyCard = lazy(() =>
 export const CardList = () => {
     const [searchParams] = useSearchParams();
     const { page, pageSize, totalPages, handlePageChange } = usePagination(
-        2,
+        4,
         "blogs/count"
     );
     const [searchQuery, setSearchQuery] = useState("");
@@ -32,7 +32,7 @@ export const CardList = () => {
             {loading ? (
                 <Loading />
             ) : error ? (
-                "error"
+                <Error />
             ) : (
                 <>
                     {data &&

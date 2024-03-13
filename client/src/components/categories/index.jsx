@@ -1,6 +1,6 @@
 import useFetch from "@/hooks/useFetch";
 import "./categories.scss"
-import { CategoryCard, Loading } from "@/components";
+import { CategoryCard, Error, Loading } from "@/components";
 export const Categories = () => {
 
     const { data: categories, loading, error } = useFetch(
@@ -9,7 +9,7 @@ export const Categories = () => {
 
     return (
         <article className="categoryContainer">
-            {loading ? <Loading /> : (error ? "error" : (
+            {loading ? <Loading /> : (error ? <Error /> : (
                 <>
                     <h1 className="title">Popular Categories</h1>
                     <div className="categories">

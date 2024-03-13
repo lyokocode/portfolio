@@ -1,12 +1,12 @@
 import useFetch from "@/hooks/useFetch";
 import { Link } from "react-router-dom"
+import { Error, Loading } from "@/components";
 import "./featured.scss"
-import { Loading } from "@/components";
 
 export const Featured = () => {
 
     const { data, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick?fields=id,title,description,image,slug`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/popular?fields=id,title,description,image,slug`
     );
 
 
@@ -16,7 +16,7 @@ export const Featured = () => {
 
             <h1 className="title"><b> Hey, Aelita here!</b> Discover my stories and creative ideas.</h1>
 
-            {loading ? <Loading /> : (error ? "error" : (
+            {loading ? <Loading /> : (error ? <Error /> : (
                 <>
 
                     {/* popular post */}

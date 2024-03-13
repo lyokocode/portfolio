@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import useFetch from "@/hooks/useFetch"
 import { Helmet } from "react-helmet";
 import { AiOutlineUser } from "react-icons/ai"
-import { Loading } from "@/components"
+import { Error, Loading } from "@/components"
 import "./singleBlog.scss"
 import moment from "moment";
 import { Suspense, lazy } from "react";
@@ -24,7 +24,7 @@ export const SingleBlog = () => {
 
             </Helmet>
             <section className="singleBlog">
-                {loading ? <Loading /> : (error ? "error" : (
+                {loading ? <Loading /> : (error ? <Error /> : (
                     <>
                         {blog && (
                             <>

@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { Loading } from ".."
+import { Error, Loading } from "@/components"
 import useFetch from "@/hooks/useFetch";
 import "./menu.scss"
 
@@ -16,7 +16,7 @@ export const Menu = () => {
     );
     return (
         <aside className="menuContainer">
-            {loading ? <Loading /> : (error ? "error" : (
+            {loading ? <Loading /> : (error ? <Error /> : (
                 <>   <h2 className="subtitle">{"What's hot"}</h2>
                     <h1 className="title">Most Popular</h1>
                     <LazyMenuPost withImage={false} blogs={popularBlogs} />

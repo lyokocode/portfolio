@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import useFetch from "@/hooks/useFetch";
-import { Loading } from "@/components";
+import { Error, Loading } from "@/components";
 
 export const MenuCategories = () => {
 
@@ -11,7 +11,7 @@ export const MenuCategories = () => {
 
     return (
         <div className="categoryList">
-            {loading ? <Loading /> : (error ? "error" : (
+            {loading ? <Loading /> : (error ? <Error /> : (
                 <>
                     {categories && categories.map(category => (
                         <Link

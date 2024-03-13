@@ -1,5 +1,5 @@
 import useFetch from "@/hooks/useFetch";
-import { Project, Loading } from "@/components"
+import { Project, Loading, Error } from "@/components"
 import "./projectList.scss"
 
 export const ProjectList = () => {
@@ -11,7 +11,7 @@ export const ProjectList = () => {
         <div className="projectList">
             <h2 className="projectTitle">Recent Projects</h2>
             {
-                loading ? <Loading /> : (error ? "error" : (
+                loading ? <Loading /> : (error ? <Error /> : (
                     <>
                         {projects && (
                             projects.map(project => (
