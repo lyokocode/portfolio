@@ -4,6 +4,7 @@ import useFetch from "@/hooks/useFetch"
 import "./cardList.scss"
 import { useSearchParams } from "react-router-dom";
 import { usePagination } from "@/utils/usePagination";
+import { useDebounce } from "use-debounce";
 
 const LazyCard = lazy(() => import('@/components').then(module => ({ default: module.Card })));
 
@@ -14,6 +15,7 @@ export const CardList = () => {
     const { page, pageSize, totalPages, handlePageChange } = usePagination(2, count)
 
     const [searchQuery, setSearchQuery] = useState('');
+    const [debouncedSearchQuery] = useDebounce(searchQuery, 1000);
 
     let url;
     if (!searchParams.toString().includes('page')) {
@@ -23,11 +25,12 @@ export const CardList = () => {
     } else {
         url = `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs?fields=title,description,image,slug,createdAt&${searchParams.toString()}`;
     }
-    if (searchQuery.length > 2) {
-        url += `&searchQuery=${searchQuery}`;
+    if (debouncedSearchQuery.length) { // debouncedSearchQuery'yi kullan
+        url += `&searchQuery=${debouncedSearchQuery}`;
     }
     const { data, loading, error } = useFetch(url);
-    //use debunce 
+    console.log(debouncedSearchQuery)
+
     return (
         <div className="cardList">
             <div className="header">
@@ -37,7 +40,9 @@ export const CardList = () => {
                     placeholder="search..."
                     className="blogInput"
                     value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
+                    onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                    }}
                 />
 
             </div>

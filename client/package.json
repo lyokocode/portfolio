@@ -28,6 +28,7 @@
     "react-router-dom": "^6.16.0",
     "react-syntax-highlighter": "^15.5.0",
     "sass": "^1.68.0",
+    "use-debounce": "^10.0.0",
     "vite-plugin-fs": "^1.0.0-beta.6",
     "vite-plugin-ssr": "^0.4.142"
   },
