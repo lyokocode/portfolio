@@ -23,7 +23,6 @@ export const CardList = () => {
     const url = generateUrl(baseUrl, searchParams, page, pageSize, debouncedSearchQuery);
 
     const { data, loading, error } = useFetch(url);
-
     return (
         <div className="cardList">
             <div className="header">
