@@ -1,11 +1,14 @@
 import express from "express";
-import { createBlog, deleteBlog, getAllBlogs, getBlog, getEditorsPickBlogs, getPopularBlogs, updateBlog } from "../controllers/Blog.js"
+import { blogCount, createBlog, deleteBlog, getAllBlogs, getBlog, getEditorsPickBlogs, getPopularBlogs, updateBlog } from "../controllers/Blog.js"
 import { verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router()
 
 // GET ALL BLOGS
 router.get("/", getAllBlogs)
+
+// BLOG COUNT
+router.get("/count", blogCount)
 
 // GET BLOG
 router.get("/blog", getBlog)

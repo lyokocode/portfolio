@@ -1,7 +1,7 @@
 import "./pagination.scss";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
-export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+export const Pagination = ({ currentPage, onPageChange, totalPages }) => {
 
 
     return (
@@ -12,14 +12,16 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 style={{ backgroundColor: currentPage === 1 ? "gray" : "" }}
             >
                 <GrPrevious />
-                Önceki
+                Prev
             </button>
-            <span>mevcut sayfa: {currentPage}</span>
+            <span> {currentPage} / {totalPages}</span>
             <button className="button next"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
+                style={{ backgroundColor: currentPage === totalPages ? "gray" : "" }}
+
             >
-                Sonraki
+                Next
                 <GrNext />
             </button>
         </div>

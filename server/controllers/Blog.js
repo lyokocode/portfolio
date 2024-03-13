@@ -3,17 +3,26 @@ import { createError } from "../utils/error.js";
 import { storageClient } from "../database/supabase.js"
 import { User } from "../models/User.js";
 import { Category } from "../models/Category.js";
-
+import { Op } from 'sequelize'
 // GET ALL BLOGS
 export const getAllBlogs = async (req, res, next) => {
 
-    const { categoryIds, page, pageSize } = req.query
+    const { categoryIds, page, pageSize, searchQuery } = req.query
+
     const offset = (page - 1) * pageSize;
 
     const selectedFields = req.query.fields ? req.query.fields.split(',') : null;
 
     try {
         let blogs;
+
+        const whereClause = searchQuery ? { // Eğer searchQuery mevcutsa where koşulunu oluştur
+            [Op.or]: [
+                { title: { [Op.iLike]: `%${searchQuery}%` } },
+                { description: { [Op.iLike]: `%${searchQuery}%` } }
+            ]
+        } : {};
+
         if (categoryIds) {
             const categoryIdsArray = categoryIds.split(',').map(id => parseInt(id.trim()));
             blogs = await Blog.findAll({
@@ -29,6 +38,7 @@ export const getAllBlogs = async (req, res, next) => {
                         where: { id: categoryIdsArray }
                     },
                 ],
+                where: whereClause, // Oluşturulan where koşulunu kullan
                 order: [['createdAt', 'DESC']],
                 offset,
                 limit: pageSize,
@@ -46,6 +56,7 @@ export const getAllBlogs = async (req, res, next) => {
                         attributes: ['name', 'id'],
                     },
                 ],
+                where: whereClause, // Oluşturulan where koşulunu kullan
                 order: [['createdAt', 'DESC']],
                 offset,
                 limit: pageSize,
@@ -58,6 +69,18 @@ export const getAllBlogs = async (req, res, next) => {
     }
 }
 
+
+// BLOG COUNT
+export const blogCount = async (req, res, next) => {
+
+    try {
+        const blogs = await Blog.count()
+
+        res.status(200).json(blogs)
+    } catch (err) {
+        next(err)
+    }
+}
 // GET Blog
 export const getBlog = async (req, res, next) => {
     const selectedFields = req.query.fields ? req.query.fields.split(',') : null;

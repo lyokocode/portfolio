@@ -1,43 +1,46 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Loading, Pagination } from "@/components"
 import useFetch from "@/hooks/useFetch"
 import "./cardList.scss"
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { usePagination } from "@/utils/usePagination";
 
-const LazyCard = lazy(() => import('../../components').then(module => ({ default: module.Card })));
+const LazyCard = lazy(() => import('@/components').then(module => ({ default: module.Card })));
 
 export const CardList = () => {
-    const navigate = useNavigate();
+    const { data: count } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/count`);
     const [searchParams] = useSearchParams();
 
-    // Varsayılan sayfa numarası ve sayfa boyutu
-    const defaultPage = 1;
-    const defaultPageSize = 4;
+    const { page, pageSize, totalPages, handlePageChange } = usePagination(2, count)
 
-    // URL'den sayfa numarasını ve sayfa boyutunu alın
-    const page = parseInt(searchParams.get('page')) || defaultPage;
-    const pageSize = parseInt(searchParams.get('pageSize')) || defaultPageSize;
+    const [searchQuery, setSearchQuery] = useState('');
 
     let url;
     if (!searchParams.toString().includes('page')) {
-        searchParams.set('page', defaultPage);
-        searchParams.set('pageSize', defaultPageSize);
+        searchParams.set('page', page);
+        searchParams.set('pageSize', pageSize);
         url = `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs?fields=title,description,image,slug,createdAt&${searchParams.toString()}`;
     } else {
         url = `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs?fields=title,description,image,slug,createdAt&${searchParams.toString()}`;
     }
-
+    if (searchQuery.length > 2) {
+        url += `&searchQuery=${searchQuery}`;
+    }
     const { data, loading, error } = useFetch(url);
-
-    const handlePageChange = (newPage) => {
-        searchParams.set('page', newPage);
-        searchParams.set('pageSize', pageSize);
-        navigate(`?${searchParams.toString()}`);
-    };
-
+    //use debunce 
     return (
         <div className="cardList">
-            <h1 className="cardTitle">Recent Post</h1>
+            <div className="header">
+                <h1 className="cardTitle">Recent Post</h1>
+                <input
+                    type="text"
+                    placeholder="search..."
+                    className="blogInput"
+                    value={searchQuery}
+                    onChange={e => setSearchQuery(e.target.value)}
+                />
+
+            </div>
             {loading ? <Loading /> : (error ? "error" : (
                 <>
                     {data && data.map(blog => (
@@ -51,6 +54,7 @@ export const CardList = () => {
             <Pagination
                 currentPage={page}
                 onPageChange={handlePageChange}
+                totalPages={totalPages}
             />
         </div>
     );
