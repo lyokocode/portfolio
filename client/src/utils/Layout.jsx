@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet";
 import { Footer, Menu, Navbar } from "@/components"
 import "@/index.scss"
 import { useSelector } from "react-redux";
-const Layout = () => {
+
+export const Layout = () => {
 
     const darkMode = useSelector((state) => state.theme.dark);
     return (
@@ -27,5 +28,3 @@ const Layout = () => {
         </div>
     )
 }
-
-export default Layout

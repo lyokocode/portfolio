@@ -1,6 +1,10 @@
+import useFetch from '@/hooks/useFetch';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-export const usePagination = (defaultPageSize, count) => {
+export const usePagination = (defaultPageSize, apiUrl) => {
+
+    const { data: count } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/${apiUrl}`);
+    console.log(count)
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 

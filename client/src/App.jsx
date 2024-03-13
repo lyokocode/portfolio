@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Blogs, Home, NotFound, Projects, SingleBlog } from '@/pages'
-import Layout from '@/utils/Layout'
+import { Layout } from '@/utils'
 
 function App() {
 

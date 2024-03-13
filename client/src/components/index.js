@@ -32,5 +32,6 @@ export { Footer } from "./footer"
 
 
 // handler
+export { SearchBar } from "./searchBar"
 export { Loading } from "./loading"
 export { Pagination } from "./pagination"
