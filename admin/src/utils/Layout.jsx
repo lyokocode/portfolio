@@ -7,7 +7,7 @@ import useConnection from "~/hooks/useConnection";
 import useBattery from "~/hooks/useBattery";
 
 
-const Layout = () => {
+export const Layout = () => {
 
     const appearance = useAppearance()
     const { Offline } = useConnection()
@@ -58,5 +58,3 @@ const Layout = () => {
         </main>
     )
 }
-
-export default Layout

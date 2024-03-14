@@ -16,7 +16,7 @@ export { UpdateProject } from "./UpdateProject"
 export { UserList } from "./UserList"
 export { UpdateUser } from "./UpdateUser"
 
-
+export { InputField } from './InputField'
 export { Code } from "./Code"
 export { Error } from "./Error"
 export { Loading } from "./Loading"

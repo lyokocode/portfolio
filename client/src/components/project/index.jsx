@@ -1,6 +1,7 @@
 import "./project.scss"
 import { AiFillGithub, AiOutlineLink } from "react-icons/ai"
 import PropTypes from 'prop-types';
+import moment from "moment";
 
 export const Project = ({ project }) => {
 
@@ -14,7 +15,7 @@ export const Project = ({ project }) => {
             </div>
             <div className="textContainer">
                 <div className="detail">
-                    <span className="date">{project.date}</span>
+                    <span className="date">{moment(project?.createdAt).fromNow()}</span>
                     -
                     <ul className="category">
                         {project.categories ? project?.categories?.map((cat, i) => (
@@ -47,6 +48,7 @@ Project.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         githubLink: PropTypes.string,
-        projectLink: PropTypes.string
+        projectLink: PropTypes.string,
+        createdAt: PropTypes.date
     }).isRequired
 };

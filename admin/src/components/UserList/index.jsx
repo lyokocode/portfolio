@@ -12,7 +12,7 @@ export const UserList = ({ user, reFetch }) => {
 
     const deleteUser = async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${user.id}`);
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${user.id}`, { withCredentials: true });
             reFetch()
         } catch (error) {
             serError(true)

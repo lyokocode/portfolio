@@ -1,47 +1,30 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import PropTypes from 'prop-types';
-import { MdDriveFolderUpload } from "react-icons/md"
 import "./new.scss"
+import { handleInputChange } from "~/utils";
+import { handleSubmitForm } from "~/utils/formUtils";
+import { InputField } from "~/components";
 
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
     const [imgSrc, setImgSrc] = useState("");
-
+    console.log(formData)
     const navigate = useNavigate()
     const { auth } = useSelector(state => state.auth)
     const UserId = auth?.id
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const form = new FormData();
-            form.append('UserId', UserId);
-
-            for (const key in formData) {
-                form.append(key, formData[key]);
-            }
-            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/${api}`, form, { withCredentials: true });
-            navigate("..")
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        handleSubmitForm(formData, UserId, api, navigate);
     };
 
     const handleChange = (e) => {
-        const { name, type, checked, files, value } = e.target;
-        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
-        if (type === 'file' && files[0]) {
-            setImgSrc(URL.createObjectURL(files[0])); // Dosyayı görüntülemek için imgSrc state'ini güncelle
-        }
-        setFormData({
-            ...formData,
-            [name]: newValue,
-        });
+        handleInputChange(e, formData, setFormData, setImgSrc);
     };
+
 
     return (
         <div className="newPage">
@@ -56,69 +39,7 @@ export const New = ({ title, inputs, api }) => {
                 <div className="right">
                     <form onSubmit={handleSubmit}>
                         {inputs.map(input => (
-                            <div key={input.id} className="formInput">
-                                {input.type === "textarea" ? (
-                                    <>
-                                        <label >
-                                            {input.label}
-                                        </label>
-                                        <textarea
-                                            placeholder={input.placeholder}
-                                            name={input.model}
-                                            onChange={handleChange}
-                                        />
-                                    </>
-                                ) : input.type === "file" ? (
-                                    <div className="formInput">
-                                        <label htmlFor="file" style={{ cursor: "pointer" }}>
-                                            <MdDriveFolderUpload size={35} />
-                                        </label>
-                                        <div className="labelText">
-                                            {input.label}
-                                        </div>
-                                        <input
-                                            type={input.type}
-                                            id={input.type}
-                                            name={input.model}
-                                            onChange={handleChange}
-                                            style={{ display: "none" }}
-                                        />
-                                    </div>
-                                ) : input.type === "select" ? (
-                                    <>
-                                        <label htmlFor={input.model}>
-                                            {input.label}
-                                        </label>
-                                        <select
-                                            name={input.model}
-                                            onChange={handleChange}
-                                            defaultValue="false"
-
-                                        >
-                                            {input.options.map((option, index) => (
-                                                <option
-                                                    key={index}
-                                                    value={option}
-                                                >
-                                                    {option}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </>
-                                ) : (
-                                    <>
-                                        <label >
-                                            {input.label}
-                                        </label>
-                                        <input
-                                            type={input.type}
-                                            placeholder={input.placeholder}
-                                            name={input.model}
-                                            onChange={handleChange}
-                                        />
-                                    </>
-                                )}
-                            </div>
+                            <InputField key={input.id} input={input} onChange={handleChange} />
                         ))}
                         <div className="formInput">
                             <button type="submit" className="sendBtn">Send</button>
@@ -129,7 +50,6 @@ export const New = ({ title, inputs, api }) => {
         </div>
     );
 }
-
 New.propTypes = {
     title: PropTypes.string.isRequired,
     inputs: PropTypes.arrayOf(
@@ -140,12 +60,8 @@ New.propTypes = {
             placeholder: PropTypes.string,
             model: PropTypes.string.isRequired,
             options: PropTypes.arrayOf(PropTypes.string),
+            onChange: PropTypes.func.isRequired, // onChange fonksiyonunu ekliyoruz
         })
     ).isRequired,
     api: PropTypes.string.isRequired,
 };
-
-
-
-
-

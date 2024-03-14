@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Blogs, Home, Login, Projects, Categories, Editor, NotFound, SingleUser, New, NewBlog } from './pages'
-import Layout from './utils/Layout'
-import { PrivateRoutes } from './utils/PrivateRoute'
+import { PrivateRoutes, Layout } from './utils'
 import { Users } from './pages'
 import { categoryInputs, projectInputs, userInputs } from './mockData/formSource'
 

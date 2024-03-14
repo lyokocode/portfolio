@@ -75,50 +75,68 @@ export const categoryInputs = [
     },
 
 ]
+// formSource.js
+
 export const blogInputs = [
     {
         id: 1,
-        label: "Blog Name",
+        label: "Title",
+        model: "title",
         type: "text",
-        placeholder: "React ile Private Route Nasıl Oluşturulur?"
+        placeholder: "Enter title..."
     },
     {
         id: 2,
-        label: "Blog File",
-        type: "file",
-        placeholder: ""
+        label: "Blog Description",
+        model: "description",
+        type: "textarea",
+        placeholder: "Enter blog content..."
     },
     {
         id: 3,
-        label: "Blog Date",
+        label: "File",
+        model: "blog",
+        type: "file",
+        placeholder: "Upload a file..."
+    },
+    {
+        id: 4,
+        label: "Date",
+        model: "date",
         type: "date",
         placeholder: ""
     },
     {
-        id: 4,
-        label: "Is Popular",
-        type: "select",
-        options: ["true", "false"]
-    },
-    {
         id: 5,
-        label: "Blog Description",
-        type: "textarea",
-        placeholder: "Enter description..."
+        label: "Image",
+        model: "image",
+        type: "file",
+        placeholder: "Upload an image..."
     },
+
     {
         id: 6,
-        label: "Editor's Pick?",
+        label: "Is Popular",
+        model: "popular",
         type: "select",
         options: ["true", "false"]
     },
     {
         id: 7,
-        label: "Blog Categories",
-        type: "text",
-        placeholder: ""
+        label: "Category IDs",
+        model: "categoryIds",
+        type: "checkbox",
+        options: [] // Bu alan yeni gönderi oluşturulduğunda doldurulacak.
     },
-]
+    {
+        id: 8,
+        label: "Is Editor's Pick",
+        model: "editorsPick",
+        type: "select",
+        options: ["true", "false"]
+    },
+];
+
 
 
 export const projectInputs = [
