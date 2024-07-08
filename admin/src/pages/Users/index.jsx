@@ -1,6 +1,6 @@
-import { Error, Loading } from "../../components";
-import useFetch from "../../hooks/useFetch";
-import { UserList } from "../../components"
+import { Error, Loading } from "@/components";
+import useFetch from "@/hooks/useFetch";
+import { UserList } from "@/components"
 import "./user.scss"
 import { AiOutlineReload } from "react-icons/ai"
 import { Link } from "react-router-dom"
@@ -11,7 +11,7 @@ export const Users = () => {
     const { auth } = useSelector(state => state.auth)
 
     const { data: users, loading, error, reFetch } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/users`
+        `${import.meta.env.VITE_REACT_BASE_URL}users`, { withCredentials: true }
     );
     return (
         <div className="userPage">
@@ -48,7 +48,7 @@ export const Users = () => {
                                             <th className="center">Actions</th>
                                         </tr>
                                     </thead>
-                                    {users && users.map(user => (
+                                    {users && users?.map(user => (
                                         <UserList key={user.id} user={user} reFetch={reFetch} />
                                     ))}
                                 </table>

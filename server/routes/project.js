@@ -11,9 +11,9 @@ router.get("/", getAllProjects);
 router.get("/project", getProject);
 
 // CREATE NEW PROJECT
-router.post("/", verifyToken, createProject);
+router.post("/", verifyAdmin, createProject);
 
-// CREATE NEW PROJECT
+// DELETE NEW PROJECT
 router.delete("/project", verifyUser, deleteProject);
 
 // CREATE NEW PROJECT

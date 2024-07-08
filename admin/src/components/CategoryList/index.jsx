@@ -1,22 +1,23 @@
 import axios from "axios";
 import "./categoryList.scss"
 import { useState } from "react";
-import { Error, UpdateCategory } from "..";
+import { UpdateCategory } from "@/components";
 import PropTypes from 'prop-types';
+import { toast } from "react-toastify";
 
 export const CategoryList = ({ category, reFetch }) => {
     const { name, image, color, popular, id } = category;
-
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
-
     const deleteBlog = async (id) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${id}`, { withCredentials: true });
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}categories/category?id=${id}`, { withCredentials: true });
             reFetch()
-        } catch (error) {
-            serError(true)
-            setErrorMessage(error?.response?.data?.message)
+            toast.warn("Ctegory deleted!", {
+                position: "bottom-right"
+            });
+        } catch (err) {
+            toast.error(err?.response?.data?.message || err?.response?.data, {
+                position: "bottom-right",
+            });
         }
     };
 
@@ -58,8 +59,6 @@ export const CategoryList = ({ category, reFetch }) => {
                     reFetch={reFetch}
                 />
             )}
-            {error && <Error error={errorMessage} />}
-
         </div>
     )
 }

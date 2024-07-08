@@ -3,15 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import "./new.scss"
-import { handleInputChange } from "~/utils";
-import { handleSubmitForm } from "~/utils/formUtils";
-import { InputField } from "~/components";
+import { handleInputChange } from "@/utils";
+import { handleSubmitForm } from "@/utils/formUtils";
+import { InputField } from "@/components";
 
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
     const [imgSrc, setImgSrc] = useState("");
-    console.log(formData)
     const navigate = useNavigate()
     const { auth } = useSelector(state => state.auth)
     const UserId = auth?.id

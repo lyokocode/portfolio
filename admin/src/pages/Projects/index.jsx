@@ -1,10 +1,10 @@
 import "./project.scss"
-import { Error, Header, Loading, ProjectList } from "../../components"
+import { Header, Loading, ProjectList } from "../../components"
 import useFetch from "../../hooks/useFetch";
 export const Projects = () => {
 
     const { data: projects, loading, error, reFetch } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/projects`
+        `${import.meta.env.VITE_REACT_BASE_URL}projects`
     );
     return (
         <div className="projectPage">
@@ -12,13 +12,13 @@ export const Projects = () => {
 
             <>
                 {
-                    loading ? <Loading /> : (error ? <Error error={error.message} /> : (
+                    loading ? <Loading /> : (
                         <div className="projectWrapper">
                             {projects && projects.map(project => (
                                 <ProjectList key={project?.id} project={project} reFetch={reFetch} />
                             ))}
                         </div>
-                    ))
+                    )
                 }
             </>
         </div>

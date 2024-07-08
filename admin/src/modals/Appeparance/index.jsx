@@ -1,9 +1,9 @@
-import { useAppearance } from "~/store/appearance/hooks"
+import { useAppearance } from "@/store/appearance/hooks"
 import "./appeparance.scss"
 import { MdVerified } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
-import { setBackgroundColor, setColor, setFontSize } from "~/store/appearance/actions"
-import { colors, fontSizes } from "~/mockData/appearence"
+import { setBackgroundColor, setColor, setFontSize } from "@/store/appearance/actions"
+import { colors, fontSizes } from "@/mockData/appearence"
 import { useEffect, useRef, useState } from "react"
 
 const Appeparance = ({ close }) => {

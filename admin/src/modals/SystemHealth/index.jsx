@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import "./systemHealt.scss";
-import useConnection from '~/hooks/useConnection';
+import useConnection from '@/hooks/useConnection';
 import { AiOutlineWifi } from 'react-icons/ai';
 import { BsWifiOff } from 'react-icons/bs';
-import useBattery from '~/hooks/useBattery';
+import useBattery from '@/hooks/useBattery';
 import { BiSolidBatteryCharging } from 'react-icons/bi';
 
 const SystemHealth = ({ close }) => {

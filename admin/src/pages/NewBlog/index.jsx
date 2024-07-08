@@ -3,15 +3,16 @@ import "./newBlog.scss"
 import axios from "axios"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import useFetch from "../../hooks/useFetch"
+import useFetch from "@/hooks/useFetch"
 import { MdDriveFolderUpload } from "react-icons/md"
+import { toast } from "react-toastify"
 
 export const NewBlog = () => {
     const { auth } = useSelector(state => state.auth)
     const navigate = useNavigate()
 
     const { data } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories?fields=id,name`
+        `${import.meta.env.VITE_REACT_BASE_URL}categories?fields=id,name`
     );
 
 
@@ -38,11 +39,18 @@ export const NewBlog = () => {
             formData.append("description", description);
             formData.append("UserId", auth?.id);
 
-            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs`, formData, { withCredentials: true });
+            await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}blogs`, formData, { withCredentials: true });
 
             navigate("/blogs")
-        } catch (error) {
-            console.error("Blog gönderirken hata oluştu:", error);
+
+            toast.success("blog created successful!", {
+                position: "bottom-right"
+            });
+        } catch (err) {
+            toast.error(err?.response?.data?.message, {
+                position: "bottom-right",
+            });
+            console.log(err)
         }
     };
 

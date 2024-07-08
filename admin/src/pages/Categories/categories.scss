@@ -1,13 +1,12 @@
 .categoriesPage {
     position: relative;
-    height: calc(100vh - 81.5px);
 
     .categoryWrapper {
         min-height: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 1.5rem;
         padding: 2rem;
     }

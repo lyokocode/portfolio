@@ -23,7 +23,7 @@ export const handleSubmitForm = async (formData, UserId, api, navigate) => {
             form.append(key, formData[key]);
         }
 
-        await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}/${api}`, form, { withCredentials: true });
+        await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}${api}`, form, { withCredentials: true });
         navigate("/users");
     } catch (error) {
         console.error('Error:', error);

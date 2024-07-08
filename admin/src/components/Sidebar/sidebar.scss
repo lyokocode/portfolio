@@ -2,7 +2,10 @@
     flex: 1;
     border-right: 0.05rem solid var(--color-base);
     z-index: 100;
-
+    position: sticky;
+    left: 0;
+    top: 0;
+    height: 100vh;
 
     .top {
         height: 5rem;

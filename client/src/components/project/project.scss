@@ -25,6 +25,9 @@
             display: flex;
             width: 100%;
 
+            @media screen and (max-width:1024px) {
+                object-fit: cover;
+            }
         }
     }
 
@@ -41,6 +44,7 @@
 
             .date {
                 color: gray;
+                text-wrap: nowrap;
             }
 
             .category {
@@ -50,6 +54,9 @@
                 display: flex;
                 gap: 10px;
                 list-style-type: none;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
             }
         }
 
