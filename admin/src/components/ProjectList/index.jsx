@@ -11,7 +11,7 @@ export const ProjectList = ({ project, reFetch }) => {
 
     const deleteProject = async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/projects/project?id=${project.id}`);
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}projects/project?id=${project.id}`);
             reFetch()
         } catch (error) {
             serError(true)

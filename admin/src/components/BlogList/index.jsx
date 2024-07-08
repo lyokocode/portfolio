@@ -11,7 +11,7 @@ export const BlogList = ({ blog, reFetch }) => {
 
     const deleteBlog = async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blog?.id}`);
+            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}blogs/blog?id=${blog?.id}`);
             reFetch()
         } catch (error) {
             serError(true)
