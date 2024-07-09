@@ -23,7 +23,7 @@ router.get('/editorpick', getEditorsPickBlogs);
 router.post("/", verifyToken, createBlog)
 
 // DELETE BLOG
-router.delete("/blog", verifyUser, deleteBlog)
+router.delete("/blog", deleteBlog)
 
 // UPDATE BLOG
 router.put("/blog", verifyUser, updateBlog)

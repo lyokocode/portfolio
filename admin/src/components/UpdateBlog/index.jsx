@@ -12,7 +12,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
     const [formData, setFormData] = useState({});
 
     const { data } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/categories?fields=id,name`
+        `${import.meta.env.VITE_REACT_BASE_URL}categories?fields=id,name`
     );
     console.log(formData)
     const handleSubmit = async (e) => {
@@ -32,7 +32,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
             }
 
             await axios.put(
-                `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?id=${blogData?.id}`,
+                `${import.meta.env.VITE_REACT_BASE_URL}blogs/blog?id=${blogData?.id}`,
                 form,
                 { withCredentials: true }
             );
