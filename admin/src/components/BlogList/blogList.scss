@@ -12,6 +12,7 @@
     max-width: 40rem;
     height: 30rem;
     background-color: var(--background-secondary);
+    color: var(--color-base-secondary);
 
     img.blogImage {
         width: 70%;
@@ -37,15 +38,14 @@
             font-size: 1.6rem;
             padding: 0.4rem 0.8rem;
             border-radius: 0.4rem;
+            color: var(--color-base);
 
             &.deleteBtn {
                 background-color: #ef4444;
-                color: #b91c1c;
             }
 
             &.updateBtn {
                 background-color: #0ea5e9;
-                color: #0369a1;
             }
         }
     }

@@ -11,6 +11,7 @@ import cors from "cors"
 import fileUpload from 'express-fileupload';
 
 const app = express()
+
 // middlewares
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true);
@@ -25,9 +26,10 @@ dotenv.config()
 app.use(express.json());
 app.use(cookieParser())
 
-// CORS ayarları
+// CORS option
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'https://admin-aelita.vercel.app'],
+    origin: ['http://localhost:5173', 'http://localhost:5174', "https://admin-aelita.vercel.app"],
+    methods: ['GET', 'POST', "DELETE", "PUT"],
     credentials: true
 }));
 

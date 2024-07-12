@@ -30,12 +30,6 @@ export const Login = () => {
                     position: "bottom-right"
                 });
                 navigate("/")
-            } else if (auth && !auth.isAdmin) {
-                await postData(`auth/logout/${auth?.id}`, {}, { withCredentials: true });
-                dispatch(logout())
-                toast.error("Bu sayfaya sadece admin erişebilir", {
-                    position: "bottom-right"
-                });
             }
 
         } catch (err) {

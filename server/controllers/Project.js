@@ -5,7 +5,9 @@ import { storageClient } from "../database/supabase.js";
 // GET ALL PROJECTS
 export const getAllProjects = async (req, res, next) => {
     try {
-        const projects = await Project.findAll();
+        const projects = await Project.findAll({
+            order: [['createdAt', 'DESC']],
+        });
         res.status(200).json(projects);
     } catch (err) {
         next(err);

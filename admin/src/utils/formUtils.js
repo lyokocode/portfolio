@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 export const handleInputChange = (e, formData, setFormData, setImgSrc) => {
@@ -24,8 +25,11 @@ export const handleSubmitForm = async (formData, UserId, api, navigate) => {
         }
 
         await axios.post(`${import.meta.env.VITE_REACT_BASE_URL}${api}`, form, { withCredentials: true });
-        navigate("/users");
-    } catch (error) {
-        console.error('Error:', error);
+        navigate("..");
+    } catch (err) {
+        toast.error(err?.response?.data?.message, {
+            position: "bottom-right",
+        });
+        console.error('Error:', err);
     }
 };
