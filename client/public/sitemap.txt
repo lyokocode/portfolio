@@ -1,3 +1,12 @@
 https://aelita.vercel.app
 https://aelita.vercel.app/blogs
 https://aelita.vercel.app/projects
+https://aelita.vercel.app/blogs/javascript'in-gucu:-node.js-ile-sunucu-tarafli-uygulamalar
+https://aelita.vercel.app/blogs/postgresql:-esnek-veri-modelleri-ve-genis-veri-turu-destegi
+https://aelita.vercel.app/blogs/express.js-ile-web-gelistirme
+https://aelita.vercel.app/blogs/kod-dunyasinda-karar-ani:-javascript'te-kosullu-programlama
+https://aelita.vercel.app/blogs/array-metodlari-ve-modern-javascript-uygulamalarinda-kullanimi
+https://aelita.vercel.app/blogs/react-projesinde-veri-alimini-optimize-etmek:-custom-hook-kullanimi
+https://aelita.vercel.app/blogs/javascript-orm'leri:-sequelize'in-onemi-ve-kullanimi
+https://aelita.vercel.app/blogs/sequelize-vs.-prisma:-hangisini-secmeli-ve-ne-zaman
+https://aelita.vercel.app/blogs/react-native'de-tailwind-css-ile-stillendirme:-nativewind-kullanimi
