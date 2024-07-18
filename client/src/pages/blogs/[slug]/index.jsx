@@ -20,10 +20,7 @@ export const SingleBlog = () => {
                 <meta charSet="utf-8" />
                 <title>{blog?.title}</title>
                 <meta name="description" content={blog?.description} />
-
                 <meta name="keywords" content="JavaScript, React, NextJS, PostgreSQL, Sequelize, Prisma, NodeJS, Express.js, Css, Sass, TailwindCss, " />
-                <link rel="canonical" href="https://aelita.vercel.app/blogs" />
-
             </Helmet>
             <section className="singleBlog">
                 {loading ? <Loading /> : (error ? <Error /> : (

@@ -11,8 +11,8 @@ export const Users = () => {
     const { auth } = useSelector(state => state.auth)
 
     const { data: users, loading, error, reFetch } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}users`, { withCredentials: true }
-    );
+        `${import.meta.env.VITE_REACT_BASE_URL}users`);
+
     return (
         <div className="userPage">
             <header className="pageHeader">
@@ -34,7 +34,7 @@ export const Users = () => {
             </header>
             <div className="container">
                 {
-                    loading ? <Loading /> : (error ? <Error error={error?.response?.data?.message} /> : (
+                    loading ? <Loading /> : (
                         <div className="userWrapper">
                             <div className="content">
                                 <table className="table">
@@ -54,7 +54,7 @@ export const Users = () => {
                                 </table>
                             </div>
                         </div>
-                    ))
+                    )
                 }
             </div>
         </div>

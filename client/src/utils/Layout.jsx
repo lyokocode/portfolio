@@ -13,7 +13,6 @@ export const Layout = () => {
                 <meta charSet="utf-8" />
                 <title>Aelita || Full Stack Developer</title>
                 <meta name="keywords" content="JavaScript, React, NextJS, PostgreSQL, Sequelize, Prisma, NodeJS, Express.js, Css, Sass, TailwindCss, " />
-                <link rel="canonical" href="https://aelita.vercel.app/blogs" />
                 <link rel="icon" type="image/svg+xml" href="/logo.png" />
             </Helmet>
 

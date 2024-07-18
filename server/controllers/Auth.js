@@ -71,7 +71,8 @@ export const login = async (req, res, next) => {
         return res
             .cookie("access_token", token, {
                 secure: true,
-                httpOnly: true
+                httpOnly: true,
+                sameSite: 'none'
             })
             .status(200)
             .json({ ...info });
@@ -80,6 +81,7 @@ export const login = async (req, res, next) => {
         next(err)
     }
 }
+
 
 // LOGOUT
 export const logout = async (req, res, next) => {
