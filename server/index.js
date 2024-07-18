@@ -26,13 +26,12 @@ dotenv.config()
 app.use(express.json());
 app.use(cookieParser())
 
-// CORS option
+// CORS options
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', "https://admin-aelita.vercel.app"],
-    methods: ['GET', 'POST', "DELETE", "PUT"],
+    origin: ['http://localhost:5173', 'admin-aelita.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', "DELETE"],
     credentials: true
 }));
-
 
 
 // Routes
@@ -61,7 +60,7 @@ app.use((err, req, res, next) => {
 async function main() {
     try {
         await sequelize.sync(
-            // { force: true }
+            // { alter: true }
         );
         console.log("db connection is successfull")
         app.listen(process.env.PORT, () => console.log(`api is running on port: ${process.env.PORT}`))

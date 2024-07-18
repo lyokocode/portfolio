@@ -12,13 +12,15 @@ export const SingleBlog = () => {
 
     const { slug } = useParams()
     const { data: blog, loading, error } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}&fields=image,title,blog,createdAt`
+        `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}&fields=image,description,title,blog,createdAt`
     );
     return (
         <>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>{blog?.title}</title>
+                <meta name="description" content={blog?.description} />
+
                 <meta name="keywords" content="JavaScript, React, NextJS, PostgreSQL, Sequelize, Prisma, NodeJS, Express.js, Css, Sass, TailwindCss, " />
                 <link rel="canonical" href="https://aelita.vercel.app/blogs" />
 
