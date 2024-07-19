@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateProject.scss";
+import { toast } from "react-toastify";
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
@@ -18,12 +19,16 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}projects/project?id=${projectData?.id}`, form);
-
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}projects/project?id=${projectData?.id}`, form, { withCredentials: true });
+            toast.success("project updated successful!", {
+                position: "bottom-right"
+            });
             reFetch()
             onClose();
-        } catch (error) {
-            console.log(error)
+        } catch (err) {
+            toast.error(err?.response?.data?.message || err?.response?.data, {
+                position: "bottom-right",
+            });
         }
 
     }

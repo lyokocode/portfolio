@@ -18,7 +18,7 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/categories/category?id=${categoryData?.id}`, form, { withCredentials: true });
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}categories/category?id=${categoryData?.id}`, form, { withCredentials: true });
 
             reFetch()
             onClose();

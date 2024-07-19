@@ -132,7 +132,9 @@ export const updateProject = async (req, res, next) => {
             project.image = newImageData.path;
         }
 
-        project.categories = updatedFields.categories.split(',').map((category) => category.trim());
+        if (updatedFields.categories) {
+            project.categories = updatedFields.categories.split(',').map((category) => category.trim());
+        }
 
 
         Object.keys(updatedFields).forEach((field) => {
