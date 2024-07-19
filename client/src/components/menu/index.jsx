@@ -11,7 +11,7 @@ export const Menu = () => {
     const { data: popularBlogs, loading, error } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/popular?fields=title,createdAt,id,slug`
     );
-    const { data: editorPicks } = useFetch(
+    const { data: editorPicks, loading: editorLoading, error: editorError } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/editorpick`
     );
     return (
