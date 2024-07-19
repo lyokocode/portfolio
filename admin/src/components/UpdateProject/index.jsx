@@ -18,7 +18,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/projects/project?id=${projectData?.id}`, form);
+            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}projects/project?id=${projectData?.id}`, form);
 
             reFetch()
             onClose();
