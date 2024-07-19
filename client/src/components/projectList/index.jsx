@@ -7,6 +7,18 @@ export const ProjectList = () => {
         `${import.meta.env.VITE_REACT_BASE_URL}/api/projects`
     );
 
+    // JSON-LD Schema.org verisi
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": projects ? projects.map((project, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": project.title,
+            "url": `${import.meta.env.VITE_REACT_BASE_URL}/projects/${project.id}`
+        })) : []
+    };
+
     return (
         <div className="projectList">
             <h2 className="projectTitle">Recent Projects</h2>
@@ -21,6 +33,9 @@ export const ProjectList = () => {
                     </>
                 ))
             }
+            <script type="application/ld+json">
+                {JSON.stringify(schemaData)}
+            </script>
         </div>
     )
 }

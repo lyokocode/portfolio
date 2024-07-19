@@ -42,13 +42,12 @@ export const Project = ({ project }) => {
 
 Project.propTypes = {
     project: PropTypes.shape({
-        date: PropTypes.string,
         categories: PropTypes.arrayOf(PropTypes.string),
         image: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string,
         githubLink: PropTypes.string,
         projectLink: PropTypes.string,
-        createdAt: PropTypes.date
+        createdAt: PropTypes.string
     }).isRequired
 };

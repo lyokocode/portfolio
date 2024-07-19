@@ -14,6 +14,23 @@ export const SingleBlog = () => {
     const { data: blog, loading, error } = useFetch(
         `${import.meta.env.VITE_REACT_BASE_URL}/api/blogs/blog?slug=${slug}&fields=image,description,title,blog,createdAt`
     );
+    const canonicalUrl = `https://aelita.vercel.app/blog/${slug}`;
+
+
+    const schemaData = blog ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": blog.title,
+        "author": {
+            "@type": "Person",
+            "name": blog.User?.userName || "Anonymous"
+        },
+        "datePublished": blog.createdAt,
+        "description": blog.description,
+        "image": `${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/images/${blog.image}`,
+        "articleBody": blog.blog
+    } : {};
+
     return (
         <>
             <Helmet>
@@ -21,7 +38,16 @@ export const SingleBlog = () => {
                 <title>{blog?.title}</title>
                 <meta name="description" content={blog?.description} />
                 <meta name="keywords" content="JavaScript, React, NextJS, PostgreSQL, Sequelize, Prisma, NodeJS, Express.js, Css, Sass, TailwindCss, " />
+                <meta name="robots" content="index, follow" />
+                <link rel="canonical" href={canonicalUrl} />
+
+                {blog && (
+                    <script type="application/ld+json">
+                        {JSON.stringify(schemaData)}
+                    </script>
+                )}
             </Helmet>
+
             <section className="singleBlog">
                 {loading ? <Loading /> : (error ? <Error /> : (
                     <>
