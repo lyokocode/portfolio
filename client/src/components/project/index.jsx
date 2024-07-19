@@ -28,10 +28,10 @@ export const Project = ({ project }) => {
                 <div className="linkContainer">
                     <div className="links">
                         <AiFillGithub size={20} />
-                        <a href={project.githubLink} target="_blank" rel="noreferrer" className="link">github</a>
+                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="link">github</a>
                     </div>
                     <div className="links">
-                        <a href={project.projectLink} target="_blank" rel="noreferrer" className="link">project</a>
+                        <a href={project.projectLink} target="_blank" rel="noopener noreferrer" className="link">project</a>
                         <AiOutlineLink size={20} />
                     </div>
                 </div>

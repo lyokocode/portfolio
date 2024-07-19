@@ -14,16 +14,16 @@ export const Footer = () => {
                     {"Thank you for visiting my blog page. I'm a Full Stack Developer, working on PERN stack projects. I take pride in offering content about the latest technology trends and innovations in the software world. I'm here to provide you with the best experience. If you have any questions or suggestions, please don't hesitate to contact me. Keep following and stay updated on the world of software"}
                 </p>
                 <div className="icons">
-                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">
                         <AiFillLinkedin size={24} />
                     </a>
-                    <a target="_blank" rel="noreferrer" href="https://github.com/lyokocode">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/lyokocode">
                         <AiOutlineGithub size={24} />
                     </a>
-                    <a target="_blank" rel="noreferrer" href="https://twitter.com/Mustafausakli">
+                    <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/Mustafausakli">
                         <AiOutlineTwitter size={24} />
                     </a>
-                    <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCEbXfmk9rhjE0qeoc3ykDDg">
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCEbXfmk9rhjE0qeoc3ykDDg">
                         <FaYoutube size={24} />
                     </a>
                 </div>
@@ -44,10 +44,10 @@ export const Footer = () => {
                 </div>
                 <div className="list">
                     <span className="listTitle">Social</span>
-                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">linkedin</a>
-                    <a target="_blank" rel="noreferrer" href="https://github.com/lyokocode" to="/">github</a>
-                    <a target="_blank" rel="noreferrer" href="https://twitter.com/Mustafausakli">twitter</a>
-                    <a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UCEbXfmk9rhjE0qeoc3ykDDg">youtube</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/mustafa-uşaklı-12887521b/">linkedin</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/lyokocode" to="/">github</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/Mustafausakli">twitter</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/channel/UCEbXfmk9rhjE0qeoc3ykDDg">youtube</a>
                 </div>
             </div>
         </footer>
