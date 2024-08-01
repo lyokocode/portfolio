@@ -2,40 +2,15 @@ import { useState } from "react"
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
-import useFetch from "../../hooks/useFetch"
+import useFetch from "@/hooks/useFetch"
 import "./updateBlog.scss"
 import useUpdate from "@/hooks/useUpdate";
+import { handleSubmit } from "@/middleware/formHandlers";
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
-    const { updateData } = useUpdate()
-
+    const { updateData } = useUpdate();
     const [formData, setFormData] = useState({});
     const { data } = useFetch(`categories?fields=id,name`);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const form = new FormData();
-
-            for (const key in formData) {
-                if (Array.isArray(formData[key])) {
-                    formData[key].forEach((file, index) => {
-                        form.append(`${key}_${index}`, file);
-                    });
-                } else {
-                    form.append(key, formData[key]);
-                }
-            }
-
-            await updateData(`blogs/blog?id=${blogData?.id}`, form);
-
-            reFetch();
-            onClose();
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
     const handleChange = (e) => {
         const { name, type, checked, files, value } = e.target;
@@ -53,6 +28,11 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
             ...prevFormData,
             [name]: newValue,
         }));
+    };
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        await handleSubmit(formData, updateData, `blogs/blog?id=${blogData?.id}`, onClose, reFetch);
     };
 
     return (
@@ -83,7 +63,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
                     {/* form container */}
                     <div className="right">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={onSubmit}>
 
                             {/* blog file */}
                             <div className="formInput">

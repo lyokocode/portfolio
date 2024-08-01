@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom"
 import "./singleUser.scss"
 import { useState } from "react"
 import { AiOutlineUser, AiOutlineSetting } from "react-icons/ai"
-import { Loading, UpdateUser } from "../../components"
-import useFetch from "../../hooks/useFetch"
+import { Loading } from "@/components"
+import { UpdateUser } from "@/modals/Update/UpdateUser"
+import useFetch from "@/hooks/useFetch"
 
 export const SingleUser = () => {
     const { id } = useParams()

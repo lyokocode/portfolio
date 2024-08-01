@@ -1,6 +1,6 @@
-import "./categories.scss"
 import useFetch from "@/hooks/useFetch"
 import { CategoryList, Header, Loading } from "@/components"
+import "./categories.scss"
 
 export const Categories = () => {
 
@@ -9,6 +9,7 @@ export const Categories = () => {
     return (
         <section className="categoriesPage">
             <Header title="category" reFetch={reFetch} />
+
             <>
                 {
                     loading ? <Loading /> : (
@@ -20,6 +21,7 @@ export const Categories = () => {
                     )
                 }
             </>
+
         </section>
     )
 }

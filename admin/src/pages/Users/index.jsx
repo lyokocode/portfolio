@@ -1,6 +1,5 @@
-import { Header, Loading } from "@/components";
+import { Header, Loading, UserList } from "@/components";
 import useFetch from "@/hooks/useFetch";
-import { UserList } from "@/components"
 import "./user.scss"
 
 export const Users = () => {

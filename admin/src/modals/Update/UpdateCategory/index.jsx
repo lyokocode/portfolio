@@ -4,31 +4,17 @@ import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateCategory.scss";
 import useUpdate from "@/hooks/useUpdate";
+import { handleSubmit } from "@/middleware/formHandlers";
 
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
     const [formData, setFormData] = useState({});
     const { updateData } = useUpdate()
 
-
-    const handleSubmit = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const form = new FormData();
-            for (const key in formData) {
-                form.append(key, formData[key]);
-            }
-            await updateData(`categories/category?id=${categoryData?.id}`, form);
-
-            reFetch()
-            onClose();
-
-        } catch (error) {
-            console.log(error)
-        }
-
-    }
+        await handleSubmit(formData, updateData, `categories/category?id=${categoryData?.id}`, onClose, reFetch);
+    };
 
     const handleChange = (e) => {
         const { name, type, checked, files, value } = e.target;
@@ -63,7 +49,7 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
                     </div>
                     <div className="right">
                         <form
-                            onSubmit={handleSubmit}
+                            onSubmit={onSubmit}
                             className="updateCategoryForm"
                         >
                             {/* category name */}

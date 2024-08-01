@@ -3,36 +3,18 @@ import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateProject.scss";
-import { toast } from "react-toastify";
 import useUpdate from "@/hooks/useUpdate";
+import { handleSubmit } from "@/middleware/formHandlers";
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
     const [formData, setFormData] = useState({});
     const { updateData } = useUpdate()
 
-    const handleSubmit = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-
-        try {
-            const form = new FormData();
-
-            for (const key in formData) {
-                form.append(key, formData[key]);
-            }
-            await updateData(`projects/project?id=${projectData?.id}`, form);
-            toast.success("project updated successful!", {
-                position: "bottom-right"
-            });
-            reFetch()
-            onClose();
-        } catch (err) {
-            toast.error(err?.response?.data?.message || err?.response?.data, {
-                position: "bottom-right",
-            });
-        }
-
-    }
+        await handleSubmit(formData, updateData, `projects/project?id=${projectData?.id}`, onClose, reFetch);
+    };
 
     const handleChange = (e) => {
         const { name, type, checked, files, value } = e.target;
@@ -69,7 +51,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
                         />
                     </div>
                     <div className="right">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={onSubmit}>
                             {/* Project name */}
                             <div className="formInput">
                                 <label> blog name:</label>

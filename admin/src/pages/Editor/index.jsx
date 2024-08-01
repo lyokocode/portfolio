@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import "./editor.scss"
 import Markdown from "markdown-to-jsx"
-import { Code } from "../../components";
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { saveAs } from 'file-saver';
+import { Code } from "@/components";
+import "./editor.scss"
+import 'react-quill/dist/quill.snow.css';
 
 export const Editor = () => {
     const [text, setText] = useState("")

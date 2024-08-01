@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
-import "./new.scss"
 import { handleInputChange, handleSubmitForm } from "@/middleware/formUtils";
 import { InputField } from "@/components";
+import "./new.scss"
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});
@@ -57,7 +57,6 @@ New.propTypes = {
             placeholder: PropTypes.string,
             model: PropTypes.string.isRequired,
             options: PropTypes.arrayOf(PropTypes.string),
-            onChange: PropTypes.func.isRequired, // onChange fonksiyonunu ekliyoruz
         })
     ).isRequired,
     api: PropTypes.string.isRequired,

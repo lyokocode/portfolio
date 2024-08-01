@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from "react";
-import { Action, UpdateCategory } from "@/components";
+import { Action } from "@/components";
+import { UpdateCategory } from "@/modals/Update/UpdateCategory";
 import "./categoryList.scss"
 
 export const CategoryList = ({ category, reFetch }) => {

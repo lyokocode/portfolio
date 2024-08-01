@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./blogList.scss"
-import { Action, UpdateBlog } from "@/components";
+import { Action } from "@/components";
+import { UpdateBlog } from "@/modals/Update/UpdateBlog";
 import PropTypes from 'prop-types';
 
 export const BlogList = ({ blog, reFetch }) => {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import { UpdateProject, Action } from "@/components";
+import { Action } from "@/components";
+import { UpdateProject } from "@/modals/Update/UpdateProject";
 import "./projectList.scss"
 
 export const ProjectList = ({ project, reFetch }) => {

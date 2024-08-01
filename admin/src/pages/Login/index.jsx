@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess } from "@/store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { toast } from 'react-toastify';
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { loginSuccess } from "@/store/authSlice";
 import usePost from "@/hooks/usePost";
 import "./login.scss";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 
 export const Login = () => {
