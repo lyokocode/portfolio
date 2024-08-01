@@ -14,8 +14,10 @@ export const getAllTasks = async (req, res, next) => {
                 },
                 {
                     model: User,
+                    attributes: ["fullName", "id"]
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']],
         });
 
         res.status(200).json(tasks);

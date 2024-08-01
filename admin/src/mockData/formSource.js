@@ -75,7 +75,6 @@ export const categoryInputs = [
     },
 
 ]
-// formSource.js
 
 export const blogInputs = [
     {
@@ -136,8 +135,6 @@ export const blogInputs = [
         options: ["true", "false"]
     },
 ];
-
-
 
 export const projectInputs = [
     {

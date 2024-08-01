@@ -6,7 +6,7 @@ export const Dropdown = ({ onEdit, onDelete, onComplete, taskCompleted }) => {
             <ul>
                 <li onClick={onEdit}>Düzenle</li>
                 <li onClick={onDelete}>Sil</li>
-                <li onClick={onComplete}>{taskCompleted ? "Görevi kapat" : "Görevi aç"}</li>
+                <li onClick={onComplete}>{taskCompleted ? "Görevi aç" : "Görevi kapat"}</li>
             </ul>
         </div>
     )
