@@ -1,23 +1,10 @@
 import { useState } from "react";
 import "./blogList.scss"
-import axios from "axios"
-import { Error, UpdateBlog } from "..";
+import { Action, Error, UpdateBlog } from "@/components";
 import PropTypes from 'prop-types';
 
 
 export const BlogList = ({ blog, reFetch }) => {
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
-
-    const deleteBlog = async () => {
-        try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}blogs/blog?id=${blog?.id}`);
-            reFetch()
-        } catch (error) {
-            serError(true)
-            setErrorMessage(error?.response?.data?.message)
-        }
-    };
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -40,10 +27,12 @@ export const BlogList = ({ blog, reFetch }) => {
             <div className="blogInfo">
                 <p>{blog?.title}</p>
             </div>
-            <div className="buttonContainer">
-                <button className="updateBtn" onClick={() => openModal()}>update</button>
-                <button onClick={() => deleteBlog()} className="deleteBtn">delete</button>
-            </div>
+            <Action
+                reFetch={reFetch}
+                setModalVisible={setModalVisible}
+                endpoint={`blogs/blog?id=${blog?.id}`}
+                title="blog"
+            />
             {modalVisible && (
                 <UpdateBlog
                     blogData={blog}
@@ -51,7 +40,6 @@ export const BlogList = ({ blog, reFetch }) => {
                     reFetch={reFetch}
                 />
             )}
-            {error && <Error error={errorMessage} />}
 
         </div>
     )

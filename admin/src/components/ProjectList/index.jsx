@@ -1,29 +1,11 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import axios from "axios"
-import { UpdateProject } from "../UpdateProject";
-import { Error } from "..";
+import { UpdateProject, Action } from "@/components";
 import "./projectList.scss"
 
 export const ProjectList = ({ project, reFetch }) => {
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
-
-    const deleteProject = async () => {
-        try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}projects/project?id=${project.id}`);
-            reFetch()
-        } catch (error) {
-            serError(true)
-            setErrorMessage(error?.response?.data?.message)
-        }
-    };
 
     const [modalVisible, setModalVisible] = useState(false);
-
-    const openModal = () => {
-        setModalVisible(true);
-    };
 
     const closeModal = () => {
         setModalVisible(false);
@@ -39,10 +21,13 @@ export const ProjectList = ({ project, reFetch }) => {
             <div className="projectInfo">
                 <p>{project?.title}</p>
             </div>
-            <div className="buttonContainer">
-                <button className="updateBtn" onClick={openModal}>update</button>
-                <button className="deleteBtn" onClick={() => deleteProject()}>delete</button>
-            </div>
+
+            <Action
+                reFetch={reFetch}
+                setModalVisible={setModalVisible}
+                endpoint={`projects/project?id=${project.id}`}
+                title="project"
+            />
 
             {modalVisible && (
                 <UpdateProject
@@ -51,8 +36,6 @@ export const ProjectList = ({ project, reFetch }) => {
                     reFetch={reFetch}
                 />
             )}
-            {error && <Error error={errorMessage} />}
-
         </div>
     )
 }

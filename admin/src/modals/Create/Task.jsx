@@ -37,14 +37,14 @@ export const Task = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:5000/api/task`, {
+            await axios.post(`https://aelita-portfolio-server.vercel.app/api/task`, {
                 title: expenseName,
                 description,
                 dueDate,
                 categoryId: parseInt(categoryId),
                 priority,
                 userIds: userIds.map(id => parseInt(id))
-            });
+            }, { withCredentials: true });
 
             toast.success("Görev oluşturuldu", {
                 position: "bottom-right"

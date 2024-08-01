@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const useFetch = (url) => {
     const [data, setData] = useState([]);
@@ -13,6 +14,9 @@ const useFetch = (url) => {
 
             setData(res.data);
         } catch (err) {
+            toast.error(err?.response?.data?.message || err?.response?.data, {
+                position: "bottom-right",
+            });
             setError(err);
         }
         setLoading(false);

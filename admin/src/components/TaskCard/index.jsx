@@ -16,7 +16,7 @@ export const TaskCard = ({ task, reFetch }) => {
 
     const handleComplete = async (id) => {
         try {
-            await axios.put(`http://localhost:5000/api/task/complete/${id}`);
+            await axios.put(`https://aelita-portfolio-server.vercel.app/api/task/complete/${id}`, { withCredentials: true });
             toast.success("Görev durumu güncellendi", { position: "bottom-right" });
             reFetch();
         } catch (err) {
@@ -26,7 +26,7 @@ export const TaskCard = ({ task, reFetch }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/api/task/${id}`);
+            await axios.delete(`https://aelita-portfolio-server.vercel.app/api/task/${id}`);
             toast.success("Görev silindi", { position: "bottom-right" });
             reFetch();
         } catch (err) {

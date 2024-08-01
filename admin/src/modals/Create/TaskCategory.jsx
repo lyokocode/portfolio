@@ -10,9 +10,9 @@ export const TaskCategory = ({ setShow, reFetch }) => {
     const handleSubmitCategory = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:5000/api/task-category`, {
+            await axios.post(`https://aelita-portfolio-server.vercel.app/api/task-category`, {
                 name: categoryName,
-            });
+            }, { withCredentials: true });
 
             toast.success("Kategori oluşturuldu", {
                 position: "bottom-right"

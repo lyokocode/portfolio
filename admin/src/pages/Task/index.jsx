@@ -9,8 +9,7 @@ export const Task = () => {
     const modals = useModals();
     const { data, loading, error, reFetch } = useFetch(`task/`);
 
-    console.log(data && data)
-
+    console.log(error)
     return (
         <div className="taskPage">
             {modals.length > 0 && <Modal />}
