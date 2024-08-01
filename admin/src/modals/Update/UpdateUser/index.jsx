@@ -1,47 +1,21 @@
-import { useState } from "react";
-import axios from "axios";
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateUser.scss"
 import useUpdate from "@/hooks/useUpdate";
+import useFormHandler from "@/middleware/formHandlers";
 
 export const UpdateUser = ({ onClose, userData, reFetch }) => {
     const { auth } = useSelector(state => state.auth)
-    const { updateData } = useUpdate()
+    const { updateData } = useUpdate();
 
-    const [formData, setFormData] = useState({});
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const form = new FormData();
-
-            for (const key in formData) {
-                form.append(key, formData[key]);
-            }
-            await updateData(`users/user?id=${+userData?.id}`, form);
-
-            reFetch()
-            onClose();
-        } catch (error) {
-            console.log(error)
-        }
-
-    }
-
-    const handleChange = (e) => {
-        const { name, type, checked, files, value } = e.target;
-        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
-
-        setFormData({
-            ...formData,
-            [name]: newValue,
-        });
-    };
-
+    const { formData, handleChange, handleSubmit } = useFormHandler(
+        updateData,
+        `users/user?id=${+userData?.id}`,
+        reFetch,
+        onClose
+    );
 
     return (
         <div className="updateUser">

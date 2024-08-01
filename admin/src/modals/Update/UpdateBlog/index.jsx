@@ -1,39 +1,21 @@
-import { useState } from "react"
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import useFetch from "@/hooks/useFetch"
 import "./updateBlog.scss"
 import useUpdate from "@/hooks/useUpdate";
-import { handleSubmit } from "@/middleware/formHandlers";
+import useFormHandler from '@/middleware/formHandlers';
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
     const { updateData } = useUpdate();
-    const [formData, setFormData] = useState({});
     const { data } = useFetch(`categories?fields=id,name`);
 
-    const handleChange = (e) => {
-        const { name, type, checked, files, value } = e.target;
-        let newValue;
-
-        if (type === "checkbox") {
-            newValue = checked;
-        } else if (type === "file") {
-            newValue = files.length > 1 ? Array.from(files) : files[0];
-        } else {
-            newValue = value;
-        }
-
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: newValue,
-        }));
-    };
-
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await handleSubmit(formData, updateData, `blogs/blog?id=${blogData?.id}`, onClose, reFetch);
-    };
+    const { formData, handleChange, handleSubmit } = useFormHandler(
+        updateData,
+        `blogs/blog?id=${blogData?.id}`,
+        reFetch,
+        onClose
+    );
 
     return (
         <div className="updateBlog">
@@ -63,7 +45,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
                     {/* form container */}
                     <div className="right">
-                        <form onSubmit={onSubmit}>
+                        <form onSubmit={handleSubmit}>
 
                             {/* blog file */}
                             <div className="formInput">
@@ -170,6 +152,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                                     value={formData.CategoryId}
                                     onChange={handleChange}
                                     name="CategoryId"
+                                    multiple
                                 >
                                     <option value=""></option>
                                     {data && data.map((cat) => (

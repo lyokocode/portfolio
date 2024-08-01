@@ -1,30 +1,21 @@
-import { useState } from "react";
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateProject.scss";
 import useUpdate from "@/hooks/useUpdate";
-import { handleSubmit } from "@/middleware/formHandlers";
+import useFormHandler from "@/middleware/formHandlers";
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
-    const [formData, setFormData] = useState({});
-    const { updateData } = useUpdate()
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await handleSubmit(formData, updateData, `projects/project?id=${projectData?.id}`, onClose, reFetch);
-    };
+    const { updateData } = useUpdate();
 
-    const handleChange = (e) => {
-        const { name, type, checked, files, value } = e.target;
-        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
-
-        setFormData({
-            ...formData,
-            [name]: newValue,
-        });
-    };
+    const { formData, handleChange, handleSubmit } = useFormHandler(
+        updateData,
+        `projects/project?id=${projectData?.id}`,
+        reFetch,
+        onClose
+    );
 
     return (
         <div className="updateProject">
@@ -51,7 +42,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
                         />
                     </div>
                     <div className="right">
-                        <form onSubmit={onSubmit}>
+                        <form onSubmit={handleSubmit}>
                             {/* Project name */}
                             <div className="formInput">
                                 <label> blog name:</label>

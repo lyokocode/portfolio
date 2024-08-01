@@ -1,30 +1,20 @@
-import { useState } from "react";
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateCategory.scss";
 import useUpdate from "@/hooks/useUpdate";
-import { handleSubmit } from "@/middleware/formHandlers";
+import useFormHandler from '@/middleware/formHandlers';
 
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
-    const [formData, setFormData] = useState({});
-    const { updateData } = useUpdate()
+    const { updateData } = useUpdate();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await handleSubmit(formData, updateData, `categories/category?id=${categoryData?.id}`, onClose, reFetch);
-    };
-
-    const handleChange = (e) => {
-        const { name, type, checked, files, value } = e.target;
-        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
-
-        setFormData({
-            ...formData,
-            [name]: newValue,
-        });
-    };
+    const { formData, handleChange, handleSubmit } = useFormHandler(
+        updateData,
+        `categories/category?id=${categoryData?.id}`,
+        reFetch,
+        onClose
+    );
 
     return (
         <div className="updateCategory">
@@ -49,7 +39,7 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
                     </div>
                     <div className="right">
                         <form
-                            onSubmit={onSubmit}
+                            onSubmit={handleSubmit}
                             className="updateCategoryForm"
                         >
                             {/* category name */}
