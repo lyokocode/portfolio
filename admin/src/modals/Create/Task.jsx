@@ -5,6 +5,7 @@ import "./task.scss";
 import { toast } from "react-toastify";
 import { destroyModal } from "@/utils/modal";
 import { TaskCategory } from "./TaskCategory";
+import usePost from "@/hooks/usePost";
 
 export const Task = () => {
     const [dueDate, setDueDate] = useState("");
@@ -14,6 +15,7 @@ export const Task = () => {
     const [categoryId, setCategoryId] = useState("");
     const [userIds, setUserIds] = useState([]);
     const [show, setShow] = useState(false);
+    const { postData } = usePost();
 
     const { data: categories, loading, error, reFetch } = useFetch("task-category");
     const { data: users, loading: userLoading, userError } = useFetch("users");
@@ -37,7 +39,7 @@ export const Task = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`https://aelita-portfolio-server.vercel.app/api/task`, {
+            await postData(`task`, {
                 title: expenseName,
                 description,
                 dueDate,

@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 import "./new.scss"
-import { handleInputChange } from "@/utils";
-import { handleSubmitForm } from "@/utils/formUtils";
+import { handleInputChange, handleSubmitForm } from "@/middleware/formUtils";
 import { InputField } from "@/components";
-
 
 export const New = ({ title, inputs, api }) => {
     const [formData, setFormData] = useState({});

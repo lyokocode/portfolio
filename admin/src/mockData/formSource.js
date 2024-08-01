@@ -71,7 +71,7 @@ export const categoryInputs = [
         label: "Is Popular",
         model: "popular",
         type: "select",
-        options: ["true", "false"]
+        options: ["select", "true", "false"]
     },
 
 ]

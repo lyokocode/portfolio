@@ -6,10 +6,11 @@ import useFetch from "@/hooks/useFetch";
 import "./task.scss";
 
 export const Task = () => {
-    const modals = useModals();
-    const { data, loading, error, reFetch } = useFetch(`task/`);
 
-    console.log(error)
+    const { data, loading, error, reFetch } = useFetch(`task`);
+    const modals = useModals();
+    if (error) return "error"
+
     return (
         <div className="taskPage">
             {modals.length > 0 && <Modal />}
@@ -24,18 +25,15 @@ export const Task = () => {
                     <h1>Yeni görev oluştur</h1>
                 </button>
 
-                <button onClick={reFetch ? () => reFetch() : null} className="refetch">
+                <button onClick={() => reFetch()} className="refetch">
                     Yenile
                 </button>
             </header>
-
-            {data.length > 0 && (
-                <div className="taskList">
-                    {data && !loading && data?.map(task => (
-                        <TaskCard key={task.id} task={task} reFetch={reFetch} />
-                    ))}
-                </div>
-            )}
+            <div className="taskList">
+                {data && !loading && data?.map(task => (
+                    <TaskCard key={task.id} task={task} reFetch={reFetch} />
+                ))}
+            </div>
         </div>
     );
 };

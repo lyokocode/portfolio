@@ -12,7 +12,7 @@ const useDelete = () => {
                 withCredentials: true,
                 ...(data && { data })
             };
-            const res = await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}${url}`, config);
+            const res = await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}${url}`, { withCredentials: true });
             return res.data;
         } catch (err) {
             setError(err);

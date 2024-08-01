@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginSuccess, logout } from "@/store/authSlice";
+import { loginSuccess } from "@/store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { toast } from 'react-toastify';

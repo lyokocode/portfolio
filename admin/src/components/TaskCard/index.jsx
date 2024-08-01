@@ -4,19 +4,20 @@ import { toast } from 'react-toastify';
 import { CiMenuKebab } from "react-icons/ci";
 import axios from 'axios';
 import './taskCard.scss';
-import useDelete from '@/hooks/useDelete'; // useDelete hook'un doğru yolunu belirtin
+import useDelete from '@/hooks/useDelete';
 import { Dropdown } from './Dropdown';
 import { UpdateTaskModal } from '@/modals/Update/UpdateTask';
+import useUpdate from '@/hooks/useUpdate';
 
 export const TaskCard = ({ task, reFetch }) => {
+
     const [showDropdown, setShowDropdown] = useState(false);
-    const [showModal, setShowModal] = useState(false); // Modal açma/kapatma state
+    const [showModal, setShowModal] = useState(false);
     const { deleteData } = useDelete();
-
-
+    const { updateData } = useUpdate()
     const handleComplete = async (id) => {
         try {
-            await axios.put(`https://aelita-portfolio-server.vercel.app/api/task/complete/${id}`, { withCredentials: true });
+            await updateData(`task/complete/${id}`, { withCredentials: true });
             toast.success("Görev durumu güncellendi", { position: "bottom-right" });
             reFetch();
         } catch (err) {
@@ -26,7 +27,7 @@ export const TaskCard = ({ task, reFetch }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`https://aelita-portfolio-server.vercel.app/api/task/${id}`);
+            await deleteData(`task/${id}`);
             toast.success("Görev silindi", { position: "bottom-right" });
             reFetch();
         } catch (err) {

@@ -6,14 +6,13 @@ export const handleInputChange = (e, formData, setFormData, setImgSrc) => {
     const { name, type, checked, files, value } = e.target;
     const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
     if (type === 'file' && files[0]) {
-        setImgSrc(URL.createObjectURL(files[0])); // Dosyayı görüntülemek için imgSrc state'ini güncelle
+        setImgSrc(URL.createObjectURL(files[0]));
     }
     setFormData({
         ...formData,
         [name]: newValue,
     });
 };
-
 
 export const handleSubmitForm = async (formData, UserId, api, navigate) => {
     try {

@@ -29,10 +29,13 @@ const useFetch = (url) => {
     const reFetch = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`${import.meta.env.VITE_REACT_BASE_URL}${url}`);
+            const res = await axios.get(`${import.meta.env.VITE_REACT_BASE_URL}${url}`, { withCredentials: true });
             setData(res.data);
         } catch (err) {
             setError(err);
+            toast.error(err?.response?.data?.message || err?.response?.data, {
+                position: "bottom-right",
+            });
         }
         setLoading(false);
     };
