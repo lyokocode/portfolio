@@ -13,6 +13,7 @@ export { SingleUser } from "./Users/[id]"
 export { New } from "./New"
 
 export { Editor } from "./Editor"
+export { Task } from "./Task"
 
 export { Login } from "./Login"
 

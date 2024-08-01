@@ -26,3 +26,6 @@ export const Task = sequelize.define("Task", {
     },
 });
 
+Task.belongsTo(TaskCategory, { foreignKey: 'categoryId' });
+Task.belongsToMany(User, { through: 'TaskAssignees', foreignKey: 'taskId' });
+User.belongsToMany(Task, { through: 'TaskAssignees', foreignKey: 'userId' });

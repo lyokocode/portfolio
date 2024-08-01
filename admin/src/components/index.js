@@ -21,3 +21,5 @@ export { Code } from "./Code"
 export { Error } from "./Error"
 export { Loading } from "./Loading"
 
+export { TaskCard } from "./TaskCard"
+

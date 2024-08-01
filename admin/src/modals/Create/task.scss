@@ -1,0 +1,66 @@
+/* Container for the entire component */
+.expenseContainer {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: var(--background-primary);
+
+    .title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: var(--color-base-secondary);
+    }
+
+    .expenseForm {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+
+        label {
+            font-weight: bold;
+            color: var(--color-base);
+            font-size: 1.2rem;
+        }
+
+        .expenseInput,
+        select {
+            margin-top: .5rem;
+            padding: 1rem;
+            font-size: 1.4rem;
+            border: 1px solid var(--background-secondary);
+            border-radius: 4px;
+            width: 100%;
+            background-color: var(--background-secondary);
+            color: var(--color-base);
+        }
+
+        .createBtn {
+            color: var(--color-base-secondary);
+            margin-top: .6rem;
+            text-decoration: underline;
+
+        }
+
+        .expenseInput[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .submitBtn {
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: .6rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: var(--color-primary);
+
+            }
+        }
+    }
+}

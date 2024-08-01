@@ -1,30 +1,15 @@
-import { AiOutlineReload } from "react-icons/ai"
-import { Link } from "react-router-dom"
-import PropTypes from 'prop-types';
+import { Link, useLocation } from "react-router-dom";
 import "./header.scss"
 
-export const Header = ({ reFetch, title }) => {
+export const Header = ({ title, reFetch }) => {
     return (
-        <header className="pageHeader">
-            <input
-                className="searchInput"
-                type="text"
-                placeholder={`search to ${title}`}
-            />
-            <Link to="./create" className="createBtn">
-                Create a new {title}
+        <header className="header">
+            <Link to="create" className="link">
+                <h1>Create new {title} </h1>
             </Link>
-            <button
-                className="reloadBtn"
-                onClick={() => reFetch && reFetch()}>
-                <AiOutlineReload className="reloadIcon" />
+            <button onClick={reFetch ? () => reFetch() : null} className="refetch">
+                yenile
             </button>
         </header>
     )
 }
-
-
-Header.propTypes = {
-    reFetch: PropTypes.func,
-    title: PropTypes.string.isRequired
-};

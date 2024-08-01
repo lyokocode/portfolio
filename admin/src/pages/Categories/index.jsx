@@ -4,10 +4,7 @@ import { CategoryList, Header, Loading } from "@/components"
 
 export const Categories = () => {
 
-    const { data: categories, loading, reFetch } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}categories`
-    );
-
+    const { data: categories, loading, reFetch } = useFetch(`categories`);
 
     return (
         <section className="categoriesPage">

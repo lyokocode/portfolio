@@ -1,11 +1,11 @@
 import "./sidebar.scss"
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications } from "react-icons/md"
+import { MdDashboard, MdNotifications, MdSettingsSystemDaydream, MdOutlinePsychology, MdSettingsApplications, MdCalendarMonth } from "react-icons/md"
 import { AiOutlineUser, AiOutlineProject, AiOutlineEdit } from "react-icons/ai"
 import { BiCategory, BiLogoBlogger, BiUserCircle } from "react-icons/bi"
-import { createModal, useModals } from "../../utils/modal"
-import Modal from "../../modals"
+import { createModal, useModals } from "@/utils/modal"
+import Modal from "@/modals"
 
 
 export const Sidebar = () => {
@@ -33,16 +33,12 @@ export const Sidebar = () => {
                         </li>
                     </Link>
                     <p className="title">Lists</p>
-                    {
-                        auth?.isAdmin && (
-                            <Link to="/users">
-                                <li>
-                                    <AiOutlineUser className="icon" />
-                                    <span>Users</span>
-                                </li>
-                            </Link>
-                        )
-                    }
+                    <Link to="/users">
+                        <li>
+                            <AiOutlineUser className="icon" />
+                            <span>Users</span>
+                        </li>
+                    </Link>
                     <Link to="/blogs">
                         <li>
                             <BiLogoBlogger className="icon" />
@@ -70,6 +66,12 @@ export const Sidebar = () => {
                         <li>
                             <AiOutlineEdit className="icon" />
                             <span>Editor</span>
+                        </li>
+                    </Link>
+                    <Link to="/tasks">
+                        <li>
+                            <MdCalendarMonth className="icon" />
+                            <span>Task</span>
                         </li>
                     </Link>
                     <p className="title">Service</p>

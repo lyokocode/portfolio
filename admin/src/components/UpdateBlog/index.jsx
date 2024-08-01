@@ -11,9 +11,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
 
     const [formData, setFormData] = useState({});
 
-    const { data } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}categories?fields=id,name`
-    );
+    const { data } = useFetch(`categories?fields=id,name`);
     console.log(formData)
     const handleSubmit = async (e) => {
         e.preventDefault();

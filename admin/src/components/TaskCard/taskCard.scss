@@ -1,0 +1,175 @@
+.taskCard {
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    margin: 20px;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    &.completed {
+        background-color: #e0ffe0;
+        border: 1px solid #4caf50;
+    }
+
+    &.notCompleted {
+        background-color: #ffe0e0;
+        border: 1px solid #f44336;
+    }
+
+    .editBtn {
+        position: absolute;
+        top: .4rem;
+        right: 0;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: #333;
+        }
+
+        .priority {
+            display: flex;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+
+            svg {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    .description {
+        font-size: 1.2rem;
+        color: #666;
+        margin: 10px 0;
+        font-weight: 500;
+    }
+
+    .iconContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+
+        .taskIcon {
+            font-size: 2rem;
+            color: #007bff;
+        }
+    }
+
+    .category {
+        font-size: 1.2rem;
+        color: #888;
+    }
+
+    .dueDate {
+        font-size: 1.2rem;
+        color: #888;
+        margin-top: 10px;
+    }
+
+    h3 {
+        margin-top: 20px;
+        font-size: 1rem;
+        color: #444;
+    }
+
+    .assignedUsers {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .userInitials {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+
+        &:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            z-index: 10;
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+    }
+
+    .priorityIcon {
+        font-size: 1.2rem;
+        vertical-align: middle;
+
+        &.low {
+            color: green;
+        }
+
+        &.medium {
+            color: orange;
+        }
+
+        &.high {
+            color: red;
+        }
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 40px;
+        right: 10px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 10px;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding: 8px 12px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+            }
+        }
+    }
+}

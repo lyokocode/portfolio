@@ -6,21 +6,21 @@ const router = express.Router()
 
 
 // get all tasks
-router.get("/", verifyAdmin, getAllTasks)
+router.get("/", getAllTasks)
 
 // get task by id
-router.get("/:id", verifyAdmin, getTask);
+router.get("/:id", getTask);
 
 // create a new task
-router.post("/", verifyAdmin, createTask)
+router.post("/", createTask)
 
 // delete task
-router.delete("/:id", verifyAdmin, deleteTask);
+router.delete("/:id", deleteTask);
 
 // update task
-router.put("/:id", verifyAdmin, updateTask);
+router.put("/:id", updateTask);
 // update task
-router.put("/complete/:id", verifyAdmin, toggleTaskCompletion);
+router.put("/complete/:id", toggleTaskCompletion);
 
 
 export default router

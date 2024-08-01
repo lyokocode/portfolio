@@ -8,7 +8,7 @@ import useFetch from "../../hooks/useFetch"
 export const SingleUser = () => {
     const { id } = useParams()
 
-    const { data: user, loading, error, reFetch } = useFetch(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${id}`)
+    const { data: user, loading, error, reFetch } = useFetch(`users/user?id=${id}`)
 
     const [modalVisible, setModalVisible] = useState(false);
 

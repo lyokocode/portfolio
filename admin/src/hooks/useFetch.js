@@ -1,33 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from 'axios';
-import { toast } from "react-toastify";
 
-export default function useFetch(url) {
+const useFetch = (url) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const res = await axios.get(url, { withCredentials: true });
-                setData(res.data);
-            } catch (err) {
-                setError(err);
-                toast.error(err?.response?.data?.message || err?.response?.data, {
-                    position: "bottom-right",
-                });
-            }
-            setLoading(false);
-        };
-        fetchData();
-    }, [url]);
-
-    const reFetch = async () => {
+    const fetchData = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(url, { withCredentials: true });
+            const res = await axios.get(`${import.meta.env.VITE_REACT_BASE_URL}${url}`, { withCredentials: true });
+
             setData(res.data);
         } catch (err) {
             setError(err);
@@ -35,5 +18,22 @@ export default function useFetch(url) {
         setLoading(false);
     };
 
-    return { data, loading, error, reFetch };
+    useEffect(() => {
+        fetchData();
+    }, [url]);
+
+    const reFetch = async () => {
+        setLoading(true);
+        try {
+            const res = await axios.get(`${import.meta.env.VITE_REACT_BASE_URL}${url}`);
+            setData(res.data);
+        } catch (err) {
+            setError(err);
+        }
+        setLoading(false);
+    };
+
+    return useMemo(() => ({ data, loading, error, reFetch }), [data, loading, error, reFetch]);
 };
+
+export default useFetch;

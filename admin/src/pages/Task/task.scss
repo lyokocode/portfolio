@@ -1,0 +1,10 @@
+// pages/task.scss
+.taskPage {
+    padding: 20px;
+
+    .taskList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}

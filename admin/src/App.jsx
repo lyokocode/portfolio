@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Blogs, Home, Login, Projects, Categories, Editor, NotFound, SingleUser, New, NewBlog } from './pages'
+import { Blogs, Home, Login, Projects, Categories, Editor, NotFound, SingleUser, New, NewBlog, Task } from './pages'
 import { PrivateRoutes, Layout } from './utils'
 import { Users } from './pages'
 import { categoryInputs, projectInputs, userInputs } from './mockData/formSource'
@@ -36,11 +36,14 @@ function App() {
               <Route path='/users'>
                 <Route index element={<Users />} />
                 <Route path=":id" element={<SingleUser />} />
+                <Route path="create" element={<New inputs={userInputs} title="create new user" api="auth/register" />} />
               </Route>
-              <Route path="/user-create" element={<New inputs={userInputs} title="create new user" api="auth/register" />} />
 
+
+              <Route path="/tasks" element={<Task />} />
 
               <Route path="/editor" element={<Editor />} />
+
             </Route>
           </Route>
           < Route path='/login' element={<Login />} />

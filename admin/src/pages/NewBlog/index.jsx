@@ -12,7 +12,7 @@ export const NewBlog = () => {
     const navigate = useNavigate()
 
     const { data } = useFetch(
-        `${import.meta.env.VITE_REACT_BASE_URL}categories?fields=id,name`
+        `categories?fields=id,name`
     );
 
 
