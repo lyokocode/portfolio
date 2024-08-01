@@ -1,10 +1,9 @@
-import "./categoryList.scss"
+import PropTypes from 'prop-types';
 import { useState } from "react";
 import { Action, UpdateCategory } from "@/components";
-import PropTypes from 'prop-types';
+import "./categoryList.scss"
 
 export const CategoryList = ({ category, reFetch }) => {
-    const { name, image, color, popular, id } = category;
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -13,24 +12,24 @@ export const CategoryList = ({ category, reFetch }) => {
     };
 
     return (
-        <div className={`categoryCard ${popular ? 'popular' : ''}`}>
+        <div className={`categoryCard ${category.popular ? 'popular' : ''}`}>
 
             <div className="category-image">
                 <img
-                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${image}`}
+                    src={`${import.meta.env.VITE_REACT_SUPABASE_STORAGE}/object/public/blog/categories/${category.image}`}
                 />
             </div>
 
             <div className="categoryDetails">
-                <h2 className="category-title">{name}</h2>
+                <h2 className="category-title">{category.name}</h2>
             </div>
 
-            <div className="colorContainer" style={{ background: color }} />
+            <div className="colorContainer" style={{ background: category.color }} />
 
             <Action
                 reFetch={reFetch}
                 setModalVisible={setModalVisible}
-                endpoint={`categories/category?id=${id}`}
+                endpoint={`categories/category?id=${category.id}`}
                 title="category"
             />
 

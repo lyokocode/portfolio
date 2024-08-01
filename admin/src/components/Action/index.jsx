@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import { toast } from "react-toastify";
 import "./action.scss"
-import useDelete from '@/hooks/useDelete'; // useDelete hook'un doğru yolunu belirtin
-
+import useDelete from '@/hooks/useDelete';
 export const Action = ({ reFetch, setModalVisible, endpoint, title }) => {
 
     const { deleteData } = useDelete();
@@ -32,3 +32,10 @@ export const Action = ({ reFetch, setModalVisible, endpoint, title }) => {
         </div>
     )
 }
+
+Action.propTypes = {
+    reFetch: PropTypes.func.isRequired,
+    setModalVisible: PropTypes.func.isRequired,
+    endpoint: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+};

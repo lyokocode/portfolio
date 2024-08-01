@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateUser.scss"
+import useUpdate from "@/hooks/useUpdate";
 
 export const UpdateUser = ({ onClose, userData, reFetch }) => {
     const { auth } = useSelector(state => state.auth)
-
+    const { updateData } = useUpdate()
 
     const [formData, setFormData] = useState({});
 
@@ -21,7 +22,7 @@ export const UpdateUser = ({ onClose, userData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}/api/users/user?id=${+userData?.id}`, form, { withCredentials: true });
+            await updateData(`users/user?id=${+userData?.id}`, form);
 
             reFetch()
             onClose();

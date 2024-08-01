@@ -1,14 +1,15 @@
 import { useState } from "react";
-import axios from "axios";
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateProject.scss";
 import { toast } from "react-toastify";
+import useUpdate from "@/hooks/useUpdate";
 
 export const UpdateProject = ({ onClose, projectData, reFetch }) => {
 
     const [formData, setFormData] = useState({});
+    const { updateData } = useUpdate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +20,7 @@ export const UpdateProject = ({ onClose, projectData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}projects/project?id=${projectData?.id}`, form, { withCredentials: true });
+            await updateData(`projects/project?id=${projectData?.id}`, form);
             toast.success("project updated successful!", {
                 position: "bottom-right"
             });

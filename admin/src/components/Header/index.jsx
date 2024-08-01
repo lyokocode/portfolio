@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 import "./header.scss"
 
 export const Header = ({ title, reFetch }) => {
@@ -13,3 +14,8 @@ export const Header = ({ title, reFetch }) => {
         </header>
     )
 }
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired,
+    reFetch: PropTypes.func,
+};

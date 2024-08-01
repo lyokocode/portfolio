@@ -1,21 +1,15 @@
 import { useState } from "react";
 import "./blogList.scss"
-import { Action, Error, UpdateBlog } from "@/components";
+import { Action, UpdateBlog } from "@/components";
 import PropTypes from 'prop-types';
-
 
 export const BlogList = ({ blog, reFetch }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
 
-    const openModal = () => {
-        setModalVisible(true);
-    };
-
     const closeModal = () => {
         setModalVisible(false);
     };
-
 
     return (
         <div className="blogList">
@@ -44,6 +38,7 @@ export const BlogList = ({ blog, reFetch }) => {
         </div>
     )
 }
+
 BlogList.propTypes = {
     blog: PropTypes.shape({
         id: PropTypes.number,

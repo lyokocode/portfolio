@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { FaExclamationTriangle, FaExclamationCircle, FaCheckCircle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { CiMenuKebab } from "react-icons/ci";
-import axios from 'axios';
-import './taskCard.scss';
 import useDelete from '@/hooks/useDelete';
 import { Dropdown } from './Dropdown';
 import { UpdateTaskModal } from '@/modals/Update/UpdateTask';
 import useUpdate from '@/hooks/useUpdate';
+import PropTypes from 'prop-types';
+import './taskCard.scss';
 
 export const TaskCard = ({ task, reFetch }) => {
 
@@ -15,6 +15,7 @@ export const TaskCard = ({ task, reFetch }) => {
     const [showModal, setShowModal] = useState(false);
     const { deleteData } = useDelete();
     const { updateData } = useUpdate()
+
     const handleComplete = async (id) => {
         try {
             await updateData(`task/complete/${id}`, { withCredentials: true });
@@ -97,4 +98,26 @@ const renderPriorityIcon = (priority) => {
 const getInitials = (fullName) => {
     const names = fullName.split(' ');
     return names.map(name => name[0]).join('').toUpperCase();
+};
+
+
+TaskCard.propTypes = {
+    task: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        dueDate: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired,
+        priority: PropTypes.oneOf(['düşük', 'orta', 'yüksek']).isRequired,
+        TaskCategory: PropTypes.shape({
+            name: PropTypes.string.isRequired
+        }).isRequired,
+        Users: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                fullName: PropTypes.string.isRequired
+            })
+        ).isRequired
+    }).isRequired,
+    reFetch: PropTypes.func.isRequired
 };

@@ -1,18 +1,17 @@
 import { useState } from "react"
-import axios from "axios"
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import useFetch from "../../hooks/useFetch"
 import "./updateBlog.scss"
-
+import useUpdate from "@/hooks/useUpdate";
 
 export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
+    const { updateData } = useUpdate()
 
     const [formData, setFormData] = useState({});
-
     const { data } = useFetch(`categories?fields=id,name`);
-    console.log(formData)
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -29,11 +28,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
                 }
             }
 
-            await axios.put(
-                `${import.meta.env.VITE_REACT_BASE_URL}blogs/blog?id=${blogData?.id}`,
-                form,
-                { withCredentials: true }
-            );
+            await updateData(`blogs/blog?id=${blogData?.id}`, form);
 
             reFetch();
             onClose();
@@ -59,6 +54,7 @@ export const UpdateBlog = ({ onClose, blogData, reFetch }) => {
             [name]: newValue,
         }));
     };
+
     return (
         <div className="updateBlog">
             <div className="updateContainer">

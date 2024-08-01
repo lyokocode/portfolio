@@ -1,22 +1,21 @@
 
-import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { Error } from '..';
 import PropTypes from 'prop-types';
-import axios from "axios"
 import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai'
-export const UserList = ({ user, reFetch }) => {
+import { toast } from 'react-toastify';
+import useDelete from '@/hooks/useDelete';
 
-    const [errorMessage, setErrorMessage] = useState()
-    const [error, serError] = useState(null)
+export const UserList = ({ user, reFetch }) => {
+    const { deleteData } = useDelete();
 
     const deleteUser = async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_REACT_BASE_URL}users/user?id=${user.id}`, { withCredentials: true });
+            await deleteData(`users/user?id=${user.id}`);
             reFetch()
-        } catch (error) {
-            serError(true)
-            setErrorMessage(error?.response?.data?.message || "there is a problem on server")
+        } catch (err) {
+            toast.error(err?.response?.data?.message || err?.response?.data, {
+                position: "bottom-right",
+            });
         }
     };
 
@@ -77,8 +76,6 @@ export const UserList = ({ user, reFetch }) => {
                     </div>
                 </td>
             </tr>
-            {error && <Error error={errorMessage} />}
-
         </tbody >
     )
 }

@@ -1,14 +1,15 @@
 import { useState } from "react";
-import axios from "axios";
 import PropTypes from 'prop-types';
 import { AiOutlineClose } from "react-icons/ai";
 import { MdDriveFolderUpload } from "react-icons/md"
 import "./updateCategory.scss";
+import useUpdate from "@/hooks/useUpdate";
 
 export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
 
     const [formData, setFormData] = useState({});
-    console.log(formData)
+    const { updateData } = useUpdate()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ export const UpdateCategory = ({ onClose, categoryData, reFetch }) => {
             for (const key in formData) {
                 form.append(key, formData[key]);
             }
-            await axios.put(`${import.meta.env.VITE_REACT_BASE_URL}categories/category?id=${categoryData?.id}`, form, { withCredentials: true });
+            await updateData(`categories/category?id=${categoryData?.id}`, form);
 
             reFetch()
             onClose();
